@@ -1,18 +1,28 @@
 # SpellBook
-## Project Goals
+## **Project Goals**
+Above Board is a place for boardgame fans to browse an extensive database of games, add and rate games, and ultimately find something fun to play. Above Board is aimed at boardgamers new and old, allowing users to log their collections, rate and review games and explore the database by filtering by genre and game mechanics.
 
+**User Goals:**
+- A place to log their collection, see what games other people are playing, and find something to play.
 
-User Goals:
-
-
-Site Owner Goal:
-
+**Site Owner Goal:**
+- Utilize the site's functionality themselves.
+- Promote boardgaming as a hobby.
+- Potentially generate income via affiliate links.
 
 *Screen shot of index.html and caption*
 
-# UX
-## User Stories
-
+# **UX**
+## **User Stories**
+1.	As a new user, I want to be able to register an account, so I can fully utilize the site.
+2.	As a returning user, I want to be able to log in easily, so I can access the site’s features.
+3.	As a boardgame fan, I want to be able to view, search and filter a database of games, so I can find one to play.
+4.	As a boardgame fan, I want to “favourite” games to the database, so I can add them to my collection.
+5.	As a boardgame fan, I want to add my games to the database, so I can curate my collection.
+6.	As a boardgame fan, I want to view my collection of games to the database, so I can see all the games I have added and favourited.
+7.	As a boardgame fan, I want rate and review games in the database, so I can provide guidance to other users.
+8.	As a site user, I want to be able to delete my posts, so I can remove any reviews or games I have posted.
+9.	As a site administrator, I want to be able to delete any user’s posts, so I can remove any potentially inappropriate content.
 
 ## Design
 ### Initial Wireframes
