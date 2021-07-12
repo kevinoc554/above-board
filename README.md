@@ -23,11 +23,18 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 7.	As a boardgame fan, I want rate and review games in the database, so I can provide guidance to other users.
 8.	As a site user, I want to be able to delete my posts, so I can remove any reviews or games I have posted.
 9.	As a site administrator, I want to be able to delete any user’s posts, so I can remove any potentially inappropriate content.
+9.	As a site administrator, I want to be able to add new genres and mechanics, so I can expand the database content in line with user demands.
 
-## Design
+## **Design**
 ### Initial Wireframes
-Based on the above User Stories, the following wireframes were mocked up.
-
+Based on the above User Stories, the following wireframes were mocked up:
+- [Index](wireframes/index.pdf)
+- [Login](wireframes/login.pdf) & [Register](wireframes/register.pdf)
+- [Profile Page](wireframes/profile.pdf)
+- [All Games](wireframes/all-games.pdf) & [My Games](wireframes/my-games.pdf)
+- [Add Game](wireframes/add-game.pdf) & [Edit Game](wireframes/edit-game.pdf)
+- [Game Info](wireframes/game-info.pdf)
+- [Admin Area](wireframes/admin-area.pdf)
 
 ### Colour Scheme
 *write up and color pallette*
