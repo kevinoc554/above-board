@@ -32,6 +32,20 @@ Based on the above User Stories, the following wireframes were mocked up.
 
 
 # Technologies Used
+- HTML5 - the pages of this site were designed using HTML.
+- CSS3 - the pages of this site were styled using CSS.
+- JavaScript - the interactive elements of this site were implemented using JavaScript.
+- Python - back-end functionality of the site was written in Python
+- [Flask](https://flask.palletsprojects.com/en/2.0.x/#) - The Flask micro-framework - including the [Jinja](https://jinja.palletsprojects.com/) template engine and [Werkzeug](https://werkzeug.palletsprojects.com/) toolkit - was used to develop this site.
+- [MongoDB](https://www.mongodb.com/) - the site's uses MongoDB as it's database platform. 
+- [Gitpod](https://www.gitpod.io/) - the site was developed using Gitpod as the development environment.
+- [Materialize](https://materializecss.com/) - the site was styled using the Materialize front-end framework.
+- [jQuery](https://jquery.com/) - jQuery was used to simplify and condense JavaScript, particularly for interacting with, and writing to, the DOM. 
+- [Font Awesome](https://fontawesome.com/) - Font Awesome icons were used for the social media links in the footer.
+- [Google Fonts](https://fonts.google.com/) - Google Fonts were used throughout the project.
+- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - Contrast Checker was used to ensure there was sufficient contrast between foreground and background colours.
+- [Free Logo Design](https://www.freelogodesign.org/) - The site's brand logo was created using Free Logo Design.
+- [Favicon Generator](https://www.favicongenerator.com/) - Favicon Generator was used to create and size the favicon for the site, using the logo created above.
 
 # Testing
 ## Validation:
