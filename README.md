@@ -35,7 +35,7 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 
 ### Database Schema
 
-![Database Schema](wireframes/database-schema.pdf)
+![Database Schema](wireframes/database-schema-1.png)
 
 ### Initial Wireframes
 
