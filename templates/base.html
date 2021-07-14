@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,22 +10,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
     <!-- Materialize CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
         type="text/css">
-    
+
     <!-- style.css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    
+
     {% if title %}
-        <title>Above Board | {{ title }}</title>
+    <title>Above Board | {{ title }}</title>
     {% else %}
-        <title>Above Board</title>
+    <title>Above Board</title>
     {% endif %}
 
 </head>
+
 <body>
+    <nav>
+        <div class="nav-wrapper yellow accent-2">
+            <a href="{{ url_for('home') }}" class="brand-logo black-text">Above Board</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars black-text"></i></a></a>
+            <ul class="right hide-on-med-and-down nav-list">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="#">All Games</a></li>
+                <li><a href="#">My Profile</a></li>
+                <li><a href="#">My Games</a></li>
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Register</a></li>
+                <li><a href="#">Logout</a></li>
+                <li><a href="#">Admin</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <ul class="sidenav right" id="mobile-demo">
+        <li><a href="{{ url_for('home') }}">Home</a></li>
+        <li><a href="#">All Games</a></li>
+        <li><a href="#">My Profile</a></li>
+        <li><a href="#">My Games</a></li>
+        <li><a href="#">Login</a></li>
+        <li><a href="#">Register</a></li>
+        <li><a href="#">Logout</a></li>
+        <li><a href="#">Admin</a></li>
+    </ul>
     {% block content %}
     {% endblock %}
 
@@ -37,6 +66,7 @@
 
     <!-- script.js -->
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    
+
 </body>
+
 </html>
