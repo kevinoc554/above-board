@@ -2,3 +2,24 @@
 .nav-list li a {
     color: black;
 }
+
+.navbar-logo img,
+.navbar-logo h5 {
+    display: inline-block;
+}
+
+.navbar-logo h5 {
+    position: relative;
+    bottom: 25%;
+}
+
+/* Media Queries */
+@media screen and (max-width: 767px) {
+    .navbar-logo img {
+        display: none
+    }
+    .navbar-logo h5 {
+        position: absolute;
+        margin-left: .5rem;
+        bottom: 15%;
+}

@@ -29,7 +29,10 @@
 <body>
     <nav>
         <div class="nav-wrapper yellow accent-2">
-            <a href="{{ url_for('home') }}" class="brand-logo black-text">Above Board</a>
+            <a href="{{ url_for('home') }}" class="navbar-logo">
+                <img src="{{ url_for('static', filename='images/brand-logo.png')}}" alt="Brand Logo for Above Board" height="60" width="56">
+                <h5 class="black-text">Above Board</h5>
+            </a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars black-text"></i></a></a>
             <ul class="right hide-on-med-and-down nav-list">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -54,6 +57,7 @@
         <li><a href="#">Logout</a></li>
         <li><a href="#">Admin</a></li>
     </ul>
+
     {% block content %}
     {% endblock %}
 
