@@ -1,6 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
+from flask_bcrypt import Bcrypt
+
+bcrypt = Bcrypt()
 
 
 class RegistrationForm(FlaskForm):
@@ -19,14 +22,15 @@ class RegistrationForm(FlaskForm):
 
     def make_dict(self):
         """
-        Takes response to form and converts to dict,
-        ready to pass to User class
+        Takes response from form, hashes password
+        and converts to dict to pass to User class
         """
         info = {
             "fname": self.fname.data,
             "lname": self.lname.data,
             "username": self.username.data,
             "email": self.email.data,
-            "password": self.password.data
+            "password": bcrypt.generate_password_hash(self.password.data)
+                              .decode('utf-8')
         }
         return info

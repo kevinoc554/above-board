@@ -12,7 +12,6 @@ app = Flask(__name__)
 app.config["MONGO_DBNAME"] = os.environ.get("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.environ.get("MONGO_URI")
 app.secret_key = os.environ.get("SECRET_KEY")
-
 mongo = PyMongo(app)
 
 
@@ -74,13 +73,6 @@ def all_games():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        # register = {
-        #     "fname": request.form.get("fname"),
-        #     "lname": request.form.get("lname"),
-        #     "username": request.form.get("username"),
-        #     "email": request.form.get("email"),
-        #     "password": request.form.get("password")
-        # }
         register = form.make_dict()
         new_user = User(**register)
         new_user.add_user()
