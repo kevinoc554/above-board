@@ -33,6 +33,25 @@ class User():
         self.email = email
         self.password = password
 
+    def get_info(self):
+        """
+        Convert User instance to dict to facilitate adding to db
+        """
+        info = {
+            "fname": self.fname,
+            "lname": self.lname,
+            "username": self.username,
+            "email": self.email,
+            "password": self.password
+        }
+        return info
+
+    def add_user(self):
+        """
+        Uses get_info to add user data to db
+        """
+        mongo.db.users.insert_one(self.get_info())
+
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
 
@@ -64,7 +83,7 @@ def register():
         # }
         register = form.make_dict()
         new_user = User(**register)
-        print(repr(new_user))
+        new_user.add_user()
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template("register.html", title="Register", form=form)
