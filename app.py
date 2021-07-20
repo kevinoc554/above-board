@@ -47,7 +47,8 @@ class User():
 
     def add_user(self):
         """
-        Uses get_info to add user data to db
+        Add user data to db.
+        Uses get_info to convert User instance to dict.
         """
         mongo.db.users.insert_one(self.get_info())
 
@@ -73,6 +74,13 @@ def all_games():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
+        exisiting_username = mongo.db.users.find_one(
+            {"username": request.form.get('username')})
+        exisiting_email = mongo.db.users.find_one(
+            {"email": request.form.get('email')})
+        if exisiting_username or exisiting_email:
+            flash("Username or email address already in use", "warning")
+            return redirect(url_for('register'))
         register = form.make_dict()
         new_user = User(**register)
         new_user.add_user()
