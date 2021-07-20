@@ -18,6 +18,10 @@
     background-color: lightgreen;
 }
 
+.card-panel.warning {
+    background-color: darkred;
+}
+
 /* Media Queries */
 @media screen and (max-width: 767px) {
     .navbar-logo img {
