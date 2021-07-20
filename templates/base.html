@@ -41,11 +41,11 @@
                     class="fas fa-bars black-text"></i></a></a>
             <ul class="right hide-on-med-and-down nav-list">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">All Games</a></li>
+                <li><a href="{{ url_for('all_games') }}">All Games</a></li>
                 <li><a href="#">My Profile</a></li>
                 <li><a href="#">My Games</a></li>
                 <li><a href="#">Login</a></li>
-                <li><a href="#">Register</a></li>
+                <li><a href="{{ url_for('register') }}">Register</a></li>
                 <li><a href="#">Logout</a></li>
                 <li><a href="#">Admin</a></li>
             </ul>
@@ -54,11 +54,11 @@
 
     <ul class="sidenav right" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="#">All Games</a></li>
+        <li><a href="{{ url_for('all_games') }}">All Games</a></li>
         <li><a href="#">My Profile</a></li>
         <li><a href="#">My Games</a></li>
         <li><a href="#">Login</a></li>
-        <li><a href="#">Register</a></li>
+        <li><a href="{{ url_for('register') }}">Register</a></li>
         <li><a href="#">Logout</a></li>
         <li><a href="#">Admin</a></li>
     </ul>

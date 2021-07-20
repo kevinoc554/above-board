@@ -45,7 +45,7 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/all_games")
+@app.route("/all-games")
 def all_games():
     games = mongo.db.games.find()
     return render_template("all-games.html", games=games, title='All Games')
