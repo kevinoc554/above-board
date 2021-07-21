@@ -1,9 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
-from flask_bcrypt import Bcrypt
-
-bcrypt = Bcrypt()
+from aboveboard import bcrypt
 
 
 class RegistrationForm(FlaskForm):
