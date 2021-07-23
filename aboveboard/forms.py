@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import InputRequired, Length, Email, EqualTo
-from aboveboard import bcrypt
+from wtforms.validators import (
+    InputRequired, Length, Email, EqualTo, ValidationError)
+from aboveboard import bcrypt, mongo
 
 
 class RegistrationForm(FlaskForm):
@@ -17,6 +18,28 @@ class RegistrationForm(FlaskForm):
     confirm = PasswordField('Confirm Password', validators=[
         InputRequired(), EqualTo('password')])
     submit = SubmitField('Sign Up!')
+
+    def validate_username(self, username):
+        """
+        Checks if provided username is already in db.
+        Fires as part of FlaskForm's .validate_on_submit()
+        """
+        exisiting_username = mongo.db.users.find_one(
+            {"username": self.username.data})
+        if exisiting_username:
+            raise ValidationError(
+                'That username is already in use. Please choose a new one.')
+
+    def validate_email(self, email):
+        """
+        Checks if provided email is already in db.
+        Fires as part of FlaskForm's .validate_on_submit()
+        """
+        exisiting_email = mongo.db.users.find_one(
+            {"email": self.email.data})
+        if exisiting_email:
+            raise ValidationError(
+                'That email is already in use. Please choose a new one.')
 
     def make_dict(self):
         """
