@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import (
     InputRequired, Length, Email, EqualTo, ValidationError)
 from aboveboard import bcrypt, mongo
@@ -55,3 +55,10 @@ class RegistrationForm(FlaskForm):
                               .decode('utf-8')
         }
         return info
+
+
+class LoginForm(FlaskForm):
+    email = StringField('Email Address', validators=[InputRequired(), Email()])
+    password = PasswordField('Password', validators=[InputRequired()])
+    remember = BooleanField('Remember Me')
+    submit = SubmitField('Login')
