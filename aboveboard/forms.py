@@ -22,7 +22,7 @@ class RegistrationForm(FlaskForm):
     def validate_username(self, username):
         """
         Checks if provided username is already in db.
-        Fires as part of FlaskForm's .validate_on_submit()
+        Fires as part of wtform's .validate_on_submit()
         """
         exisiting_username = mongo.db.users.find_one(
             {"username": self.username.data})
@@ -33,7 +33,7 @@ class RegistrationForm(FlaskForm):
     def validate_email(self, email):
         """
         Checks if provided email is already in db.
-        Fires as part of FlaskForm's .validate_on_submit()
+        Fires as part of wtform's .validate_on_submit()
         """
         exisiting_email = mongo.db.users.find_one(
             {"email": self.email.data})
