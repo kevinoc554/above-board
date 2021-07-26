@@ -29,9 +29,13 @@
                             {{ form.password(class="validate") }}
                         {% endif %}
                     </div>
-                    <div class="form-check">
-                        {{ form.remember }}
-                        {{ form.remember.label }}
+                    <div class="input-field col s12">
+                        <p>
+                            <label>
+                                {{ form.remember }}
+                                <span>{{ form.remember.label }}</span>
+                            </label>
+                        </p>
                     </div>
                 </fieldset>
                 <div class="input-field">
