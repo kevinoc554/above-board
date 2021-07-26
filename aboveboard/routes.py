@@ -2,7 +2,7 @@ from flask import (
     flash, render_template,
     redirect, request, session, url_for)
 from aboveboard import app, mongo
-from aboveboard.forms import RegistrationForm
+from aboveboard.forms import RegistrationForm, LoginForm
 from aboveboard.models import User
 
 
@@ -28,3 +28,9 @@ def register():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template("register.html", title="Register", form=form)
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    form = LoginForm()
+    return render_template("login.html", title="Login", form=form)
