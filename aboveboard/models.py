@@ -3,8 +3,11 @@ from flask_login import UserMixin
 
 
 @login_manager.user_loader
-def load_user(username):
-    user = mongo.db.Users.find_one({"username": username})
+def load_user(email):
+    user = mongo.db.users.find_one({"email": email})
+    print(f'User Loader - UserEmail: {email}')
+    print('User Loader - VarType: ', type(email))
+    print(f'User Loader - UserObj: {user}')
     if not user:
         return None
     return User(**user)
@@ -51,7 +54,7 @@ class User(UserMixin):
         Get a user by username
         Overide get_id method provided by UserMixin
         """
-        return self.username
+        return self.email
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"

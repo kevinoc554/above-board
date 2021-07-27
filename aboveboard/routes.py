@@ -21,6 +21,8 @@ def all_games():
 
 @app.route("/register", methods=["GET", "POST"])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         register = form.make_dict()
@@ -40,9 +42,11 @@ def login():
             find_user['password'], form.password.data)
         if find_user and check_password:
             user = User(**find_user)
+            print(user)
             login_user(user)
+            print(current_user)
             flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
+            # return redirect(url_for('home'))
         else:
             flash('Incorrect email or password, please try again.', 'warning')
 
