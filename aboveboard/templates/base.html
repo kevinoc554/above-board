@@ -46,7 +46,7 @@
                 <li><a href="#">My Games</a></li>
                 <li><a href="{{ url_for('login') }}">Login</a></li>
                 <li><a href="{{ url_for('register') }}">Register</a></li>
-                <li><a href="#">Logout</a></li>
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 <li><a href="#">Admin</a></li>
             </ul>
         </div>
@@ -59,7 +59,7 @@
         <li><a href="#">My Games</a></li>
         <li><a href="{{ url_for('login') }}">Login</a></li>
         <li><a href="{{ url_for('register') }}">Register</a></li>
-        <li><a href="#">Logout</a></li>
+        <li><a href="{{ url_for('logout') }}">Logout</a></li>
         <li><a href="#">Admin</a></li>
     </ul>
     {% with messages = get_flashed_messages(with_categories=true) %}

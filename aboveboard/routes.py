@@ -4,7 +4,7 @@ from flask import (
 from aboveboard import app, mongo, bcrypt
 from aboveboard.forms import RegistrationForm, LoginForm
 from aboveboard.models import User
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 
 
 @app.route("/")
@@ -51,3 +51,13 @@ def login():
             flash('Incorrect email or password, please try again.', 'warning')
 
     return render_template("login.html", title="Login", form=form)
+
+
+@app.route("/logout")
+def logout():
+    if current_user.is_authenticated:
+        logout_user()
+        flash('You have been logged out!', 'success')
+    else:
+        flash('You are not currently logged in.')
+    return redirect(url_for('home'))
