@@ -35,6 +35,8 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
         find_user = mongo.db.users.find_one({'email': form.email.data})
