@@ -5,9 +5,6 @@ from flask_login import UserMixin
 @login_manager.user_loader
 def load_user(email):
     user = mongo.db.users.find_one({"email": email})
-    print(f'User Loader - UserEmail: {email}')
-    print('User Loader - VarType: ', type(email))
-    print(f'User Loader - UserObj: {user}')
     if not user:
         return None
     return User(**user)
