@@ -42,9 +42,9 @@
             <ul class="right hide-on-med-and-down nav-list">
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('all_games') }}">All Games</a></li>
-                <li><a href="#">My Profile</a></li>
-                <li><a href="#">My Games</a></li>
                 {% if current_user.is_authenticated %}
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">My Games</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ url_for('login') }}">Login</a></li>
@@ -57,13 +57,16 @@
 
     <ul class="sidenav right" id="mobile-demo">
         <li><a href="{{ url_for('home') }}">Home</a></li>
-        <li><a href="{{ url_for('all_games') }}">All Games</a></li>
-        <li><a href="#">My Profile</a></li>
-        <li><a href="#">My Games</a></li>
-        <li><a href="{{ url_for('login') }}">Login</a></li>
-        <li><a href="{{ url_for('register') }}">Register</a></li>
-        <li><a href="{{ url_for('logout') }}">Logout</a></li>
-        <li><a href="#">Admin</a></li>
+                <li><a href="{{ url_for('all_games') }}">All Games</a></li>
+                {% if current_user.is_authenticated %}
+                    <li><a href="#">My Profile</a></li>
+                    <li><a href="#">My Games</a></li>
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
+                {% endif %}
+                <li><a href="#">Admin</a></li>
     </ul>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
