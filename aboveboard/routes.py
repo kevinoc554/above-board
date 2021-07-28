@@ -4,7 +4,7 @@ from flask import (
 from aboveboard import app, mongo, bcrypt
 from aboveboard.forms import RegistrationForm, LoginForm
 from aboveboard.models import User
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 
 @app.route("/")
@@ -64,10 +64,12 @@ def logout():
 
 
 @app.route("/profile")
+@login_required
 def profile():
     return render_template('profile.html', title='Profile')
 
 
 @app.route("/my-games")
+@login_required
 def my_games():
     return render_template('my-games.html', title='Profile')
