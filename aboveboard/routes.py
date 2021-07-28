@@ -46,7 +46,9 @@ def login():
             user = User(**find_user)
             login_user(user)
             flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
+            next_page = request.args.get('next')
+            return redirect(next_page) if next_page else redirect(
+                url_for('home'))
         else:
             flash('Incorrect email or password, please try again.', 'warning')
 
