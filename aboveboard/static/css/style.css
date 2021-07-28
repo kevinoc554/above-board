@@ -22,6 +22,10 @@
     background-color: darkred;
 }
 
+.card-panel.info {
+    background-color: lightskyblue;
+}
+
 /* Media Queries */
 @media screen and (max-width: 767px) {
     .navbar-logo img {
