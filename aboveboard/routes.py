@@ -66,3 +66,8 @@ def logout():
 @app.route("/profile")
 def profile():
     return render_template('profile.html', title='Profile')
+
+
+@app.route("/my-games")
+def my_games():
+    return render_template('my-games.html', title='Profile')
