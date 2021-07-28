@@ -43,7 +43,7 @@
                 <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('all_games') }}">All Games</a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a href="#">My Profile</a></li>
+                    <li><a href="{{ url_for('profile') }}">My Profile</a></li>
                     <li><a href="#">My Games</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
@@ -59,7 +59,7 @@
         <li><a href="{{ url_for('home') }}">Home</a></li>
                 <li><a href="{{ url_for('all_games') }}">All Games</a></li>
                 {% if current_user.is_authenticated %}
-                    <li><a href="#">My Profile</a></li>
+                    <li><a href="{{ url_for('profile') }}">My Profile</a></li>
                     <li><a href="#">My Games</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}

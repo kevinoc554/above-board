@@ -61,3 +61,8 @@ def logout():
     else:
         flash('You are not currently logged in.')
     return redirect(url_for('home'))
+
+
+@app.route("/profile")
+def profile():
+    return render_template('profile.html', title='Profile')
