@@ -1,4 +1,5 @@
 from aboveboard import app, mongo
+from flask_login import current_user
 from unittest import TestCase, main
 
 
@@ -157,6 +158,25 @@ class TestUserRoutes(TestCase):
         html = response.get_data().decode()
         self.assertEqual(response.status_code, 200)
         self.assertIn('Incorrect email or password, please try again.', html)
+
+    def test_zlogin_user(self):
+        """
+        Test behaviour of POST Login route when given valid login details.
+        Should put set the user as current_user and redirect to the home page.
+
+        Expected results:
+        Response - 302
+        current_user.username: 'unittest'
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            response = client.post('/login', data=dummy_login_data)
+            self.assertEqual(current_user.username, 'unittest')
+            self.assertEqual(response.status_code, 302)
 
 
 if __name__ == '__main__':
