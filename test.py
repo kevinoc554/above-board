@@ -107,35 +107,49 @@ class TestUserRoutes(TestCase):
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
 
-    def tearDown(self):
-        """
-        Remove dummy user data from db after testing.
-        """
-        mongo.db.users.delete_one({'username': 'unittest'})
+    # def tearDown(self):
+    #     """
+    #     Remove dummy user data from db after testing.
+    #     """
+    #     mongo.db.users.delete_one({'username': 'unittest'})
 
-    def test_register_user(self):
-        """
-        Test POST route for registering users.
-        Attempt to add dummy user data to database, and then checks
-        for user in db. Should redirect to Home page on success.
+    # def test_register_user(self):
+    #     """
+    #     Test POST route for registering users.
+    #     Attempt to add dummy user data to database, and then checks
+    #     for user in db. Should redirect to Home page on success.
 
-        Expected response:
-        Response - 302
-        User found in db.
+    #     Expected response:
+    #     Response - 302
+    #     User found in db.
+    #     """
+    #     dummy_user_data = {
+    #         "fname": 'Unit',
+    #         "lname": 'test',
+    #         "username": 'unittest',
+    #         "email": 'unit@test.com',
+    #         "password": 'unit-test',
+    #         "confirm": 'unit-test'
+    #     }
+    #     client = app.test_client(self)
+    #     response = client.post('/register', data=dummy_user_data)
+    #     check_user = mongo.db.users.find_one({'username': 'unittest'})
+    #     self.assertEqual(response.status_code, 302)
+    #     self.assertTrue(check_user)
+
+    def test_invalid_login(self):
         """
-        dummy_user_data = {
-            "fname": 'Unit',
-            "lname": 'test',
-            "username": 'unittest',
-            "email": 'unit@test.com',
-            "password": 'unit-test',
-            "confirm": 'unit-test'
+        Test behaviour of POST Login route when given invalid login details.
+        """
+        dummy_login_data = {
+            'email': 'kevinoc554@gmail.com',
+            'password': 'unit-toast'
         }
         client = app.test_client(self)
-        response = client.post('/register', data=dummy_user_data)
-        check_user = mongo.db.users.find_one({'username': 'unittest'})
-        self.assertEqual(response.status_code, 302)
-        self.assertTrue(check_user)
+        response = client.post('/login', data=dummy_login_data)
+        html = response.get_data().decode()
+        self.assertEqual(response.status_code, 200)
+        self.assertIn('Incorrect email or password, please try again.', html)
 
 
 if __name__ == '__main__':
