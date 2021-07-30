@@ -178,6 +178,29 @@ class TestUserRoutes(TestCase):
             self.assertEqual(current_user.username, 'unittest')
             self.assertEqual(response.status_code, 302)
 
+    def test_zlogout_user(self):
+        """
+        Test logout route.
+        Logs a dummy user in, then logs the user out.
+        On successful logout, the user is redirected to Home,
+        and current_user becomes the AnonymousUserMixin object
+        so the current user is not authenticated.
+
+        Expected results:
+        Response - 302
+        current_user.is_authenticated - False
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.get('/logout')
+            self.assertEqual(current_user.is_authenticated, False)
+            self.assertEqual(response.status_code, 302)
+
 
 if __name__ == '__main__':
     main()
