@@ -116,7 +116,7 @@ class TestUserRoutes(TestCase):
         """
         mongo.db.users.delete_one({'username': 'unittest'})
 
-    def test_register_user(self):
+    def test_a_register_user(self):
         """
         Test POST route for registering users.
         Attempt to add dummy user data to database, and then checks
@@ -199,6 +199,76 @@ class TestUserRoutes(TestCase):
             client.post('/login', data=dummy_login_data)
             response = client.get('/logout')
             self.assertEqual(current_user.is_authenticated, False)
+            self.assertEqual(response.status_code, 302)
+
+    def test_profile_logged_in(self):
+        """
+        Test GET request to Profile route by logged in User.
+
+        Expected results:
+        Response - 200
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.get('/profile')
+            self.assertEqual(response.status_code, 200)
+
+    def test_my_games_logged_in(self):
+        """
+        Test GET request to My Games route by logged in User.
+
+        Expected results:
+        Response - 200
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.get('/my-games')
+            self.assertEqual(response.status_code, 200)
+
+    def test_login_logged_in(self):
+        """
+        Test GET request to Login route by logged in User.
+        Should redirect to Home.
+
+        Expected results:
+        Response - 302
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.get('/login')
+            self.assertEqual(response.status_code, 302)
+
+    def test_register_logged_in(self):
+        """
+        Test GET request to Register route by logged in User.
+        Should redirect to Home.
+
+        Expected results:
+        Response - 302
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.get('/register')
             self.assertEqual(response.status_code, 302)
 
 
