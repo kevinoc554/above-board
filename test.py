@@ -218,6 +218,32 @@ class TestUserRoutes(TestCase):
             response = client.get('/profile')
             self.assertEqual(response.status_code, 200)
 
+    def test_profile_post(self):
+        """
+        Test POST request Profile route by logged in User.
+        Updates account info for exisiting user, and redirects to Profile page.
+
+        Expected results:
+        Response - 302
+        Update fname found in db
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        dummy_update_data = {
+            'fname': 'Updated',
+            'lname': 'Info',
+            'email': 'unit@test.com'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.post('/profile', data=dummy_update_data)
+            check_user = mongo.db.users.find_one({'username': 'unittest'})
+            self.assertEqual(check_user['fname'], 'Updated')
+            self.assertEqual(response.status_code, 302)
+
     def test_my_games_logged_in(self):
         """
         Test GET request to My Games route by logged in User.
