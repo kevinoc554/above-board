@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField
 from wtforms.validators import (
     InputRequired, Length, Email, EqualTo, ValidationError)
+from flask_login import current_user
 from aboveboard import bcrypt, mongo
 
 
@@ -62,3 +63,24 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[InputRequired()])
     remember = BooleanField('Remember Me')
     submit = SubmitField('Login')
+
+
+class UpdateAccountForm(FlaskForm):
+    fname = StringField('First Name',
+                        validators=[InputRequired(), Length(min=2, max=20)])
+    lname = StringField('Last Name',
+                        validators=[InputRequired(), Length(min=2, max=20)])
+    email = StringField('Email Address', validators=[InputRequired(), Email()])
+    submit = SubmitField('Update!')
+
+    def validate_email(self, email):
+        """
+        Checks if provided email is already in db. Will not trigger if email
+        is unchanged. Fires as part of wtform's .validate_on_submit()
+        """
+        if self.email.data != current_user.email:
+            exisiting_email = mongo.db.users.find_one(
+                {"email": self.email.data})
+            if exisiting_email:
+                raise ValidationError(
+                    'That email is already in use. Please choose a new one.')

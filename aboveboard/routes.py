@@ -2,7 +2,7 @@ from flask import (
     flash, render_template,
     redirect, request, session, url_for)
 from aboveboard import app, mongo, bcrypt
-from aboveboard.forms import RegistrationForm, LoginForm
+from aboveboard.forms import RegistrationForm, LoginForm, UpdateAccountForm
 from aboveboard.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -70,7 +70,16 @@ def logout():
 @app.route("/profile")
 @login_required
 def profile():
-    return render_template('profile.html', title='Profile')
+    form = UpdateAccountForm()
+    if form.validate_on_submit():
+        flash('Your account has been updated!', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.fname.data = current_user.fname
+        form.lname.data = current_user.lname
+        form.email.data = current_user.email
+
+    return render_template('profile.html', title='Profile', form=form)
 
 
 @app.route("/my-games")
