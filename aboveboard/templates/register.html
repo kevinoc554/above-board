@@ -1,86 +1,98 @@
 {% extends 'base.html' %}
 {% block content%}
 <div class="row">
-    <div class="col s12 m8 offset-m2">
-        <div class="card-panel">
-            <form method="POST" action="">
-                {{ form.hidden_tag() }}
-                <fieldset>
-                    <legend>Sign Up Today!</legend>
-                    <div class="input-field col s6">
-                        {{ form.fname.label }}
-                        {% if form.fname.errors %}
-                            {{ form.fname(class="invalid") }}
-                            {% for error in form.fname.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.fname(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s6">
-                        {{ form.lname.label }}
-                        {% if form.lname.errors %}
-                            {{ form.lname(class="invalid") }}
-                            {% for error in form.lname.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.lname(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        {{ form.username.label }}
-                        {% if form.username.errors %}
-                            {{ form.username(class="invalid") }}
-                            {% for error in form.username.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.username(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        {{ form.email.label }}
-                        {% if form.email.errors %}
-                            {{ form.email(class="invalid") }}
-                            {% for error in form.email.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.email(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        {{ form.password.label }}
-                        {% if form.password.errors %}
-                            {{ form.password(class="invalid") }}
-                            {% for error in form.password.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.password(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        {{ form.confirm.label }}
-                        {% if form.confirm.errors %}
-                            {{ form.confirm(class="invalid") }}
-                            {% for error in form.confirm.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.confirm(class="validate") }}
-                        {% endif %}
-                    </div>
-                </fieldset>
-                <div class="input-field">
-                    {{ form.submit(class="btn waves-effect waves-light")}}
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel outer-panel">
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="text-center">Above Board</h1>
+                    <p class="text-center">Create a new account!</p>
                 </div>
-            </form>
-        </div>
-        <div>
-            <small>Already Have An Account? <a href="#">Login!</a></small>
+            </div>
+            <div class="row">
+                <div class="col s12 m10 offset-m1">
+                    <div class="card-panel">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset>
+                                <legend>Sign Up Today!</legend>
+                                <div class="input-field col s6">
+                                    {{ form.fname.label }}
+                                    {% if form.fname.errors %}
+                                    {{ form.fname(class="invalid") }}
+                                    {% for error in form.fname.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.fname(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s6">
+                                    {{ form.lname.label }}
+                                    {% if form.lname.errors %}
+                                    {{ form.lname(class="invalid") }}
+                                    {% for error in form.lname.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.lname(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.username.label }}
+                                    {% if form.username.errors %}
+                                    {{ form.username(class="invalid") }}
+                                    {% for error in form.username.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.username(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.email.label }}
+                                    {% if form.email.errors %}
+                                    {{ form.email(class="invalid") }}
+                                    {% for error in form.email.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.email(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.password.label }}
+                                    {% if form.password.errors %}
+                                    {{ form.password(class="invalid") }}
+                                    {% for error in form.password.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.password(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.confirm.label }}
+                                    {% if form.confirm.errors %}
+                                    {{ form.confirm(class="invalid") }}
+                                    {% for error in form.confirm.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.confirm(class="validate") }}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div class="input-field text-center submit-btn">
+                                {{ form.submit(class="btn waves-effect waves-light")}}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-center">
+                        <small class="small-text italics">Already Have An Account? <a href="#">Login!</a></small>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

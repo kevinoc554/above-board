@@ -1,4 +1,12 @@
 /* Base Styles */
+.text-center {
+    text-align: center;
+}
+
+.italics {
+    font-style: italic;
+}
+
 .nav-list li a {
     color: black;
 }
@@ -11,6 +19,21 @@
 .navbar-logo h5 {
     position: relative;
     bottom: 25%;
+}
+
+/* Forms & Card Panels */
+.outer-panel {
+    margin-top: 2rem;
+    background-color: #dddddd;
+}
+
+.submit-btn i,
+.submit-btn i input {
+    background-color: #ffff00;
+}
+
+.small-text {
+    font-size: 85%;
 }
 
 /* Flashed Messages */
