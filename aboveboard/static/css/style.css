@@ -1,4 +1,18 @@
+@font-face {
+    font-family: 'Scramble';
+    src: url('../fonts/scramble.ttf') format('truetype');
+}
+
 /* Base Styles */
+h1 {
+    font-size: 3.8rem;
+    font-family: 'Scramble';
+}
+
+h1 span {
+    background-color: #fff;
+}
+
 .text-center {
     text-align: center;
 }
@@ -54,9 +68,14 @@
     .navbar-logo img {
         display: none
     }
+
     .navbar-logo h5 {
         position: absolute;
         margin-left: .5rem;
         bottom: 15%;
+    }
+
+    h1 {
+        font-size: 3rem;
     }
 }
