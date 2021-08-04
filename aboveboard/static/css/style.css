@@ -1,9 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 @font-face {
     font-family: 'Scramble';
     src: url('../fonts/scramble.ttf') format('truetype');
 }
 
 /* Base Styles */
+body {
+    font-family: 'Inter', sans-serif;
+}
 h1 {
     font-size: 3.8rem;
     font-family: 'Scramble';
@@ -21,6 +26,10 @@ h1 span {
     font-style: italic;
 }
 
+.bold {
+    font-weight: bold;
+}
+
 .nav-list li a {
     color: black;
 }
@@ -36,6 +45,10 @@ h1 span {
 }
 
 /* Forms & Card Panels */
+.sub-heading {
+    font-size: 1.5rem;
+}
+
 .outer-panel {
     margin-top: 2rem;
     background-color: #dddddd;
