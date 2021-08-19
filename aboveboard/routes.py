@@ -63,7 +63,7 @@ def logout():
         logout_user()
         flash('You have been logged out!', 'success')
     else:
-        flash('You are not currently logged in.')
+        flash('You are not currently logged in.', 'info')
     return redirect(url_for('home'))
 
 
