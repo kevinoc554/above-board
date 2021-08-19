@@ -1,55 +1,66 @@
 {% extends 'base.html' %}
 {% block content%}
 <div class="row">
-    <div class="col s12 m8 offset-m2">
-        <div class="card-panel">
-            <form method="POST" action="">
-                {{ form.hidden_tag() }}
-                <fieldset>
-                    <legend>Login</legend>
-                    <div class="input-field col s12">
-                        {{ form.email.label }}
-                        {% if form.email.errors %}
-                            {{ form.email(class="invalid") }}
-                            {% for error in form.email.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.email(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        {{ form.password.label }}
-                        {% if form.password.errors %}
-                            {{ form.password(class="invalid") }}
-                            {% for error in form.password.errors %}
-                                <span class="helper-text" data-error="{{ error }}"></span>
-                            {% endfor %}
-                        {% else %}
-                            {{ form.password(class="validate") }}
-                        {% endif %}
-                    </div>
-                    <div class="input-field col s12">
-                        <p>
-                            <label>
-                                {{ form.remember }}
-                                <span>{{ form.remember.label }}</span>
-                            </label>
-                        </p>
-                    </div>
-                </fieldset>
-                <div class="input-field">
-                    {{ form.submit(class="btn waves-effect waves-light")}}
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel outer-panel">
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="text-center"><span>Above</span> <span>Board</span></h1>
+                    <p class="text-center bold sub-heading">Login in here!</p>
                 </div>
-                <div>
-                    <small><a href="#">Forgot Password?</a></small>
+            </div>
+            <div class="row">
+                <div class="col s12 m10 offset-m1">
+                    <div class="card-panel">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset>
+                                <legend>Login</legend>
+                                <div class="input-field col s12">
+                                    {{ form.email.label }}
+                                    {% if form.email.errors %}
+                                    {{ form.email(class="invalid") }}
+                                    {% for error in form.email.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.email(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.password.label }}
+                                    {% if form.password.errors %}
+                                    {{ form.password(class="invalid") }}
+                                    {% for error in form.password.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.password(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    <p>
+                                        <label>
+                                            {{ form.remember }}
+                                            <span>{{ form.remember.label }}</span>
+                                        </label>
+                                    </p>
+                                </div>
+                            </fieldset>
+                            <div class="input-field text-center submit-btn">
+                                {{ form.submit(class="btn waves-effect waves-light")}}
+                            </div>
+                            <div class="text-center">
+                                <small><a href="#">Forgot Password?</a></small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="text-center">
+                        <small>Need to Create An Account? <a href="#">Sign Up!</a></small>
+                    </div>
                 </div>
-            </form>
-        </div>
-        <div>
-            <small>Need to Create An Account? <a href="#">Sign Up!</a></small>
+            </div>
         </div>
     </div>
 </div>
-
 {% endblock %}
