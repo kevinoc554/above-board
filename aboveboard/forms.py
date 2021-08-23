@@ -84,3 +84,8 @@ class UpdateAccountForm(FlaskForm):
             if exisiting_email:
                 raise ValidationError(
                     'That email is already in use. Please choose a new one.')
+
+
+class RequestResetForm(FlaskForm):
+    email = StringField('Email Address', validators=[InputRequired(), Email()])
+    submit = SubmitField('Request Password Reset')

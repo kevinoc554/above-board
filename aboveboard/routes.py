@@ -1,8 +1,9 @@
 from flask import (
     flash, render_template,
-    redirect, request, session, url_for)
+    redirect, request, url_for)
 from aboveboard import app, mongo, bcrypt
-from aboveboard.forms import RegistrationForm, LoginForm, UpdateAccountForm
+from aboveboard.forms import (RegistrationForm, LoginForm,
+                              UpdateAccountForm, RequestResetForm)
 from aboveboard.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -88,6 +89,13 @@ def profile():
         form.email.data = user['email']
 
     return render_template('profile.html', title='Profile', form=form)
+
+
+@app.route("/reset_password", methods=["GET", "POST"])
+def request_reset():
+    form = RequestResetForm()
+    return render_template('request-reset.html',
+                           title='Request Password Reset', form=form)
 
 
 @app.route("/my-games")
