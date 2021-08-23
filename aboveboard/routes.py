@@ -1,11 +1,12 @@
 from flask import (
     flash, render_template,
     redirect, request, url_for)
-from aboveboard import app, mongo, bcrypt
+from aboveboard import app, mongo, bcrypt, mail
 from aboveboard.forms import (RegistrationForm, LoginForm,
                               UpdateAccountForm, RequestResetForm)
 from aboveboard.models import User
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 
 
 @app.route("/")
@@ -91,11 +92,27 @@ def profile():
     return render_template('profile.html', title='Profile', form=form)
 
 
+def send_password_reset():
+    msg = Message('Password Reset Request',
+                  sender='noreply@aboveboardgamedb.com',
+                  recipients=['harlen.domonique@zooaid.org'])
+    msg.body = '''To reset your password, visit the following link:
+<link to follow>
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+    mail.send(msg)
+
+
 @app.route("/reset_password", methods=["GET", "POST"])
 def request_reset():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
     form = RequestResetForm()
+    if form.validate_on_submit():
+        send_password_reset()
+        flash('An email has been sent with instructions to reset your password.',
+              'success')
+        return redirect(url_for('login'))
     return render_template('request-reset.html',
                            title='Request Password Reset', form=form)
 
