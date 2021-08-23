@@ -93,6 +93,8 @@ def profile():
 
 @app.route("/reset_password", methods=["GET", "POST"])
 def request_reset():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
     form = RequestResetForm()
     return render_template('request-reset.html',
                            title='Request Password Reset', form=form)
