@@ -62,5 +62,18 @@ class User(UserMixin):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.username}).decode('utf-8')
 
+    @staticmethod
+    def check_token(token):
+        """
+        Decodes the token, and returns the relevant user.
+        """
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            username = s.loads(token)['user_id']
+        except Exception as e:
+            print(e)
+            return None
+        return mongo.db.users.find_one({'username': username})
+
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
