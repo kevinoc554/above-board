@@ -125,7 +125,22 @@ def request_reset():
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
+    user = User.check_token(token)
+    if not user:
+        flash('Unable to proceed. Please try again.', 'warning')
+        return redirect(url_for('request_reset'))
     form = ResetPasswordForm()
+    if form.validate_on_submit():
+        new_password = bcrypt.generate_password_hash(
+            form.password.data).decode('utf-8')
+        mongo.db.users.update({'username': user['username']},
+                              {'$set': {
+                                  'password': new_password
+                              }
+        })
+        flash('Your password has been updated!', 'success')
+        return redirect(url_for('login'))
+
     return render_template('reset-token.html', title='Reset Password',
                            form=form)
 
