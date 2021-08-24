@@ -3,7 +3,8 @@ from flask import (
     redirect, request, url_for)
 from aboveboard import app, mongo, bcrypt, mail
 from aboveboard.forms import (RegistrationForm, LoginForm,
-                              UpdateAccountForm, RequestResetForm)
+                              UpdateAccountForm, RequestResetForm,
+                              ResetPasswordForm)
 from aboveboard.models import User
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -92,12 +93,13 @@ def profile():
     return render_template('profile.html', title='Profile', form=form)
 
 
-def send_password_reset():
+def send_password_reset(requester):
+    token = requester.get_token()
     msg = Message('Password Reset Request',
                   sender='noreply@aboveboardgamedb.com',
-                  recipients=['harlen.domonique@zooaid.org'])
-    msg.body = '''To reset your password, visit the following link:
-<link to follow>
+                  recipients=[requester.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}
 If you did not make this request then simply ignore this email and no changes will be made.
 '''
     mail.send(msg)
@@ -109,12 +111,23 @@ def request_reset():
         return redirect(url_for('home'))
     form = RequestResetForm()
     if form.validate_on_submit():
-        send_password_reset()
+        find_user = mongo.db.users.find_one({'email': form.email.data})
+        user = User(**find_user)
+        send_password_reset(user)
         flash('An email has been sent with instructions to reset your password.',
               'success')
         return redirect(url_for('login'))
     return render_template('request-reset.html',
                            title='Request Password Reset', form=form)
+
+
+@app.route("/reset_password/<token>", methods=["GET", "POST"])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = ResetPasswordForm()
+    return render_template('reset-token.html', title='Reset Password',
+                           form=form)
 
 
 @app.route("/my-games")
