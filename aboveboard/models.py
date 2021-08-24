@@ -1,4 +1,5 @@
-from aboveboard import mongo, login_manager
+from aboveboard import app, mongo, login_manager
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_login import UserMixin
 
 
@@ -49,9 +50,17 @@ class User(UserMixin):
     def get_id(self):
         """
         Get a user by username
-        Overide get_id method provided by UserMixin
+        Overide get_id method provided by flask_login
         """
         return self.username
+
+    def get_token(self, expires_sec=1800):
+        """
+        Creates a token using app's secretkey and user's unique username
+        Expiry time can be set in secs, defaults to 30 mins
+        """
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id': self.username}).decode('utf-8')
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
