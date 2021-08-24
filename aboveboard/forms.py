@@ -90,6 +90,13 @@ class RequestResetForm(FlaskForm):
     email = StringField('Email Address', validators=[InputRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
+    def validate_email(self, email):
+        exisiting_email = mongo.db.users.find_one(
+            {"email": self.email.data})
+        if not exisiting_email:
+            raise ValidationError(
+                'Email not found. Please try again.')
+
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password',
