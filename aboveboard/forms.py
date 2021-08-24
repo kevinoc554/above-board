@@ -89,3 +89,11 @@ class UpdateAccountForm(FlaskForm):
 class RequestResetForm(FlaskForm):
     email = StringField('Email Address', validators=[InputRequired(), Email()])
     submit = SubmitField('Request Password Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password',
+                             validators=[InputRequired(), Length(min=6)])
+    confirm = PasswordField('Confirm Password', validators=[
+        InputRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')
