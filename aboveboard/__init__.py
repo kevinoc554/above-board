@@ -16,7 +16,6 @@ app.secret_key = os.environ.get("SECRET_KEY")
 app.config["MAIL_SERVER"] = 'smtp.gmail.com'
 app.config["MAIL_PORT"] = 465
 app.config["MAIL_USE_SSL"] = True
-# DO NOT PUSH - Move to env.py once working
 app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
 app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
 
