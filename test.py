@@ -94,6 +94,17 @@ class TestGetRoutes(TestCase):
         response = client.get('/my-games')
         self.assertEqual(response.status_code, 302)
 
+    def test_request_reset(self):
+        """
+        Test GET requests to Reset Password route.
+
+        Expected Results:
+        Response - 200
+        """
+        client = app.test_client(self)
+        response = client.get('/reset_password')
+        self.assertEqual(response.status_code, 200)
+
 
 class TestUserRoutes(TestCase):
     """
