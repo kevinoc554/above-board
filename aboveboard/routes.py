@@ -75,12 +75,12 @@ def logout():
 def profile():
     form = UpdateAccountForm()
     if form.validate_on_submit():
-        mongo.db.users.update({'username': current_user.username},
-                              {'$set': {
-                                  'fname': form.fname.data,
-                                  'lname': form.lname.data,
-                                  'email': form.email.data
-                              }
+        mongo.db.users.update_one({'username': current_user.username},
+                                  {'$set': {
+                                      'fname': form.fname.data,
+                                      'lname': form.lname.data,
+                                      'email': form.email.data
+                                  }
         })
         flash('Your account has been updated!', 'success')
         return redirect(url_for('profile'))
