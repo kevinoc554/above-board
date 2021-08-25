@@ -104,7 +104,7 @@ class TestUserRoutes(TestCase):
     def setUpClass(cls):
         """
         Set up app in Testing mode, and disable WtForm's
-        CSRF tokens and return dummy user data for tests.
+        CSRF tokens.
         """
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
@@ -177,6 +177,34 @@ class TestUserRoutes(TestCase):
             response = client.post('/login', data=dummy_login_data)
             self.assertEqual(current_user.username, 'unittest')
             self.assertEqual(response.status_code, 302)
+
+    def test_zupdate_profile(self):
+        """
+        Test behaviour of POST Profile route to update account info.
+        Should updatethe user's first and last name in the db,
+        reload the Profile page and display the new info.
+
+        Expected results:
+        Response - 200
+        New value of fname input = 'New'
+        New value of lname input = 'Data'
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'unit-test'
+        }
+        dummy_update_data = {
+            'fname': 'New',
+            'lname': 'Data'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.post('/profile', data=dummy_update_data)
+            html = response.get_data().decode()
+            self.assertEqual(response.status_code, 200)
+            self.assertIn('value="New"', html)
+            self.assertIn('value="Data"', html)
 
     def test_zlogout_user(self):
         """
