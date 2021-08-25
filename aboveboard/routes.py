@@ -98,10 +98,13 @@ def send_password_reset(requester):
     msg = Message('Password Reset Request',
                   sender='noreply@aboveboardgamedb.com',
                   recipients=[requester.email])
-    msg.body = f'''To reset your password, visit the following link:
-{url_for('reset_token', token=token, _external=True)}
-If you did not make this request then simply ignore this email and no changes will be made.
-'''
+    msg.html = f'''<p>Hi {requester.fname},</p>
+    <p>To reset your password,
+    <a href="{url_for('reset_token', token=token, _external=True)}">
+    click here</a></p>
+    If you did not make this request then simply ignore this email
+    and no changes will be made.
+    '''
     mail.send(msg)
 
 
@@ -114,8 +117,9 @@ def request_reset():
         find_user = mongo.db.users.find_one({'email': form.email.data})
         user = User(**find_user)
         send_password_reset(user)
-        flash('An email has been sent with instructions to reset your password.',
-              'success')
+        flash(
+            'An email with instructions to reset your password has been sent.',
+            'success')
         return redirect(url_for('login'))
     return render_template('request-reset.html',
                            title='Request Password Reset', form=form)
