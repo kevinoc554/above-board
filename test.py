@@ -336,6 +336,38 @@ class TestUserRoutes(TestCase):
             response = client.get('/register')
             self.assertEqual(response.status_code, 302)
 
+    def test_valid_reset_password_request(self):
+        """
+        Test a valid POST request to the reset password route.
+        Should validate on submit, and redirect to Login page
+
+        Expected results:
+        Response: 302
+        """
+        dummy_valid_email = {
+            'email': 'unit@test.com'
+        }
+        client = app.test_client(self)
+        with client:
+            response = client.post('/reset_password', data=dummy_valid_email)
+            self.assertEqual(response.status_code, 302)
+
+    def test_invalid_reset_password_request(self):
+        """
+        Test an invalid POST request to the reset password route.
+        Should not validate on submit, and reload the Reset Password page
+
+        Expected results:
+        Response: 200
+        """
+        dummy_invalid_email = {
+            'email': 'invalid@test.com'
+        }
+        client = app.test_client(self)
+        with client:
+            response = client.post('/reset_password', data=dummy_invalid_email)
+            self.assertEqual(response.status_code, 200)
+
 
 if __name__ == '__main__':
     main()
