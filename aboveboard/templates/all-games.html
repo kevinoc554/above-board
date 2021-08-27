@@ -1,6 +1,32 @@
 {% extends 'base.html' %}
 {% block content%}
-{% for game in games %}
-    {{ game.title }}
-{% endfor %}
+<h1 class="text-center">Above Board</h1>
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel outer-panel">
+            <div class="row">
+                {% for game in games %}
+                <div class="col s12 m4 l3">
+                    <div class="card-panel">
+                        <div class="row">
+                            <div class="col s12">
+                                <p class="text-center">{{ game.title }}</p>
+                            </div>
+                            <div class="col s12">
+                                <img class="box-art"
+                                    src="https://cf.geekdo-images.com/-hk8f8iGk_DyWyMrfiPBkg__imagepagezoom/img/APfYONipGC7_v9hNT9AHr4nKrmo=/fit-in/1200x900/filters:no_upscale():strip_icc()/pic1116080.jpg"
+                                    alt="{{ game.title }} box art">
+                            </div>
+                            <div class="col s6"><b>Player Count:</b> {{ game.player_count }}</div>
+                            <div class="col s6"><b>Mechanics:</b> {{ game.mechanics }}</div>
+                            <div class="col s6"><b>Genre:</b> {{ game.genre }}</div>
+                            <div class="col s6"><b>Rating:</b> STARS GO HERE </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
