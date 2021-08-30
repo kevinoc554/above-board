@@ -14,13 +14,13 @@
                             </div>
                             <div class="col s12">
                                 <img class="box-art"
-                                    src="https://cf.geekdo-images.com/-hk8f8iGk_DyWyMrfiPBkg__imagepagezoom/img/APfYONipGC7_v9hNT9AHr4nKrmo=/fit-in/1200x900/filters:no_upscale():strip_icc()/pic1116080.jpg"
+                                    src="{{ game.image_link }}"
                                     alt="{{ game.title }} box art">
                             </div>
-                            <div class="col s6"><b>Player Count:</b> {{ game.player_count }}</div>
-                            <div class="col s6"><b>Mechanics:</b> {{ game.mechanics }}</div>
-                            <div class="col s6"><b>Genre:</b> {{ game.genre }}</div>
-                            <div class="col s6"><b>Rating:</b> STARS GO HERE </div>
+                            <div class="col s6 game-info"><b>Player Count:</b> {{ game.player_count }}</div>
+                            <div class="col s6 game-info"><b>Mechanics:</b> {{ game.mechanics.title() }}</div>
+                            <div class="col s6 game-info"><b>Genre:</b> {{ game.genre.title() }}</div>
+                            <div class="col s6 game-info"><b>Rating:</b> STARS GO HERE </div>
                         </div>
                     </div>
                 </div>

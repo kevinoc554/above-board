@@ -46,9 +46,13 @@ h1 span {
 
 /* All/My Games */
 .box-art {
-    height: 220px;
-    width: 220px;
-    padding-right: 16px;
+    max-width: 100%;
+    height: 250px;
+}
+
+.game-info {
+    margin-top: .5rem;
+    margin-bottom: .5rem;
 }
 
 /* Forms & Card Panels */
