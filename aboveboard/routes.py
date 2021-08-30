@@ -16,12 +16,6 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/all-games")
-def all_games():
-    games = mongo.db.games.find()
-    return render_template("all-games.html", games=games, title='All Games')
-
-
 @app.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
@@ -149,7 +143,18 @@ def reset_token(token):
                            form=form)
 
 
+@app.route("/all-games")
+def all_games():
+    games = mongo.db.games.find()
+    return render_template("all-games.html", games=games, title='All Games')
+
+
+@app.route("/add-game")
+def add_game():
+    return render_template("add-game.html", title="Add A Game")
+
+
 @app.route("/my-games")
 @login_required
 def my_games():
-    return render_template('my-games.html', title='Profile')
+    return render_template('my-games.html', title='My Games')
