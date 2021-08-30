@@ -1,5 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, BooleanField
+from wtforms import (StringField, PasswordField,
+                     SubmitField, BooleanField,
+                     TextAreaField)
 from wtforms.validators import (
     InputRequired, Length, Email, EqualTo, ValidationError)
 from flask_login import current_user
@@ -104,3 +106,19 @@ class ResetPasswordForm(FlaskForm):
     confirm = PasswordField('Confirm Password', validators=[
         InputRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+
+class AddGameForm(FlaskForm):
+    title = StringField('Title',
+                        validators=[InputRequired()])
+    designer = StringField('Designer',
+                           validators=[InputRequired()])
+    publisher = StringField('Publisher',
+                            validators=[InputRequired()])
+    genre = StringField('Genre', validators=[InputRequired()])
+    mechanics = StringField('Game Mechanics', validators=[InputRequired()])
+    player_count = StringField('Player Count Range eg 1-5, 2-4, etc',
+                               validators=[InputRequired()])
+    description = TextAreaField('Description', validators=[InputRequired()])
+    image_link = StringField('Box Art Image URL', validators=[InputRequired()])
+    submit = SubmitField('Add Game!')
