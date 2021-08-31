@@ -77,3 +77,41 @@ class User(UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}')"
+
+
+class Genre():
+    """
+    A class that represents a Genre of Game,
+    and allows for db operations
+    """
+
+    def __init__(self, genre):
+        """
+        Initialize an instance of the User class
+        """
+        self.genre = genre
+
+    @staticmethod
+    def list_genres():
+        genres = mongo.db.genres.find()
+        genre_list = [g['genre'].title() for g in genres]
+        return genre_list
+
+
+class Mechanic():
+    """
+    A class that represents a Genre of Game,
+    and allows for db operations
+    """
+
+    def __init__(self, mechanic):
+        """
+        Initialize an instance of the User class
+        """
+        self.mechanic = mechanic
+
+    @staticmethod
+    def list_mechanics():
+        mechanics = mongo.db.mechanics.find()
+        mechanic_list = [m['mechanics'].title() for m in mechanics]
+        return mechanic_list
