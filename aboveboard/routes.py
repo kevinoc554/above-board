@@ -152,6 +152,8 @@ def all_games():
 @app.route("/add-game", methods=["GET", "POST"])
 def add_game():
     form = AddGameForm()
+    form.genre.choices = ['Choose an Option', 'one', 'two']
+    form.mechanics.choices = ['Choose an Option', 'one', 'two']
     if form.validate_on_submit():
         flash('Game Successfully Added!', 'success')
         return redirect(url_for('all_games'))

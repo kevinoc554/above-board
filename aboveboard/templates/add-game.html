@@ -50,7 +50,6 @@
                                     {% endif %}
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    {{ form.genre.label }}
                                     {% if form.genre.errors %}
                                     {{ form.genre(class="invalid") }}
                                     {% for error in form.genre.errors %}
@@ -59,9 +58,9 @@
                                     {% else %}
                                     {{ form.genre(class="validate") }}
                                     {% endif %}
+                                    {{ form.genre.label }}
                                 </div>
                                 <div class="input-field col s12 m4">
-                                    {{ form.mechanics.label }}
                                     {% if form.mechanics.errors %}
                                     {{ form.mechanics(class="invalid") }}
                                     {% for error in form.mechanics.errors %}
@@ -70,6 +69,7 @@
                                     {% else %}
                                     {{ form.mechanics(class="validate") }}
                                     {% endif %}
+                                    {{ form.mechanics.label }}
                                 </div>
                                 <div class="input-field col s12 m4">
                                     {{ form.player_count.label }}
