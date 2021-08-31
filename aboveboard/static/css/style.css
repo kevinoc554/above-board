@@ -55,6 +55,15 @@ h1 span {
     margin-bottom: .5rem;
 }
 
+/* Add Game Form */
+#description {
+    height: 5rem;
+}
+
+label[for="description"] {
+    padding-left: .5rem;
+}
+
 /* Forms & Card Panels */
 .sub-heading {
     font-size: 1.5rem;

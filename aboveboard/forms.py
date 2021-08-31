@@ -117,7 +117,7 @@ class AddGameForm(FlaskForm):
                             validators=[InputRequired()])
     genre = StringField('Genre', validators=[InputRequired()])
     mechanics = StringField('Game Mechanics', validators=[InputRequired()])
-    player_count = StringField('Player Count Range eg 1-5, 2-4, etc',
+    player_count = StringField('Player Count',
                                validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
     image_link = StringField('Box Art Image URL', validators=[InputRequired()])
