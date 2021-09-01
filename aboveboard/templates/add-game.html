@@ -49,7 +49,7 @@
                                     {{ form.publisher(class="validate") }}
                                     {% endif %}
                                 </div>
-                                <div class="input-field col s12 m4">
+                                <div class="input-field col s12 m6">
                                     {% if form.genre.errors %}
                                     {{ form.genre(class="invalid") }}
                                     {% for error in form.genre.errors %}
@@ -60,7 +60,7 @@
                                     {% endif %}
                                     {{ form.genre.label }}
                                 </div>
-                                <div class="input-field col s12 m4">
+                                <div class="input-field col s12 m6">
                                     {% if form.mechanics.errors %}
                                     {{ form.mechanics(class="invalid") }}
                                     {% for error in form.mechanics.errors %}
@@ -70,6 +70,28 @@
                                     {{ form.mechanics(class="validate") }}
                                     {% endif %}
                                     {{ form.mechanics.label }}
+                                </div>
+                                <div class="input-field col s12 m4">
+                                    {% if form.rating.errors %}
+                                    {{ form.rating(class="invalid") }}
+                                    {% for error in form.rating.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.rating(class="validate") }}
+                                    {% endif %}
+                                    {{ form.rating.label }}
+                                </div>
+                                <div class="input-field col s12 m4">
+                                    {% if form.weight.errors %}
+                                    {{ form.weight(class="invalid") }}
+                                    {% for error in form.weight.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.weight(class="validate") }}
+                                    {% endif %}
+                                    {{ form.weight.label }}
                                 </div>
                                 <div class="input-field col s12 m4">
                                     {{ form.player_count.label }}
