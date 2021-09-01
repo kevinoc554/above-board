@@ -87,7 +87,7 @@ class Genre():
 
     def __init__(self, genre):
         """
-        Initialize an instance of the User class
+        Initialize an instance of the Genre class
         """
         self.genre = genre
 
@@ -106,7 +106,7 @@ class Mechanic():
 
     def __init__(self, mechanic):
         """
-        Initialize an instance of the User class
+        Initialize an instance of the Mechanic class
         """
         self.mechanic = mechanic
 
@@ -115,3 +115,53 @@ class Mechanic():
         mechanics = mongo.db.mechanics.find()
         mechanic_list = [m['mechanics'].title() for m in mechanics]
         return mechanic_list
+
+
+class Game():
+    """
+    A class that represents a Game,
+    and allows for the relevant db operations
+    """
+
+    def __init__(self, title, designer, publisher, genre, mechanics,
+                 player_count, rating, weight, image_link, description,
+                 added_by, _id=None):
+        """
+        Initialize an instance of the Game class
+        """
+        self.title = title
+        self.designer = designer
+        self.publisher = publisher
+        self.genre = genre
+        self.mechanics = mechanics
+        self.player_count = player_count
+        self.rating = rating
+        self.weight = weight
+        self.description = description
+        self.image_link = image_link
+
+    def get_info(self, user):
+        """
+        Convert Game instance to dict to facilitate adding to db
+        """
+        info = {
+            "title": self.title,
+            "designer": self.designer,
+            "publisher": self.publisher,
+            "genre": self.genre,
+            "mechanics": self.mechanics,
+            "player_count": self.player_count,
+            "rating": self.rating,
+            "weight": self.weight,
+            "description": self.description,
+            "image_link": self.image_link,
+            "added_by": user.username
+        }
+        return info
+
+    def add_game(self, user):
+        """
+        Add game data to db.
+        Uses get_info to convert game instance to dict.
+        """
+        mongo.db.games.insert_one(self.get_info(user))
