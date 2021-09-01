@@ -127,3 +127,21 @@ class AddGameForm(FlaskForm):
     description = TextAreaField('Description', validators=[InputRequired()])
     image_link = StringField('Box Art Image URL', validators=[InputRequired()])
     submit = SubmitField('Add Game!')
+
+    def make_dict(self):
+        """
+        Convert form response to dict to facilitate creating Game instance
+        """
+        info = {
+            "title": self.title.data,
+            "designer": self.designer.data,
+            "publisher": self.publisher.data,
+            "genre": self.genre.data,
+            "mechanics": self.mechanics.data,
+            "player_count": self.player_count.data,
+            "rating": self.rating.data,
+            "weight": self.weight.data,
+            "description": self.description.data,
+            "image_link": self.image_link.data,
+        }
+        return info

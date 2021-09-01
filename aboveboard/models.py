@@ -124,8 +124,8 @@ class Game():
     """
 
     def __init__(self, title, designer, publisher, genre, mechanics,
-                 player_count, rating, weight, image_link, description,
-                 added_by, _id=None):
+                 player_count, rating, weight, image_link,
+                 description, _id=None):
         """
         Initialize an instance of the Game class
         """

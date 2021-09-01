@@ -5,7 +5,7 @@ from aboveboard import app, mongo, bcrypt, mail
 from aboveboard.forms import (RegistrationForm, LoginForm,
                               UpdateAccountForm, RequestResetForm,
                               ResetPasswordForm, AddGameForm)
-from aboveboard.models import User, Genre, Mechanic
+from aboveboard.models import User, Genre, Mechanic, Game
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 
@@ -159,6 +159,9 @@ def add_game():
     form.genre.choices = base_list + list_of_genres
     form.mechanics.choices = base_list + list_of_mechanics
     if form.validate_on_submit():
+        form_data = form.make_dict()
+        new_game = Game(**form_data)
+        new_game.add_game(current_user)
         flash('Game Successfully Added!', 'success')
         return redirect(url_for('all_games'))
     return render_template("add-game.html", form=form, title="Add A Game")
