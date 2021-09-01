@@ -14,4 +14,6 @@ function initMaterialize() {
 function disableOption() {
   $('#genre').children().first().prop('disabled', true);
   $('#mechanics').children().first().prop('disabled', true);
+  $('#rating').children().first().prop('disabled', true);
+  $('#weight').children().first().prop('disabled', true);
 }
