@@ -150,6 +150,7 @@ def all_games():
 
 
 @app.route("/add-game", methods=["GET", "POST"])
+@login_required
 def add_game():
     form = AddGameForm()
     base_list = ['Choose an Option']
