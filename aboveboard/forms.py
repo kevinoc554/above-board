@@ -5,6 +5,7 @@ from wtforms import (StringField, PasswordField,
 from wtforms.validators import (
     InputRequired, Length, Email, EqualTo, ValidationError)
 from flask_login import current_user
+import urllib3
 from aboveboard import bcrypt, mongo
 
 
@@ -145,3 +146,17 @@ class AddGameForm(FlaskForm):
             "image_link": self.image_link.data,
         }
         return info
+
+    def validate_image_link(self, image_link):
+        content_types = ['image/jpeg', 'image/jpg']
+        http = urllib3.PoolManager()
+        try:
+            r = http.request('GET', self.image_link.data)
+        except Exception:
+            raise ValidationError(
+                'Text provided is not a URL. Please try again.')
+        else:
+            response = r.info()
+            if response['Content-Type'] not in content_types:
+                raise ValidationError(
+                    'Must be a valid URL, to an image in JPEG/JPG format')
