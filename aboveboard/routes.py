@@ -162,7 +162,6 @@ def add_game():
     if form.validate_on_submit():
         if form.image_link.data == '':
             form.image_link.data = placehold
-            print('New image is', form.image_link.data)
         form_data = form.make_dict()
         new_game = Game(**form_data)
         new_game.add_game(current_user)
