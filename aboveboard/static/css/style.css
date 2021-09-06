@@ -68,6 +68,11 @@ label[for="description"] {
     padding-left: .5rem;
 }
 
+/* Profile page */
+.profile-links {
+    color: blue;
+}
+
 /* Forms & Card Panels */
 .sub-heading {
     font-size: 1.5rem;

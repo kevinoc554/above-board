@@ -44,10 +44,33 @@
                             {% endif %}
                         </div>
                     </fieldset>
-                    <div class="input-field">
+                    <div class="input-field submit-btn">
                         {{ form.submit(class="btn waves-effect waves-light")}}
                     </div>
                 </form>
+            </div>
+            <div class="row">
+                <div class="col s12 m6 text-center">
+                    <a href="{{ url_for('my_games') }}" class="profile-links">
+                        <h4>
+                            <i class="fas fa-dice-six"></i> See My Games
+                        </h4>
+                    </a>
+                </div>
+                <div class="col s12 m6 text-center">
+                    <a href="{{ url_for('all_games') }}" class="profile-links">
+                        <h4>
+                            <i class="fas fa-dice"></i> See All Games
+                        </h4>
+                    </a>
+                </div>
+                <div class="col s12 text-center">
+                    <a href="{{ url_for('add_game') }}" class="profile-links">
+                        <h4>
+                            <i class="fas fa-plus-circle"></i> Add a Game
+                        </h4>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
