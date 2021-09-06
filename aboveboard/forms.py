@@ -126,7 +126,7 @@ class AddGameForm(FlaskForm):
         'How complex is this game?', 1, 2, 3, 4, 5],
         validators=[InputRequired()])
     description = TextAreaField('Description', validators=[InputRequired()])
-    image_link = StringField('Box Art Image URL', validators=[InputRequired()])
+    image_link = StringField('Box Art Image URL')
     submit = SubmitField('Add Game!')
 
     def make_dict(self):
@@ -148,15 +148,16 @@ class AddGameForm(FlaskForm):
         return info
 
     def validate_image_link(self, image_link):
-        content_types = ['image/jpeg', 'image/jpg']
-        http = urllib3.PoolManager()
-        try:
-            r = http.request('GET', self.image_link.data)
-        except Exception:
-            raise ValidationError(
-                'Text provided is not a URL. Please try again.')
-        else:
-            response = r.info()
-            if response['Content-Type'] not in content_types:
+        if self.image_link.data:
+            content_types = ['image/jpeg', 'image/jpg']
+            http = urllib3.PoolManager()
+            try:
+                r = http.request('GET', self.image_link.data)
+            except Exception:
                 raise ValidationError(
-                    'Must be a valid URL, to an image in JPEG/JPG format')
+                    'Text provided is not a URL. Please try again.')
+            else:
+                response = r.info()
+                if response['Content-Type'] not in content_types:
+                    raise ValidationError(
+                        'Must be a valid URL, to an image in JPEG/JPG format')
