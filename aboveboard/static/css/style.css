@@ -55,6 +55,10 @@ h1 span {
     margin-bottom: .5rem;
 }
 
+.add-game {
+    color: green
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;

@@ -3,6 +3,18 @@
 <h1 class="text-center">Above Board</h1>
 <div class="row">
     <div class="col s12 m10 offset-m1">
+        <div class="row">
+            <div class="col s12 m6">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('add_game') }}" class="add-game">
+                        <h4>
+                            <i class="fas fa-plus-circle"></i> Add a Game
+                        </h4>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col s12 m6">Search bar bit</div>
+        </div>
         <div class="card-panel outer-panel">
             <div class="row">
                 {% for game in games %}
@@ -13,9 +25,7 @@
                                 <p class="text-center">{{ game.title }}</p>
                             </div>
                             <div class="col s12">
-                                <img class="box-art"
-                                    src="{{ game.image_link }}"
-                                    alt="{{ game.title }} box art">
+                                <img class="box-art" src="{{ game.image_link }}" alt="{{ game.title }} box art">
                             </div>
                             <div class="col s6 game-info"><b>Player Count:</b> {{ game.player_count }}</div>
                             <div class="col s6 game-info"><b>Mechanics:</b> {{ game.mechanics.title() }}</div>
