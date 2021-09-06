@@ -153,12 +153,16 @@ def all_games():
 @login_required
 def add_game():
     form = AddGameForm()
+    placehold = 'https://via.placeholder.com/250x200?text=No+Box+Art+Provided'
     base_list = ['Choose an Option']
     list_of_genres = Genre.list_genres()
     list_of_mechanics = Mechanic.list_mechanics()
     form.genre.choices = base_list + list_of_genres
     form.mechanics.choices = base_list + list_of_mechanics
     if form.validate_on_submit():
+        if form.image_link.data == '':
+            form.image_link.data = placehold
+            print('New image is', form.image_link.data)
         form_data = form.make_dict()
         new_game = Game(**form_data)
         new_game.add_game(current_user)
