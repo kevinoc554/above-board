@@ -173,4 +173,5 @@ def add_game():
 @app.route("/my-games")
 @login_required
 def my_games():
-    return render_template('my-games.html', title='My Games')
+    games = mongo.db.games.find({'added_by': current_user.username})
+    return render_template('my-games.html', title='My Games', games=games)
