@@ -69,7 +69,8 @@ h1 span {
     height: 250px;
 }
 
-.game-data-panel {
+.game-data-panel,
+.game-description-panel {
     min-height: 230px!important;
 }
 
