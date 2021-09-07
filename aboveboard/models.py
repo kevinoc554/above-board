@@ -1,6 +1,7 @@
 from aboveboard import app, mongo, login_manager
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_login import UserMixin
+from flask_pymongo import ObjectId
 
 
 @login_manager.user_loader
@@ -181,3 +182,11 @@ class Game():
         """
         games = mongo.db.games.find({'added_by': user.username})
         return games
+
+    @staticmethod
+    def get_one_game(game_id):
+        """
+        Returns the game associated with the provided ID from db
+        """
+        game = mongo.db.games.find({"_id": ObjectId(game_id)})
+        return game
