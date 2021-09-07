@@ -152,7 +152,7 @@ def all_games():
 @app.route("/all-games/<gameid>")
 def view_game(gameid):
     game = Game.get_one_game(gameid)
-    return render_template("view-game.html", game=game, title='GAME TITLE')
+    return render_template("view-game.html", game=game, title='Game Info')
 
 
 @app.route("/add-game", methods=["GET", "POST"])

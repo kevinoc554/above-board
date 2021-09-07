@@ -63,6 +63,30 @@ h1 span {
     color: black
 }
 
+/* View Game */
+.main-box-image {
+    width: 100%;
+    height: 250px;
+}
+
+.game-data li span,
+.game-data-2 li span {
+    font-weight: bold;
+}
+
+.game-data li,
+.game-data-2 li {
+    margin-bottom: .5rem;
+}
+
+.game-data {
+    margin-bottom: 0;
+}
+
+.game-data-2 {
+    margin: 0;
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;
@@ -115,6 +139,14 @@ label[for="description"] {
 }
 
 /* Media Queries */
+@media screen and (min-width: 767px) {
+    .game-data,
+    .game-data-2 {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .navbar-logo img {
         display: none

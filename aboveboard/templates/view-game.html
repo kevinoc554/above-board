@@ -6,7 +6,30 @@
     <div class="col s12 m10 offset-m1">
         <div class="card-panel outer-panel">
             <h2 class="text-center">{{ game.title }}</h2>
-            <div class="card-panel">
+            <div class="row">
+                <div class="col s12 m5 l4 xl3">
+                    <img src="{{ game.image_link }}" alt="Box Art for {{ game.title }}" class="main-box-image">
+                </div>
+                <div class="card-panel col s12 m7 l8 xl9">
+                    <div class="row">
+                        <div class="col s12 m6">
+                            <ul class="game-data">
+                                <li><span>Designer:</span> {{ game.designer }}</li>
+                                <li><span>Publisher:</span> {{ game.publisher }}</li>
+                                <li><span>Genre:</span> {{ game.genre.title() }}</li>
+                                <li><span>Mechanics:</span> {{ game.mechanics.title() }}</li>
+                            </ul>
+                        </div>
+                        <div class="col s12 m6">
+                            <ul class="game-data-2">
+                                <li><span>Player Count:</span> {{ game.player_count }}</li>
+                                <li><span>Rating:</span> {{ game.rating }}</li>
+                                <li><span>Weight:</span> {{ game.weight }}</li>
+                                <li><span>Added By:</span> {{ game.added_by }}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
