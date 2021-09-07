@@ -69,6 +69,10 @@ h1 span {
     height: 250px;
 }
 
+.game-data-panel {
+    min-height: 230px!important;
+}
+
 .game-data li span,
 .game-data-2 li span {
     font-weight: bold;
