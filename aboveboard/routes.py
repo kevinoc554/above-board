@@ -149,6 +149,11 @@ def all_games():
     return render_template("all-games.html", games=games, title='All Games')
 
 
+@app.route("/all-games/<gameid>")
+def view_game(gameid):
+    return render_template("view-game.html", title='GAME TITLE')
+
+
 @app.route("/add-game", methods=["GET", "POST"])
 @login_required
 def add_game():

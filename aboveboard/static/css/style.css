@@ -59,6 +59,10 @@ h1 span {
     color: green
 }
 
+.game-panel {
+    color: black
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;
