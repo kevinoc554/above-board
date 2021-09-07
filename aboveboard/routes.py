@@ -145,7 +145,7 @@ def reset_token(token):
 
 @app.route("/all-games")
 def all_games():
-    games = mongo.db.games.find()
+    games = Game.get_all_games()
     return render_template("all-games.html", games=games, title='All Games')
 
 
@@ -178,5 +178,5 @@ def add_game():
 @app.route("/my-games")
 @login_required
 def my_games():
-    games = mongo.db.games.find({'added_by': current_user.username})
+    games = Game.get_my_games(current_user)
     return render_template('my-games.html', title='My Games', games=games)

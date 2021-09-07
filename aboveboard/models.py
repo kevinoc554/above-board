@@ -165,3 +165,19 @@ class Game():
         Uses get_info to convert game instance to dict.
         """
         mongo.db.games.insert_one(self.get_info(user))
+
+    @staticmethod
+    def get_all_games():
+        """
+        Returns a mongo cursor with all games from db
+        """
+        games = mongo.db.games.find()
+        return games
+
+    @staticmethod
+    def get_my_games(user):
+        """
+        Returns a mongo cursor with all of the current user's games from db
+        """
+        games = mongo.db.games.find({'added_by': user.username})
+        return games
