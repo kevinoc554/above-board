@@ -7,6 +7,7 @@ $(document).ready(function () {
 function initMaterialize() {
   $('.sidenav').sidenav();
   $('select').formSelect();
+  $('.modal').modal();
 }
 
 // Applies the 'disabled' property to the first option 
