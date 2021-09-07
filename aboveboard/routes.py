@@ -8,6 +8,7 @@ from aboveboard.forms import (RegistrationForm, LoginForm,
 from aboveboard.models import User, Genre, Mechanic, Game
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
+from flask_pymongo import ObjectId
 
 
 @app.route("/")
@@ -181,3 +182,22 @@ def add_game():
 def my_games():
     games = Game.get_my_games(current_user)
     return render_template('my-games.html', title='My Games', games=games)
+
+
+@app.route("/delete-game/<gameid>")
+@login_required
+def delete_game(gameid):
+    try:
+        find_game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
+        game = Game(**find_game)
+        if current_user.username == game.added_by:
+            Game.delete_one_game(gameid)
+            flash('Game has been deleted!', 'success')
+            return redirect(url_for('all_games'))
+        else:
+            flash('You do not have permission to delete that game', 'warning')
+            return redirect(url_for('all_games'))
+    except Exception as e:
+        print(e)
+        flash('That game could not be found!', 'warning')
+        return redirect(url_for('all_games'))

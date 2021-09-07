@@ -126,7 +126,7 @@ class Game():
 
     def __init__(self, title, designer, publisher, genre, mechanics,
                  player_count, rating, weight, image_link,
-                 description, _id=None):
+                 description, added_by, _id=None):
         """
         Initialize an instance of the Game class
         """
@@ -140,6 +140,7 @@ class Game():
         self.weight = weight
         self.description = description
         self.image_link = image_link
+        self.added_by = added_by
 
     def get_info(self, user):
         """
@@ -190,3 +191,10 @@ class Game():
         """
         game = mongo.db.games.find({"_id": ObjectId(game_id)})
         return game
+
+    @staticmethod
+    def delete_one_game(game_id):
+        """
+        Deletes the game associated with the provided ID from db
+        """
+        mongo.db.games.delete_one({"_id": ObjectId(game_id)})
