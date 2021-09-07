@@ -123,11 +123,25 @@ label[for="description"] {
 
 .submit-btn i:hover,
 .submit-btn i input:hover {
-    background-color: rgba(255, 255, 0, .95);
+    background-color: rgba(255, 255, 0, .75);
 }
 
 .small-text {
     font-size: 85%;
+}
+
+.edit-btn,
+.delete-btn {
+    font-size: .75rem;
+    width: 110px;
+}
+
+.delete-btn {
+    background-color: darkred;
+}
+
+.delete-btn:hover {
+    background-color: red;
 }
 
 /* Flashed Messages */

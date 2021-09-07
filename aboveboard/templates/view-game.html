@@ -37,6 +37,22 @@
                     <p>{{ game.description }}</p>
                 </div>
             </div>
+            {% if current_user.username == game.added_by %}
+            <div class="row">
+                <div class="col s4"></div>
+                <div class="col s2">
+                    <a href="#" class="btn edit-btn">
+                        <i class="fas fa-edit"></i> Edit
+                    </a>
+                </div>
+                <div class="col s2">
+                    <a href="#" class="btn delete-btn">
+                        <i class="fas fa-times-circle"></i> Delete
+                    </a>
+                </div>
+                <div class="col s4"></div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
