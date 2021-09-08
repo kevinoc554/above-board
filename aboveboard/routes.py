@@ -152,8 +152,12 @@ def all_games():
 
 @app.route("/all-games/<gameid>")
 def view_game(gameid):
-    game = Game.get_one_game(gameid)
-    return render_template("view-game.html", game=game, title='Game Info')
+    try:
+        game = Game.get_one_game(gameid)
+        return render_template("view-game.html", game=game, title='Game Info')
+    except Exception:
+        flash('Could not find that game!', 'warning')
+        return redirect(url_for('all_games'))
 
 
 @app.route("/add-game", methods=["GET", "POST"])
