@@ -27,7 +27,7 @@ def register():
         new_user = User(**register)
         new_user.add_user()
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        return redirect(url_for('login'))
     return render_template("register.html", title="Register", form=form)
 
 
