@@ -45,6 +45,31 @@ class RegistrationForm(FlaskForm):
             raise ValidationError(
                 'That email is already in use. Please choose a new one.')
 
+    def validate_password(self, password):
+        """
+        Checks if password contains:
+        - At least 1 lower case letter
+        - At least 1 Uppercase letter
+        - At leaset 1 number
+        - At least 1 symbol: ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
+        """
+        symbols = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')']
+        if not any(char.islower() for char in self.password.data):
+            raise ValidationError(
+                'Password should have at least one lowercase letter')
+
+        if not any(char.isupper() for char in self.password.data):
+            raise ValidationError(
+                'Password should have at least one UPPERCASE letter')
+
+        if not any(char.isdigit() for char in self.password.data):
+            raise ValidationError(
+                'Password should have at least one number')
+
+        if not any(char in symbols for char in self.password.data):
+            raise ValidationError(
+                'Password should have at least one of the symbols: !@#$%^&*()')
+
     def make_dict(self):
         """
         Takes response from form, hashes password
