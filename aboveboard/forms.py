@@ -186,3 +186,9 @@ class AddGameForm(FlaskForm):
                 if response['Content-Type'] not in content_types:
                     raise ValidationError(
                         'Must be a valid URL, to an image in JPEG/JPG format')
+
+
+class SearchForm(FlaskForm):
+    query = StringField('Search Games',
+                        validators=[InputRequired(), Length(min=2)])
+    submit = SubmitField('Search')

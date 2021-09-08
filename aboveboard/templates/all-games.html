@@ -13,7 +13,27 @@
                 </a>
                 {% endif %}
             </div>
-            <div class="col s12 m6">Search bar bit</div>
+            <div class="col s12 m6">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <div class="input-field col s12 l6">
+                        <i class="prefix fas fa-search"></i>
+                        {{ form.query.label }}
+                        {% if form.query.errors %}
+                        {{ form.query(class="invalid") }}
+                        {% for error in form.query.errors %}
+                        <span class="helper-text" data-error="{{ error }}"></span>
+                        {% endfor %}
+                        {% else %}
+                        {{ form.query(class="validate") }}
+                        {% endif %}
+                    </div>
+                    <div class="input-field col s12 l6 text-center submit-btn">
+                        {{ form.submit(class="btn waves-effect waves-light")}}
+                        <a href="#" class="btn red waves-effect waves-light">Reset</a>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="card-panel outer-panel">
             <div class="row">

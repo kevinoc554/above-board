@@ -4,7 +4,8 @@ from flask import (
 from aboveboard import app, mongo, bcrypt, mail
 from aboveboard.forms import (RegistrationForm, LoginForm,
                               UpdateAccountForm, RequestResetForm,
-                              ResetPasswordForm, AddGameForm)
+                              ResetPasswordForm, AddGameForm,
+                              SearchForm)
 from aboveboard.models import User, Genre, Mechanic, Game
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -146,8 +147,17 @@ def reset_token(token):
 
 @app.route("/all-games")
 def all_games():
+    form = SearchForm()
     games = Game.get_all_games()
-    return render_template("all-games.html", games=games, title='All Games')
+    return render_template("all-games.html",
+                           games=games, form=form, title='All Games')
+
+
+@app.route("/my-games")
+@login_required
+def my_games():
+    games = Game.get_my_games(current_user)
+    return render_template('my-games.html', title='My Games', games=games)
 
 
 @app.route("/all-games/<gameid>")
@@ -182,13 +192,6 @@ def add_game():
         flash('Game Successfully Added!', 'success')
         return redirect(url_for('all_games'))
     return render_template("add-game.html", form=form, title="Add A Game")
-
-
-@app.route("/my-games")
-@login_required
-def my_games():
-    games = Game.get_my_games(current_user)
-    return render_template('my-games.html', title='My Games', games=games)
 
 
 @app.route("/delete-game/<gameid>")
