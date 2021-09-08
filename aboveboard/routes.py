@@ -154,9 +154,12 @@ def all_games():
 def view_game(gameid):
     try:
         game = Game.get_one_game(gameid)
+        if len(list(game)) == 0:
+            flash('Game could not be found, or does not exist', 'warning')
+            return redirect(url_for('all_games'))
         return render_template("view-game.html", game=game, title='Game Info')
     except Exception:
-        flash('Could not find that game!', 'warning')
+        flash('Game could not be found, or does not exist', 'warning')
         return redirect(url_for('all_games'))
 
 
