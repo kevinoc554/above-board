@@ -44,7 +44,7 @@ def login():
                 find_user['password'], form.password.data)
         if find_user and check_password:
             user = User(**find_user)
-            login_user(user)
+            login_user(user, remember=form.remember.data)
             flash('You have been logged in!', 'success')
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(
