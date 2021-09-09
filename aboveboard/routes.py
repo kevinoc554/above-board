@@ -150,7 +150,6 @@ def all_games():
     form = SearchForm()
     if form.validate_on_submit():
         query = form.query.data
-        print(query)
         games = Game.get_searched_games(query)
     else:
         games = Game.get_all_games()
@@ -159,11 +158,22 @@ def all_games():
                            games=games_list, form=form, title='All Games')
 
 
-@app.route("/my-games")
+@app.route("/my-games", methods=["GET", "POST"])
 @login_required
 def my_games():
-    games = Game.get_my_games(current_user)
-    return render_template('my-games.html', title='My Games', games=games)
+    form = SearchForm()
+    if form.validate_on_submit():
+        query = form.query.data
+        search_all_games = Game.get_searched_games(query)
+        list_searched_games = list(search_all_games)
+        games = [game for game in list_searched_games
+                 if game['added_by'] == current_user.username]
+
+    else:
+        search_my_games = Game.get_my_games(current_user)
+        games = list(search_my_games)
+    return render_template('my-games.html', title='My Games',
+                           games=games, form=form)
 
 
 @app.route("/view-game/<gameid>")
@@ -195,6 +205,7 @@ def add_game():
         if form.image_link.data == '':
             form.image_link.data = placehold
         form_data = form.make_dict()
+        form_data['added_by'] = current_user.username
         new_game = Game(**form_data)
         new_game.add_game(current_user)
         flash('Game Successfully Added!', 'success')
