@@ -145,10 +145,15 @@ def reset_token(token):
                            form=form)
 
 
-@app.route("/all-games")
+@app.route("/all-games", methods=["GET", "POST"])
 def all_games():
     form = SearchForm()
-    games = Game.get_all_games()
+    if form.validate_on_submit():
+        query = form.query.data
+        print(query)
+        games = Game.get_searched_games(query)
+    else:
+        games = Game.get_all_games()
     return render_template("all-games.html",
                            games=games, form=form, title='All Games')
 
@@ -160,14 +165,16 @@ def my_games():
     return render_template('my-games.html', title='My Games', games=games)
 
 
-@app.route("/all-games/<gameid>")
+@app.route("/view-game/<gameid>")
 def view_game(gameid):
     try:
         game = Game.get_one_game(gameid)
-        if len(list(game)) == 0:
+        game_as_list = list(game)
+        if len(game_as_list) == 0:
             flash('Game could not be found, or does not exist', 'warning')
             return redirect(url_for('all_games'))
-        return render_template("view-game.html", game=game, title='Game Info')
+        return render_template("view-game.html",
+                               game=game_as_list, title='Game Info')
     except Exception:
         flash('Game could not be found, or does not exist', 'warning')
         return redirect(url_for('all_games'))
