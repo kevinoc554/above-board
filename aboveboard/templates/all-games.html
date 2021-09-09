@@ -35,6 +35,7 @@
                 </form>
             </div>
         </div>
+        {% if games|length > 0 %}
         <div class="card-panel outer-panel">
             <div class="row">
                 {% for game in games %}
@@ -59,6 +60,9 @@
                 {% endfor %}
             </div>
         </div>
+        {% else %}
+        <h4 class="center-align">No Results Found</h4>
+        {% endif %}
     </div>
 </div>
 {% endblock %}

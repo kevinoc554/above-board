@@ -154,8 +154,9 @@ def all_games():
         games = Game.get_searched_games(query)
     else:
         games = Game.get_all_games()
+    games_list = list(games)
     return render_template("all-games.html",
-                           games=games, form=form, title='All Games')
+                           games=games_list, form=form, title='All Games')
 
 
 @app.route("/my-games")
