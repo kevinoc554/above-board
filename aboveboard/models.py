@@ -193,6 +193,14 @@ class Game():
         return game
 
     @staticmethod
+    def get_searched_games(query):
+        """
+        Using text index, returns the games matching the search term
+        """
+        games = mongo.db.games.find({"$text": {"$search": query}})
+        return games
+
+    @staticmethod
     def delete_one_game(game_id):
         """
         Deletes the game associated with the provided ID from db
