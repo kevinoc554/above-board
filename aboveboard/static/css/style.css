@@ -59,7 +59,7 @@ h1 span {
     color: green
 }
 
-.game-panel {
+.game-link {
     color: black
 }
 
@@ -142,6 +142,10 @@ label[for="description"] {
 
 .delete-btn:hover {
     background-color: red;
+}
+
+.game-panel {
+    height: 36rem;
 }
 
 /* Flashed Messages */
