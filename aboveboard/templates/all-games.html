@@ -59,12 +59,16 @@
                 {% endfor %}
             </div>
         </div>
-        <div class="row paginate-row">
-            <div class="col-12">
-                {{ pagination.info }}
-                {{ pagination.links }}
+        <!-- Pagination info and controls -->
+            <div class="row paginate-row">
+                <div class="col s12 m6">
+                    {{ pagination.info }}
+                </div>
+                <div class="col s12 m6">
+                    {{ pagination.links }}
+                </div>
             </div>
-        </div>
+    </div>
         {% else %}
         <h4 class="center-align">No Results Found</h4>
         {% endif %}
