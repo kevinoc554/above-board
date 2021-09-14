@@ -44,6 +44,26 @@ h1 span {
     bottom: 25%;
 }
 
+#toTopBtn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    border: 0;
+    border-radius: 50%;
+    padding: 0;
+    z-index: 100;
+    /* display: none; */
+}
+
+#toTopBtn i {
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    padding-top: .5rem;
+    font-size: 2rem;
+    background-color: rgba(199, 93, 37, 0.8);
+}
+
 /* All/My Games */
 .box-art {
     max-width: 100%;

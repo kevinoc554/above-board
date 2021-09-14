@@ -1,6 +1,7 @@
 $(document).ready(function () {
-  disableOption()
+  disableOption();
   initMaterialize();
+  toTopBtn();
 });
 
 // Initializes all relevant JS for MaterializeCSS components
@@ -17,4 +18,22 @@ function disableOption() {
   $('#mechanics').children().first().prop('disabled', true);
   $('#rating').children().first().prop('disabled', true);
   $('#weight').children().first().prop('disabled', true);
+}
+
+// Custom JS for Return to Top Button
+// Button fades in and out on scroll
+// On click, button scrolls smoothly to the top of the page
+function toTopBtn() {
+  $(window).scroll(function () {
+    if ($(this).scrollTop() > 150) {
+      $('#toTopBtn').fadeIn();
+    } else {
+      $('#toTopBtn').fadeOut();
+    }
+  });
+  $('#toTopBtn').click(function () {
+    $('html, body').stop().animate({
+      scrollTop: 0
+    }, 1000);
+  });
 }
