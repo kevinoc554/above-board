@@ -221,6 +221,11 @@ def my_games():
 
 @app.route("/view-game/<gameid>")
 def view_game(gameid):
+    if request.referrer is not None:
+        ref = request.referrer
+        print(ref)
+    args = request.args.get('page')
+    print(args)
     try:
         game = Game.get_one_game(gameid)
         game_as_list = list(game)
