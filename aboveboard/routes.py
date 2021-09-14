@@ -153,9 +153,10 @@ def all_games():
         games = Game.get_searched_games(query)
     else:
         games = Game.get_all_games()
-    games_list = list(games)
+    games = list(games)
+    games = sorted(games, key=lambda i: i['title'])
     return render_template("all-games.html",
-                           games=games_list, form=form, title='All Games')
+                           games=games, form=form, title='All Games')
 
 
 @app.route("/my-games", methods=["GET", "POST"])
@@ -165,13 +166,13 @@ def my_games():
     if form.validate_on_submit():
         query = form.query.data
         search_all_games = Game.get_searched_games(query)
-        list_searched_games = list(search_all_games)
-        games = [game for game in list_searched_games
+        games = [game for game in search_all_games
                  if game['added_by'] == current_user.username]
 
     else:
         search_my_games = Game.get_my_games(current_user)
         games = list(search_my_games)
+    games = sorted(games, key=lambda i: i['title'])
     return render_template('my-games.html', title='My Games',
                            games=games, form=form)
 
