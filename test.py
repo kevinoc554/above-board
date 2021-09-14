@@ -46,7 +46,9 @@ class TestGetRoutes(TestCase):
         """
         client = app.test_client(self)
         response = client.get('/all-games')
+        html = response.get_data().decode()
         self.assertEqual(response.status_code, 200)
+        self.assertIn('pagination-page-info', html)
 
     def test_login(self):
         """
@@ -142,14 +144,14 @@ class TestUserRoutes(TestCase):
             "lname": 'test',
             "username": 'unittest',
             "email": 'unit@test.com',
-            "password": 'unit-test',
-            "confirm": 'unit-test'
+            "password": 'Unit@test1',
+            "confirm": 'Unit@test1'
         }
         client = app.test_client(self)
         response = client.post('/register', data=dummy_user_data)
         check_user = mongo.db.users.find_one({'username': 'unittest'})
-        self.assertEqual(response.status_code, 302)
         self.assertTrue(check_user)
+        self.assertEqual(response.status_code, 302)
 
     def test_invalid_login(self):
         """
@@ -181,7 +183,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
@@ -202,7 +204,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         dummy_update_data = {
             'fname': 'New',
@@ -231,7 +233,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
@@ -249,7 +251,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
@@ -268,7 +270,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         dummy_update_data = {
             'fname': 'Updated',
@@ -292,7 +294,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
@@ -310,7 +312,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
@@ -328,7 +330,7 @@ class TestUserRoutes(TestCase):
         """
         dummy_login_data = {
             'email': 'unit@test.com',
-            'password': 'unit-test'
+            'password': 'Unit@test1'
         }
         client = app.test_client(self)
         with client:
