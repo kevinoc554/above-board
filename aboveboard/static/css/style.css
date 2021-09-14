@@ -52,7 +52,7 @@ h1 span {
     border-radius: 50%;
     padding: 0;
     z-index: 100;
-    /* display: none; */
+    display: none;
 }
 
 #toTopBtn i {
@@ -61,7 +61,7 @@ h1 span {
     border-radius: 50%;
     padding-top: .5rem;
     font-size: 2rem;
-    background-color: rgba(199, 93, 37, 0.8);
+    background-color: #ffff00;
 }
 
 /* All/My Games */
