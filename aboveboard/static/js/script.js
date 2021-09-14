@@ -36,4 +36,9 @@ function toTopBtn() {
       scrollTop: 0
     }, 1000);
   });
+  $('html, body').on('scroll mousedown DOMMouseScroll mousewheel keyup touchstart', function (e) {
+    if (e.which > 0 || e.type === 'mousedown' || e.type === 'mousewheel' || e.type === 'touchstart') {
+        $('html, body').stop();
+    }
+});
 }
