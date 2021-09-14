@@ -10,6 +10,7 @@ from aboveboard.models import User, Genre, Mechanic, Game
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
 from flask_pymongo import ObjectId
+from flask_paginate import Pagination, get_page_args
 
 
 @app.route("/")
@@ -89,6 +90,7 @@ def profile():
     return render_template('profile.html', title='Profile', form=form)
 
 
+# Send password reset function for routes below
 def send_password_reset(requester):
     token = requester.get_token()
     msg = Message('Password Reset Request',
@@ -145,6 +147,38 @@ def reset_token(token):
                            form=form)
 
 
+# Pagination settings for routes below
+# Adapted from:
+# https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
+PER_PAGE = 5
+
+
+def convert_to_pagination(
+        games,
+        PER_PAGE,
+        page_param,
+        per_page_param):
+    """
+    Prepares the list of games given to be paginated,
+    and gives the page and per-page values for flask-paginate.
+    """
+    page, _, _, = get_page_args(
+        page_parameter=page_param, per_page_parameter=per_page_param)
+
+    offset = page * PER_PAGE - PER_PAGE
+    total = len(games)
+
+    pagination_args = Pagination(page=page,
+                                 per_page=PER_PAGE,
+                                 total=total,
+                                 page_parameter=page_param,
+                                 per_page_parameter=per_page_param)
+
+    objs_to_display = games[offset: offset + PER_PAGE]
+
+    return pagination_args, objs_to_display
+
+
 @app.route("/all-games", methods=["GET", "POST"])
 def all_games():
     form = SearchForm()
@@ -155,8 +189,13 @@ def all_games():
         games = Game.get_all_games()
     games = list(games)
     games = sorted(games, key=lambda i: i['title'])
+    pagination, games_paginated = convert_to_pagination(
+                                   games, PER_PAGE, "page", "per_page")
     return render_template("all-games.html",
-                           games=games, form=form, title='All Games')
+                           games=games_paginated,
+                           form=form,
+                           pagination=pagination,
+                           title='All Games')
 
 
 @app.route("/my-games", methods=["GET", "POST"])
