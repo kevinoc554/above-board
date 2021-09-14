@@ -39,16 +39,18 @@ class TestGetRoutes(TestCase):
 
     def test_all_games(self):
         """
-        Test GET requests to All Games route.
+        Test GET requests to All Games route,
+        and check that pagination is working.
 
         Expected Results:
         Response - 200
+        'pagination-page-info'- if present, pagination has applied
         """
         client = app.test_client(self)
         response = client.get('/all-games')
         html = response.get_data().decode()
-        self.assertEqual(response.status_code, 200)
         self.assertIn('pagination-page-info', html)
+        self.assertEqual(response.status_code, 200)
 
     def test_login(self):
         """
@@ -125,9 +127,10 @@ class TestUserRoutes(TestCase):
     @classmethod
     def tearDownClass(cls):
         """
-        Remove dummy user data from db after testing.
+        Remove dummy user and game data from db after testing.
         """
         mongo.db.users.delete_one({'username': 'unittest'})
+        mongo.db.games.delete_one({'title': 'Unittest'})
 
     def test_a_register_user(self):
         """
@@ -172,7 +175,7 @@ class TestUserRoutes(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertIn('Incorrect email or password, please try again.', html)
 
-    def test_zlogin_user(self):
+    def test_b_login_user(self):
         """
         Test behaviour of POST Login route when given valid login details.
         Should put set the user as current_user and redirect to the home page.
@@ -189,6 +192,38 @@ class TestUserRoutes(TestCase):
         with client:
             response = client.post('/login', data=dummy_login_data)
             self.assertEqual(current_user.username, 'unittest')
+            self.assertEqual(response.status_code, 302)
+
+    def test_c_add_game(self):
+        """
+        Test POST to Add Game route.
+        Should add dummy data to db, and redirect to All Games.
+
+        Expected results:
+        Response - 302
+        Dummy data found in db
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'Unit@test1'
+        }
+        dummy_game_data = {
+            'title': 'Unittest',
+            'designer': 'John Doe',
+            'publisher': 'JD Games',
+            'genre': 'Fantasy',
+            'mechanics': 'worker placement',
+            'player_count': '2-5',
+            'rating': '4',
+            'weight': '2',
+            'description': 'Dummy data for automated testing'
+        }
+        client = app.test_client(self)
+        with client:
+            client.post('/login', data=dummy_login_data)
+            response = client.post('add-game', data=dummy_game_data)
+            check_db = mongo.db.games.find_one({'title': 'Unittest'})
+            self.assertTrue(check_db)
             self.assertEqual(response.status_code, 302)
 
     def test_zupdate_profile(self):
@@ -287,10 +322,12 @@ class TestUserRoutes(TestCase):
 
     def test_my_games_logged_in(self):
         """
-        Test GET request to My Games route by logged in User.
+        Test GET request to My Games route by logged in User,
+        and check that pagination is working.
 
-        Expected results:
+        Expected Results:
         Response - 200
+        'pagination-page-info'- if present, pagination has applied
         """
         dummy_login_data = {
             'email': 'unit@test.com',
@@ -300,6 +337,8 @@ class TestUserRoutes(TestCase):
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/my-games')
+            html = response.get_data().decode()
+            self.assertIn('pagination-page-info', html)
             self.assertEqual(response.status_code, 200)
 
     def test_login_logged_in(self):
