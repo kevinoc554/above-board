@@ -150,7 +150,7 @@ def reset_token(token):
 # Pagination settings for routes below
 # Adapted from:
 # https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9
-PER_PAGE = 5
+PER_PAGE = 8
 
 
 def convert_to_pagination(
@@ -190,7 +190,7 @@ def all_games():
     games = list(games)
     games = sorted(games, key=lambda i: i['title'])
     pagination, games_paginated = convert_to_pagination(
-                                   games, PER_PAGE, "page", "per_page")
+        games, PER_PAGE, "page", "per_page")
     return render_template("all-games.html",
                            games=games_paginated,
                            form=form,
@@ -212,8 +212,11 @@ def my_games():
         search_my_games = Game.get_my_games(current_user)
         games = list(search_my_games)
     games = sorted(games, key=lambda i: i['title'])
+    pagination, games_paginated = convert_to_pagination(
+        games, PER_PAGE, "page", "per_page")
     return render_template('my-games.html', title='My Games',
-                           games=games, form=form)
+                           games=games_paginated, pagination=pagination,
+                           form=form)
 
 
 @app.route("/view-game/<gameid>")
