@@ -29,9 +29,28 @@
                         <div class="col s12 m6">
                             <ul class="game-data-2">
                                 <li><span>Player Count:</span> {{ game.player_count }}</li>
-                                <li><span>Rating:</span> {{ game.rating }}</li>
                                 <li><span>Weight:</span> {{ game.weight }}</li>
                                 <li><span>Added By:</span> {{ game.added_by }}</li>
+                                <li>
+                                    <span>Rating: <span id="rating" class="ratings-span">{{ rating }}</span></span>
+                                    <form method="POST" action="">
+                                        <fieldset class="star-rating">
+                                            <div>
+                                                <input type="radio" name="rating" value="1" id="rating1" />
+                                                <label for="rating1"><span>1</span></label>
+                                                <input type="radio" name="rating" value="2" id="rating2" />
+                                                <label for="rating2"><span>2</span></label>
+                                                <input type="radio" name="rating" value="3" id="rating3" />
+                                                <label for="rating3"><span>3</span></label>
+                                                <input type="radio" name="rating" value="4" id="rating4" />
+                                                <label for="rating4"><span>4</span></label>
+                                                <input type="radio" name="rating" value="5" id="rating5" />
+                                                <label for="rating5"><span>5</span></label>
+                                            </div>
+                                        </fieldset>
+                                        <button type="submit" class="btn rate-btn">Rate</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
