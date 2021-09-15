@@ -185,26 +185,45 @@ class AddGameForm(FlaskForm):
                 response = r.info()
                 if response['Content-Type'] not in content_types:
                     raise ValidationError(
-                        'Must be a valid URL, to an image in JPEG/JPG format')
+                        'Must be a valid URL to an image in JPEG/JPG format')
 
 
 class EditGameForm(FlaskForm):
-    title = StringField('Title',
-                        validators=[InputRequired()])
+    title = StringField('Title', validators=[InputRequired()])
     designer = StringField('Designer',
                            validators=[InputRequired()])
     publisher = StringField('Publisher',
                             validators=[InputRequired()])
-    genre = SelectField('Genre', validators=[InputRequired()])
-    mechanics = SelectField('Game Mechanics', validators=[InputRequired()])
-    player_count = StringField('Player Count',
-                               validators=[InputRequired()])
     weight = SelectField('Weight', choices=[
         'How complex is this game?', 1, 2, 3, 4, 5],
         validators=[InputRequired()])
-    description = TextAreaField('Description', validators=[InputRequired()])
+    player_count = StringField('Player Count',
+                               validators=[InputRequired()])
     image_link = StringField('Box Art Image URL')
+    description = TextAreaField('Description',
+                                validators=[InputRequired()])
     submit = SubmitField('Update Info!')
+
+    def set_form_data(self, game):
+        self.title.data = game['title']
+        self.designer.data = game['designer']
+        self.publisher.data = game['publisher']
+        self.weight.data = game['weight']
+        self.player_count.data = game['player_count']
+        self.description.data = game['description']
+        self.image_link.data = game['image_link']
+
+    def collect_changes(self):
+        changes = {
+            'title': self.title.data,
+            'designer': self.designer.data,
+            'publisher': self.publisher.data,
+            'weight': self.weight.data,
+            'description': self.description.data,
+            'image_link': self.image_link.data,
+            'player_count': self.player_count.data
+        }
+        return changes
 
 
 class SearchForm(FlaskForm):

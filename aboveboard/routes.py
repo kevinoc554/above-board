@@ -280,18 +280,19 @@ def delete_game(gameid):
 @app.route("/edit-game/<gameid>", methods=["GET", "POST"])
 @login_required
 def edit_game(gameid):
-    form = EditGameForm()
     game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
-    base_list = ['Choose an Option']
-    list_of_genres = Genre.list_genres()
-    list_of_mechanics = Mechanic.list_mechanics()
-    form.genre.choices = base_list + list_of_genres
-    form.mechanics.choices = base_list + list_of_mechanics
-    form.title.data = game['title']
-    form.designer.data = game['designer']
-    form.publisher.data = game['publisher']
-    form.player_count.data = game['player_count']
-    form.weight.data = game['weight']
-    form.description.data = game['description']
-    form.image_link.data = game['image_link']
+    if current_user.username != game['added_by']:
+        flash('You do not have permission to do that.', 'warning')
+        return redirect(url_for('all_games'))
+    form = EditGameForm()
+    if form.validate_on_submit():
+        changes = form.collect_changes()
+        mongo.db.games.update_one({'_id': ObjectId(gameid)},
+                                  {'$set': changes})
+        flash('Game info edited!', 'success')
+        return redirect(url_for('all_games'))
+
+    elif request.method == 'GET':
+        form.set_form_data(game)
+
     return render_template('edit-game.html', form=form)

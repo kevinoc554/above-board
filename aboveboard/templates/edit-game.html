@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col s12">
                     <h1 class="text-center"><span>Above</span> <span>Board</span></h1>
-                    <p class="text-center bold sub-heading">Add a new game to the Database!</p>
+                    <p class="text-center bold sub-heading">Edit Game Info!</p>
                 </div>
             </div>
             <div class="row">
@@ -15,7 +15,7 @@
                         <form method="POST" action="">
                             {{ form.hidden_tag() }}
                             <fieldset>
-                                <legend>Add a Game!</legend>
+                                <legend>Edit Game Info!</legend>
                                 <div class="input-field col s12">
                                     {{ form.title.label }}
                                     {% if form.title.errors %}
@@ -48,28 +48,6 @@
                                     {% else %}
                                     {{ form.publisher(class="validate") }}
                                     {% endif %}
-                                </div>
-                                <div class="input-field col s12 m6">
-                                    {% if form.genre.errors %}
-                                    {{ form.genre(class="invalid") }}
-                                    {% for error in form.genre.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
-                                    {% else %}
-                                    {{ form.genre(class="validate") }}
-                                    {% endif %}
-                                    {{ form.genre.label }}
-                                </div>
-                                <div class="input-field col s12 m6">
-                                    {% if form.mechanics.errors %}
-                                    {{ form.mechanics(class="invalid") }}
-                                    {% for error in form.mechanics.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
-                                    {% else %}
-                                    {{ form.mechanics(class="validate") }}
-                                    {% endif %}
-                                    {{ form.mechanics.label }}
                                 </div>
                                 <div class="input-field col s12 m6">
                                     {% if form.weight.errors %}
