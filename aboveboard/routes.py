@@ -219,8 +219,24 @@ def my_games():
                            form=form)
 
 
-@app.route("/view-game/<gameid>")
+# Convert list of ratings to average
+def avg_ratings(ratings):
+    avg = sum(ratings)/len(ratings)
+    return round(avg)
+
+
+@app.route("/view-game/<gameid>", methods=["GET", "POST"])
 def view_game(gameid):
+    if request.method == 'POST':
+        new_rating = request.form.get('rating')
+        new_rating = [int(new_rating)]
+        game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
+        new_rating = game['rating'] + new_rating
+        mongo.db.games.update_one(
+            {"_id": ObjectId(gameid)},
+            {'$set': {'rating': new_rating}})
+        flash('Game rated!')
+        return redirect(url_for('all_games'))
     ref = request.referrer
     try:
         game = Game.get_one_game(gameid)
@@ -228,9 +244,11 @@ def view_game(gameid):
         if len(game_as_list) == 0:
             flash('Game could not be found, or does not exist', 'warning')
             return redirect(url_for('all_games'))
+        avg_rating = avg_ratings(game_as_list[0]['rating'])
         return render_template("view-game.html",
                                game=game_as_list,
                                ref=ref,
+                               rating=avg_rating,
                                title='Game Info')
     except Exception:
         flash('Game could not be found, or does not exist', 'warning')
