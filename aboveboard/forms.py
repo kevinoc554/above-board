@@ -188,6 +188,25 @@ class AddGameForm(FlaskForm):
                         'Must be a valid URL, to an image in JPEG/JPG format')
 
 
+class EditGameForm(FlaskForm):
+    title = StringField('Title',
+                        validators=[InputRequired()])
+    designer = StringField('Designer',
+                           validators=[InputRequired()])
+    publisher = StringField('Publisher',
+                            validators=[InputRequired()])
+    genre = SelectField('Genre', validators=[InputRequired()])
+    mechanics = SelectField('Game Mechanics', validators=[InputRequired()])
+    player_count = StringField('Player Count',
+                               validators=[InputRequired()])
+    weight = SelectField('Weight', choices=[
+        'How complex is this game?', 1, 2, 3, 4, 5],
+        validators=[InputRequired()])
+    description = TextAreaField('Description', validators=[InputRequired()])
+    image_link = StringField('Box Art Image URL')
+    submit = SubmitField('Update Info!')
+
+
 class SearchForm(FlaskForm):
     query = StringField('Search Games',
                         validators=[InputRequired(), Length(min=2)])
