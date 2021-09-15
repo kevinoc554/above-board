@@ -5,7 +5,7 @@ from aboveboard import app, mongo, bcrypt, mail
 from aboveboard.forms import (RegistrationForm, LoginForm,
                               UpdateAccountForm, RequestResetForm,
                               ResetPasswordForm, AddGameForm,
-                              SearchForm)
+                              SearchForm, EditGameForm)
 from aboveboard.models import User, Genre, Mechanic, Game
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -277,3 +277,23 @@ def delete_game(gameid):
         print(e)
         flash('That game could not be found!', 'warning')
         return redirect(url_for('all_games'))
+
+
+@app.route("/edit-game/<gameid>", methods=["GET", "POST"])
+@login_required
+def edit_game(gameid):
+    form = EditGameForm()
+    game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
+    base_list = ['Choose an Option']
+    list_of_genres = Genre.list_genres()
+    list_of_mechanics = Mechanic.list_mechanics()
+    form.genre.choices = base_list + list_of_genres
+    form.mechanics.choices = base_list + list_of_mechanics
+    form.title.data = game['title']
+    form.designer.data = game['designer']
+    form.publisher.data = game['publisher']
+    form.player_count.data = game['player_count']
+    form.weight.data = game['weight']
+    form.description.data = game['description']
+    form.image_link.data = game['image_link']
+    return render_template('edit-game.html', form=form)
