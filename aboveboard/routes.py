@@ -232,9 +232,8 @@ def view_game(gameid):
                                game=game_as_list,
                                ref=ref,
                                title='Game Info')
-    except Exception as e:
+    except Exception:
         flash('Game could not be found, or does not exist', 'warning')
-        print(e)
         return redirect(url_for('all_games'))
 
 
@@ -273,8 +272,7 @@ def delete_game(gameid):
         else:
             flash('You do not have permission to delete that game', 'warning')
             return redirect(url_for('all_games'))
-    except Exception as e:
-        print(e)
+    except Exception:
         flash('That game could not be found!', 'warning')
         return redirect(url_for('all_games'))
 
