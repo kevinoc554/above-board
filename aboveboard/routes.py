@@ -221,11 +221,7 @@ def my_games():
 
 @app.route("/view-game/<gameid>")
 def view_game(gameid):
-    if request.referrer is not None:
-        ref = request.referrer
-        print(ref)
-    args = request.args.get('page')
-    print(args)
+    ref = request.referrer
     try:
         game = Game.get_one_game(gameid)
         game_as_list = list(game)
@@ -233,9 +229,12 @@ def view_game(gameid):
             flash('Game could not be found, or does not exist', 'warning')
             return redirect(url_for('all_games'))
         return render_template("view-game.html",
-                               game=game_as_list, title='Game Info')
-    except Exception:
+                               game=game_as_list,
+                               ref=ref,
+                               title='Game Info')
+    except Exception as e:
         flash('Game could not be found, or does not exist', 'warning')
+        print(e)
         return redirect(url_for('all_games'))
 
 

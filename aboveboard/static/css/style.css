@@ -83,6 +83,35 @@ h1 span {
     color: black
 }
 
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+    text-align: center;
+}
+.pagination-page-info b {
+    color: black;
+    background: #ffff00;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+
+.pagination {
+    text-align: center;
+}
+
+.pagination li.active {
+    background-color: #ffff00;
+}
+
+.pagination li.active a {
+    color: black;
+    font-weight: bold;
+}
+
 /* View Game */
 .main-box-image {
     width: 100%;
@@ -112,34 +141,18 @@ h1 span {
     margin: 0;
 }
 
-.pagination-page-info {
-    padding: .6em;
-    padding-left: 0;
-    margin: .5em;
-    margin-left: 0;
-    font-size: 12px;
-    text-align: center;
-}
-.pagination-page-info b {
-    color: black;
-    background: #ffff00;
-    padding-left: 2px;
-    padding: .1em .25em;
-    font-size: 150%;
+.back-btn {
+    margin-top: 2rem;
+    margin-left: 2rem;
+    background-color: rgba(240, 52, 52, 1);
 }
 
-.pagination {
-    text-align: center;
+.back-btn:hover,
+.back-btn:focus,
+.back-btn:active {
+    background-color: rgba(240, 52, 52, .75);
 }
 
-.pagination li.active {
-    background-color: #ffff00;
-}
-
-.pagination li.active a {
-    color: black;
-    font-weight: bold;
-}
 /* Add Game Form */
 #description {
     height: 5rem;
