@@ -220,12 +220,43 @@ class TestUserRoutes(TestCase):
         }
         client = app.test_client(self)
         with client:
-            print('Add game test')
             client.post('/login', data=dummy_login_data)
-            print(current_user.username + 'is logged in')
             response = client.post('add-game', data=dummy_game_data)
             check_db = mongo.db.games.find_one({'title': 'Unittest'})
             self.assertTrue(check_db)
+            self.assertEqual(response.status_code, 302)
+
+    def test_d_edit_game(self):
+        """
+        Test POST to Edit Game route.
+        Passes dummy data to edit the 'publisher' of the game added above,
+        and redirects to All Games page.
+
+        Expected Results:
+        Response - 302
+        Game found in db by searching new 'publisher'
+        """
+        dummy_login_data = {
+            'email': 'unit@test.com',
+            'password': 'Unit@test1'
+        }
+        dummy_update_data = {
+            'title': 'Unittest',
+            'designer': 'John Doe',
+            'publisher': 'Unit Test Games',
+            'player_count': '2-5',
+            'weight': '2',
+            'description': 'Dummy data for automated testing'
+        }
+        client = app.test_client(self)
+        with client:
+            game = mongo.db.games.find_one({'title': 'Unittest'})
+            client.post('/login', data=dummy_login_data)
+            gameid = str(game['_id'])
+            response = client.post('edit-game/' + gameid,
+                                   data=dummy_update_data)
+            update = mongo.db.games.find_one({'publisher': 'Unit Test Games'})
+            self.assertTrue(update)
             self.assertEqual(response.status_code, 302)
 
     def test_zupdate_profile(self):
