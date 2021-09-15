@@ -2,6 +2,7 @@ $(document).ready(function () {
   disableOption();
   initMaterialize();
   toTopBtn();
+  setRatingStars()
 });
 
 // Initializes all relevant JS for MaterializeCSS components
@@ -41,4 +42,11 @@ function toTopBtn() {
         $('html, body').stop();
     }
 });
+}
+
+// Set the checked property on the correct star radio button
+// based on average of ratings passed through route
+function setRatingStars() {
+  let avgRating = $('#rating').text();
+  $("input[value~=" + avgRating +"]").prop("checked", true);
 }
