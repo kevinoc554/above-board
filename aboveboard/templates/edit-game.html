@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel outer-panel">
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="text-center"><span>Above</span> <span>Board</span></h1>
+                    <p class="text-center bold sub-heading">Add a new game to the Database!</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m10 offset-m1">
+                    <div class="card-panel">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset>
+                                <legend>Add a Game!</legend>
+                                <div class="input-field col s12">
+                                    {{ form.title.label }}
+                                    {% if form.title.errors %}
+                                    {{ form.title(class="invalid") }}
+                                    {% for error in form.title.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.title(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {{ form.designer.label }}
+                                    {% if form.designer.errors %}
+                                    {{ form.designer(class="invalid") }}
+                                    {% for error in form.designer.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.designer(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {{ form.publisher.label }}
+                                    {% if form.publisher.errors %}
+                                    {{ form.publisher(class="invalid") }}
+                                    {% for error in form.publisher.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.publisher(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {% if form.genre.errors %}
+                                    {{ form.genre(class="invalid") }}
+                                    {% for error in form.genre.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.genre(class="validate") }}
+                                    {% endif %}
+                                    {{ form.genre.label }}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {% if form.mechanics.errors %}
+                                    {{ form.mechanics(class="invalid") }}
+                                    {% for error in form.mechanics.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.mechanics(class="validate") }}
+                                    {% endif %}
+                                    {{ form.mechanics.label }}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {% if form.weight.errors %}
+                                    {{ form.weight(class="invalid") }}
+                                    {% for error in form.weight.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.weight(class="validate") }}
+                                    {% endif %}
+                                    {{ form.weight.label }}
+                                </div>
+                                <div class="input-field col s12 m6">
+                                    {{ form.player_count.label }}
+                                    {% if form.player_count.errors %}
+                                    {{ form.player_count(class="invalid") }}
+                                    {% for error in form.player_count.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.player_count(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.image_link.label }}
+                                    {% if form.image_link.errors %}
+                                    {{ form.image_link(class="invalid") }}
+                                    {% for error in form.image_link.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.image_link(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.description.label }}
+                                    {% if form.description.errors %}
+                                    {{ form.description(class="invalid") }}
+                                    {% for error in form.description.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.description(class="validate") }}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div class="input-field text-center submit-btn">
+                                {{ form.submit(class="btn waves-effect waves-light")}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
