@@ -173,6 +173,13 @@ class AddGameForm(FlaskForm):
         return info
 
     def validate_image_link(self, image_link):
+        """
+        Validate the image link to check that it is a valid URL
+        with a content type of JPEG or JPG.
+
+        Does not raise error if field is blank (as placeholder will be
+        applied).
+        """
         if self.image_link.data:
             content_types = ['image/jpeg', 'image/jpg']
             http = urllib3.PoolManager()
@@ -204,7 +211,36 @@ class EditGameForm(FlaskForm):
                                 validators=[InputRequired()])
     submit = SubmitField('Update Info!')
 
+    def validate_image_link(self, image_link):
+        """
+        Validate the image link to check that it is a valid URL
+        with a content type of JPEG or JPG.
+
+        Does not raise error if field is blank (as placeholder will be
+        applied), or if placeholder is already used.
+        """
+        placeholds = [
+            'https://via.placeholder.com/250x200?text=No+Box+Art+Provided',
+            ''
+        ]
+        if self.image_link.data not in placeholds:
+            content_types = ['image/jpeg', 'image/jpg']
+            http = urllib3.PoolManager()
+            try:
+                r = http.request('GET', self.image_link.data)
+            except Exception:
+                raise ValidationError(
+                    'Text provided is not a URL. Please try again.')
+            else:
+                response = r.info()
+                if response['Content-Type'] not in content_types:
+                    raise ValidationError(
+                        'Must be a valid URL to an image in JPEG/JPG format')
+
     def set_form_data(self, game):
+        """
+        Collects data from game to populate the form on load
+        """
         self.title.data = game['title']
         self.designer.data = game['designer']
         self.publisher.data = game['publisher']
@@ -214,6 +250,14 @@ class EditGameForm(FlaskForm):
         self.image_link.data = game['image_link']
 
     def collect_changes(self):
+        """
+        Collects the responses from the for, and gathers them into a dict
+        to be passed to the db.
+        If image link is left blank, uses placeholder.
+        """
+        placehold = 'https://via.placeholder.com/250x200?text=No+Box+Art+Provided'
+        if self.image_link.data == '':
+            self.image_link.data = placehold
         changes = {
             'title': self.title.data,
             'designer': self.designer.data,
