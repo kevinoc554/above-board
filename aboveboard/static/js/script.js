@@ -2,7 +2,8 @@ $(document).ready(function () {
   disableOption();
   initMaterialize();
   toTopBtn();
-  setRatingStars()
+  setRatingStars();
+  showRateBtn()
 });
 
 // Initializes all relevant JS for MaterializeCSS components
@@ -21,7 +22,7 @@ function disableOption() {
   $('#weight').children().first().prop('disabled', true);
 }
 
-// Custom JS for Return to Top Button
+// Return to Top Button
 // Button fades in and out on scroll
 // On click, button scrolls smoothly to the top of the page
 function toTopBtn() {
@@ -39,14 +40,22 @@ function toTopBtn() {
   });
   $('html, body').on('scroll mousedown DOMMouseScroll mousewheel keyup touchstart', function (e) {
     if (e.which > 0 || e.type === 'mousedown' || e.type === 'mousewheel' || e.type === 'touchstart') {
-        $('html, body').stop();
+      $('html, body').stop();
     }
-});
+  });
 }
 
 // Set the checked property on the correct star radio button
 // based on average of ratings passed through route
 function setRatingStars() {
   let avgRating = $('#rating').text();
-  $("input[value~=" + avgRating +"]").prop("checked", true);
+  $("input[value~=" + avgRating + "]").prop("checked", true);
+}
+
+// Show button to submit ratings when user clicks on the star rating fieldset
+function showRateBtn() {
+  $('#star-rating').on('click', function () {
+    $('.rate-btn').slideDown('fast');
+    console.log('clicked')
+  })
 }

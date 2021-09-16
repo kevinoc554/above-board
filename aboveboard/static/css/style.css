@@ -162,6 +162,17 @@ h1 span {
     display: none;
 }
 
+.rate-btn {
+    display: none;
+    background-color: rgba(255, 255, 0);
+    color: black;
+}
+
+.rate-btn:hover,
+.rate-btn:focus {
+    background-color: rgba(255, 255, 0, .75);
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;
