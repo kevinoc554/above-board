@@ -221,8 +221,9 @@ def my_games():
 
 # Convert list of ratings to average
 def avg_ratings(ratings):
-    avg = sum(ratings)/len(ratings)
-    return round(avg)
+    num_ratings = len(ratings)
+    avg = sum(ratings)/num_ratings
+    return round(avg), num_ratings
 
 
 @app.route("/view-game/<gameid>", methods=["GET", "POST"])
@@ -244,11 +245,12 @@ def view_game(gameid):
         if len(game_as_list) == 0:
             flash('Game could not be found, or does not exist', 'warning')
             return redirect(url_for('all_games'))
-        avg_rating = avg_ratings(game_as_list[0]['rating'])
+        avg_rating, num_ratings = avg_ratings(game_as_list[0]['rating'])
         return render_template("view-game.html",
                                game=game_as_list,
                                ref=ref,
                                rating=avg_rating,
+                               num_ratings=num_ratings,
                                title='Game Info')
     except Exception:
         flash('Game could not be found, or does not exist', 'warning')

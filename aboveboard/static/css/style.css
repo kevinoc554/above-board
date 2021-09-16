@@ -153,6 +153,15 @@ h1 span {
     background-color: rgba(240, 52, 52, .75);
 }
 
+.ratings-text {
+    font-style: italic;
+    font-weight: lighter!important;
+}
+
+.ratings-span {
+    display: none;
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;
