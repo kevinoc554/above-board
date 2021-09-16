@@ -188,6 +188,9 @@ def all_games():
     else:
         games = Game.get_all_games()
     games = list(games)
+    # set ratings as a rounded average of the list of ints
+    for game in games:
+        game['rating'] = round(sum(game['rating'])/len(game['rating']))
     games = sorted(games, key=lambda i: i['title'])
     pagination, games_paginated = convert_to_pagination(
         games, PER_PAGE, "page", "per_page")
@@ -211,6 +214,8 @@ def my_games():
     else:
         search_my_games = Game.get_my_games(current_user)
         games = list(search_my_games)
+    for game in games:
+        game['rating'] = round(sum(game['rating'])/len(game['rating']))
     games = sorted(games, key=lambda i: i['title'])
     pagination, games_paginated = convert_to_pagination(
         games, PER_PAGE, "page", "per_page")
@@ -219,7 +224,8 @@ def my_games():
                            form=form)
 
 
-# Convert list of ratings to average
+# Convert list of ratings to average,
+# and get number of ratings
 def avg_ratings(ratings):
     num_ratings = len(ratings)
     avg = sum(ratings)/num_ratings
