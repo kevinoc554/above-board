@@ -1,18 +1,20 @@
-from aboveboard import app, mongo
+from aboveboard import mongo, create_app
+from flask import current_app
 from flask_login import current_user
-from unittest import TestCase, main
+import unittest
+import flask_testing
 
 
-class TestGetRoutes(TestCase):
+class TestGetRoutes(flask_testing.TestCase):
     """
     Unit tests for basic GET routes.
     """
 
-    def setUp(self):
-        """
-        Set up app in Testing mode
-        """
+    def create_app(self):
+        app = create_app()
         app.config['TESTING'] = True
+
+        return app
 
     def test_home(self):
         """
@@ -21,9 +23,9 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 200
         """
-        client = app.test_client(self)
-        response = client.get('/')
-        self.assertEqual(response.status_code, 200)
+        with current_app.test_client(self) as client:
+            response = client.get('/')
+            self.assertEqual(response.status_code, 200)
 
     def test_home_variant(self):
         """
@@ -33,7 +35,7 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 200
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/home')
         self.assertEqual(response.status_code, 200)
 
@@ -46,7 +48,7 @@ class TestGetRoutes(TestCase):
         Response - 200
         'pagination-page-info'- if present, pagination has applied
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/all-games')
         html = response.get_data().decode()
         self.assertIn('pagination-page-info', html)
@@ -59,7 +61,7 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 200
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/login')
         self.assertEqual(response.status_code, 200)
 
@@ -70,7 +72,7 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 200
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/register')
         self.assertEqual(response.status_code, 200)
 
@@ -82,7 +84,7 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 302
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/profile')
         self.assertEqual(response.status_code, 302)
 
@@ -94,7 +96,7 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 302
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/my-games')
         self.assertEqual(response.status_code, 302)
 
@@ -105,24 +107,22 @@ class TestGetRoutes(TestCase):
         Expected Results:
         Response - 200
         """
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.get('/reset_password')
         self.assertEqual(response.status_code, 200)
 
 
-class TestUserRoutes(TestCase):
+class TestUserRoutes(flask_testing.TestCase):
     """
     Unit tests for routes and actions that require a User
     """
 
-    @classmethod
-    def setUpClass(cls):
-        """
-        Set up app in Testing mode, and disable WtForm's
-        CSRF tokens.
-        """
+    def create_app(self):
+        app = create_app()
         app.config['TESTING'] = True
         app.config['WTF_CSRF_ENABLED'] = False
+
+        return app
 
     @classmethod
     def tearDownClass(cls):
@@ -150,7 +150,7 @@ class TestUserRoutes(TestCase):
             "password": 'Unit@test1',
             "confirm": 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.post('/register', data=dummy_user_data)
         check_user = mongo.db.users.find_one({'username': 'unittest'})
         self.assertTrue(check_user)
@@ -169,7 +169,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@toast.com',
             'password': 'unit-toast'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         response = client.post('/login', data=dummy_login_data)
         html = response.get_data().decode()
         self.assertEqual(response.status_code, 200)
@@ -188,7 +188,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             response = client.post('/login', data=dummy_login_data)
             self.assertEqual(current_user.username, 'unittest')
@@ -218,7 +218,7 @@ class TestUserRoutes(TestCase):
             'weight': '2',
             'description': 'Dummy data for automated testing'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.post('add-game', data=dummy_game_data)
@@ -248,7 +248,7 @@ class TestUserRoutes(TestCase):
             'weight': '2',
             'description': 'Dummy data for automated testing'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             game = mongo.db.games.find_one({'title': 'Unittest'})
             client.post('/login', data=dummy_login_data)
@@ -278,7 +278,7 @@ class TestUserRoutes(TestCase):
             'fname': 'New',
             'lname': 'Data'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.post('/profile', data=dummy_update_data)
@@ -303,7 +303,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/logout')
@@ -321,7 +321,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/profile')
@@ -345,7 +345,7 @@ class TestUserRoutes(TestCase):
             'lname': 'Info',
             'email': 'unit@test.com'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.post('/profile', data=dummy_update_data)
@@ -366,7 +366,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/my-games')
@@ -386,7 +386,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/login')
@@ -404,7 +404,7 @@ class TestUserRoutes(TestCase):
             'email': 'unit@test.com',
             'password': 'Unit@test1'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/register')
@@ -421,7 +421,7 @@ class TestUserRoutes(TestCase):
         dummy_valid_email = {
             'email': 'unit@test.com'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             response = client.post('/reset_password', data=dummy_valid_email)
             self.assertEqual(response.status_code, 302)
@@ -437,11 +437,11 @@ class TestUserRoutes(TestCase):
         dummy_invalid_email = {
             'email': 'invalid@test.com'
         }
-        client = app.test_client(self)
+        client = current_app.test_client(self)
         with client:
             response = client.post('/reset_password', data=dummy_invalid_email)
             self.assertEqual(response.status_code, 200)
 
 
 if __name__ == '__main__':
-    main()
+    unittest.main()
