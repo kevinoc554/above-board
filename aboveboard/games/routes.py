@@ -67,14 +67,14 @@ def view_game(gameid):
             {"_id": ObjectId(gameid)},
             {'$set': {'rating': new_rating}})
         flash('Game rated!')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
     ref = request.referrer
     try:
         game = Game.get_one_game(gameid)
         game_as_list = list(game)
         if len(game_as_list) == 0:
             flash('Game could not be found, or does not exist', 'warning')
-            return redirect(url_for('all_games'))
+            return redirect(url_for('games.all_games'))
         avg_rating, num_ratings = avg_ratings(game_as_list[0]['rating'])
         return render_template("view-game.html",
                                game=game_as_list,
@@ -84,7 +84,7 @@ def view_game(gameid):
                                title='Game Info')
     except Exception:
         flash('Game could not be found, or does not exist', 'warning')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
 
 
 @games.route("/add-game", methods=["GET", "POST"])
@@ -105,7 +105,7 @@ def add_game():
         new_game = Game(**form_data)
         new_game.add_game(current_user)
         flash('Game Successfully Added!', 'success')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
     return render_template("add-game.html", form=form, title="Add A Game")
 
 
@@ -118,13 +118,13 @@ def delete_game(gameid):
         if current_user.username == game.added_by:
             Game.delete_one_game(gameid)
             flash('Game has been deleted!', 'success')
-            return redirect(url_for('all_games'))
+            return redirect(url_for('games.all_games'))
         else:
             flash('You do not have permission to delete that game', 'warning')
-            return redirect(url_for('all_games'))
+            return redirect(url_for('games.all_games'))
     except Exception:
         flash('That game could not be found!', 'warning')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
 
 
 @games.route("/edit-game/<gameid>", methods=["GET", "POST"])
@@ -133,14 +133,14 @@ def edit_game(gameid):
     game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
     if current_user.username != game['added_by']:
         flash('You do not have permission to do that.', 'warning')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
     form = EditGameForm()
     if form.validate_on_submit():
         changes = form.collect_changes()
         mongo.db.games.update_one({'_id': ObjectId(gameid)},
                                   {'$set': changes})
         flash('Game info edited!', 'success')
-        return redirect(url_for('all_games'))
+        return redirect(url_for('games.all_games'))
 
     elif request.method == 'GET':
         form.set_form_data(game)

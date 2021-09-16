@@ -2,7 +2,6 @@ import os
 from flask import Flask
 from flask_pymongo import PyMongo
 from flask_mail import Mail
-from bson.objectid import ObjectId
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 
@@ -27,4 +26,10 @@ login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
 
 
-from aboveboard import routes
+from aboveboard.users.routes import users
+from aboveboard.games.routes import games
+from aboveboard.main.routes import main
+
+app.register_blueprint(users)
+app.register_blueprint(games)
+app.register_blueprint(main)

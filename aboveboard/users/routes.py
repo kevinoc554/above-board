@@ -15,21 +15,21 @@ users = Blueprint('users', __name__)
 @users.route("/register", methods=["GET", "POST"])
 def register():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = RegistrationForm()
     if form.validate_on_submit():
         register = form.make_dict()
         new_user = User(**register)
         new_user.add_user()
         flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('users.login'))
     return render_template("register.html", title="Register", form=form)
 
 
 @users.route("/login", methods=["GET", "POST"])
 def login():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = LoginForm()
     if form.validate_on_submit():
         find_user = mongo.db.users.find_one({'email': form.email.data})
@@ -43,7 +43,7 @@ def login():
             flash('You have been logged in!', 'success')
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(
-                url_for('home'))
+                url_for('main.home'))
         else:
             flash('Incorrect email or password, please try again.', 'warning')
 
@@ -57,7 +57,7 @@ def logout():
         flash('You have been logged out!', 'success')
     else:
         flash('You are not currently logged in.', 'info')
-    return redirect(url_for('home'))
+    return redirect(url_for('main.home'))
 
 
 @users.route("/profile", methods=["GET", "POST"])
@@ -73,7 +73,7 @@ def profile():
                                   }
         })
         flash('Your account has been updated!', 'success')
-        return redirect(url_for('profile'))
+        return redirect(url_for('users.profile'))
     elif request.method == 'GET':
         user = mongo.db.users.find_one({'username': current_user.username})
         form.fname.data = user['fname']
@@ -86,7 +86,7 @@ def profile():
 @users.route("/reset_password", methods=["GET", "POST"])
 def request_reset():
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     form = RequestResetForm()
     if form.validate_on_submit():
         find_user = mongo.db.users.find_one({'email': form.email.data})
@@ -95,7 +95,7 @@ def request_reset():
         flash(
             'An email with instructions to reset your password has been sent.',
             'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('users.login'))
     return render_template('request-reset.html',
                            title='Request Password Reset', form=form)
 
@@ -103,11 +103,11 @@ def request_reset():
 @users.route("/reset_password/<token>", methods=["GET", "POST"])
 def reset_token(token):
     if current_user.is_authenticated:
-        return redirect(url_for('home'))
+        return redirect(url_for('main.home'))
     user = User.check_token(token)
     if not user:
         flash('Unable to proceed. Please try again.', 'warning')
-        return redirect(url_for('request_reset'))
+        return redirect(url_for('users.request_reset'))
     form = ResetPasswordForm()
     if form.validate_on_submit():
         new_password = bcrypt.generate_password_hash(
@@ -118,7 +118,7 @@ def reset_token(token):
                               }
         })
         flash('Your password has been updated!', 'success')
-        return redirect(url_for('login'))
+        return redirect(url_for('users.login'))
 
     return render_template('reset-token.html', title='Reset Password',
                            form=form)
