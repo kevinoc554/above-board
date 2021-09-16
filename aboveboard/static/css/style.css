@@ -53,6 +53,7 @@ h1 span {
     padding: 0;
     z-index: 100;
     display: none;
+    cursor: pointer;
 }
 
 #toTopBtn i {
