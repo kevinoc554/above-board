@@ -1,4 +1,5 @@
-from aboveboard import app, mongo, login_manager
+from aboveboard import mongo, login_manager
+from flask import current_app
 from itsdangerous import TimedJSONWebSignatureSerializer as Serializer
 from flask_login import UserMixin
 from flask_pymongo import ObjectId
@@ -60,7 +61,7 @@ class User(UserMixin):
         Creates a token using app's secretkey and user's unique username
         Expiry time can be set in secs, defaults to 30 mins
         """
-        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        s = Serializer(current_app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.username}).decode('utf-8')
 
     @staticmethod
@@ -68,7 +69,7 @@ class User(UserMixin):
         """
         Decodes the token, and returns the relevant user.
         """
-        s = Serializer(app.config['SECRET_KEY'])
+        s = Serializer(current_app.config['SECRET_KEY'])
         try:
             username = s.loads(token)['user_id']
         except Exception as e:
