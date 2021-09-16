@@ -156,7 +156,8 @@ class AddGameForm(FlaskForm):
 
     def make_dict(self):
         """
-        Convert form response to dict to facilitate creating Game instance
+        Convert form response to dict to facilitate creating Game instance.
+        Stores rating as an int in a list.
         """
         info = {
             "title": self.title.data,
@@ -165,7 +166,7 @@ class AddGameForm(FlaskForm):
             "genre": self.genre.data,
             "mechanics": self.mechanics.data,
             "player_count": self.player_count.data,
-            "rating": self.rating.data,
+            "rating": [int(self.rating.data)],
             "weight": self.weight.data,
             "description": self.description.data,
             "image_link": self.image_link.data,
