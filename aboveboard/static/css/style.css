@@ -65,6 +65,12 @@ h1 span {
     background-color: #ffff00;
 }
 
+/* Home page */
+.hero-image {
+    background-image: url(../images/hero-image.jpg);
+    height: 62vh;
+}
+
 /* All/My Games */
 .box-art {
     max-width: 100%;
