@@ -26,8 +26,10 @@ def create_app(config_class=Config):
     from aboveboard.users.routes import users
     from aboveboard.games.routes import games
     from aboveboard.main.routes import main
+    from aboveboard.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(games)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app
