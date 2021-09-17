@@ -34,7 +34,9 @@
                                 <li>
                                     {% if current_user.is_authenticated %}
                                     <span>Rating: <span id="rating" class="ratings-span">{{ rating }}</span></span>
-                                    <form method="POST" action="">
+                                    <form method="POST">
+                                        <!-- Star rating adapted from: -->
+                                        <!-- https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl -->
                                         <fieldset id="star-rating" class="star-rating">
                                             <div>
                                                 <input type="radio" name="rating" value="1" id="rating1" />
