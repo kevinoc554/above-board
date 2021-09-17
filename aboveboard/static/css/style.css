@@ -93,7 +93,9 @@ footer .row {
     color: black;
 }
 
-.hvr-fade:active, .hvr-fade:focus, .hvr-fade:hover {
+.hvr-fade:active,
+.hvr-fade:focus,
+.hvr-fade:hover {
     background-color: #ffff00;
     color: #fafafa;
 }
@@ -484,5 +486,11 @@ label[for="description"] {
 
     h1 {
         font-size: 3rem;
+    }
+}
+
+@media screen and (min-width: 1920px) {
+    .box-art {
+        margin-left: 2rem;
     }
 }
