@@ -6,7 +6,7 @@ from aboveboard.models import User
 from aboveboard.users.utils import send_password_reset
 from aboveboard.users.forms import (RegistrationForm, LoginForm,
                                     UpdateAccountForm, RequestResetForm,
-                                    ResetPasswordForm)
+                                    ResetPasswordForm, AdminForm)
 from flask_login import login_user, current_user, logout_user, login_required
 
 users = Blueprint('users', __name__)
@@ -122,3 +122,20 @@ def reset_token(token):
 
     return render_template('reset-token.html', title='Reset Password',
                            form=form)
+
+
+@users.route("/admin", methods=["GET", "POST"])
+@login_required
+def admin():
+    if current_user.username != 'admin':
+        flash('You do not have permission to do that', 'warning')
+        return redirect(url_for('main.home'))
+    form = AdminForm()
+    if form.validate_on_submit():
+        if form.genre.data:
+            mongo.db.genres.insert_one({'genre': form.genre.data})
+        if form.mechanics.data:
+            mongo.db.mechanics.insert_one({'mechanics': form.mechanics.data})
+        flash('Category updated', 'success')
+        return redirect(url_for('users.admin'))
+    return render_template('admin.html', form=form, title='Admin')

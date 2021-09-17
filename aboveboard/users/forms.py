@@ -130,3 +130,9 @@ class ResetPasswordForm(FlaskForm):
     confirm = PasswordField('Confirm Password', validators=[
         InputRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+
+class AdminForm(FlaskForm):
+    genre = StringField('Genre')
+    mechanics = StringField('Mechanics')
+    submit = SubmitField('Submit')
