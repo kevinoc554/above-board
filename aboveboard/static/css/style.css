@@ -215,6 +215,10 @@ h1 span {
     background-color: rgba(255, 255, 0, .75);
 }
 
+.amazon-link {
+    margin-bottom: 2rem;
+}
+
 /* Add Game Form */
 #description {
     height: 5rem;

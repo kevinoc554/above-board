@@ -63,15 +63,19 @@
                     <p>{{ game.description }}</p>
                 </div>
             </div>
-            {% if current_user.username == game.added_by %}
             <div class="row">
-                <div class="col s4"></div>
-                <div class="col s2">
+                <div class="col s12 m4 amazon-link">
+                    <a href="http://www.amazon.co.uk/s?url=search-alias%3Daps&field-keywords={{ game.title }}">
+                        Find this game on Amazon
+                    </a>
+                </div>
+                {% if current_user.username == game.added_by %}
+                <div class="col s6 m2 offset-m4">
                     <a href="{{ url_for('games.edit_game', gameid=game._id) }}" class="btn edit-btn">
                         <i class="fas fa-edit"></i> Edit
                     </a>
                 </div>
-                <div class="col s2">
+                <div class="col s6 m2">
                     <a href="#delete-modal" class="btn delete-btn modal-trigger">
                         <i class="fas fa-times-circle"></i> Delete
                     </a>
