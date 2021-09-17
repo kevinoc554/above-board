@@ -49,22 +49,23 @@ function toTopBtn() {
 // Set the checked property on the correct star radio button
 // based on average of ratings passed through route
 function setRatingStars() {
-  let avgRating = $('#rating').text();
-  $("input[value~=" + avgRating + "]").prop("checked", true);
+  if ($('#rating').length) {
+    let avgRating = $('#rating').text();
+    $("input[value~=" + avgRating + "]").prop("checked", true);
+  }
 }
 
 // Show button to submit ratings when user clicks on the star rating fieldset
 function showRateBtn() {
-  $('#star-rating').on('click', function () {
+  $('body').on('click', '#star-rating', function () {
     $('.rate-btn').slideDown('fast');
     console.log('clicked')
   })
 }
 
 // Close Flashed messages by clicking the X icon
-function closeFlashes(){
-  $('#close-flashes').on('click', function() {
+function closeFlashes() {
+  $('#close-flashes').on('click', function () {
     $('#flashes-row').slideUp();
   })
 }
-
