@@ -71,6 +71,12 @@ h1 span {
     height: 62vh;
 }
 
+.hero-card-text {
+    font-size: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
 /* All/My Games */
 .box-art {
     max-width: 100%;
@@ -202,6 +208,15 @@ label[for="description"] {
 .outer-panel {
     margin-top: 2rem;
     background-color: #dddddd;
+}
+
+.submit-btn {
+    background-color: #ffff00;
+    color: black;
+}
+
+.submit-btn:hover {
+    background-color: rgba(255, 255, 0, .75);
 }
 
 .submit-btn i,
