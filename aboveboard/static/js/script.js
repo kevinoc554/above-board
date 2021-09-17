@@ -1,3 +1,5 @@
+//jshint esversion: 6
+
 $(document).ready(function () {
   disableOption();
   initMaterialize();
@@ -59,13 +61,12 @@ function setRatingStars() {
 function showRateBtn() {
   $('body').on('click', '#star-rating', function () {
     $('.rate-btn').slideDown('fast');
-    console.log('clicked')
-  })
+  });
 }
 
 // Close Flashed messages by clicking the X icon
 function closeFlashes() {
   $('#close-flashes').on('click', function () {
     $('#flashes-row').slideUp();
-  })
+  });
 }
