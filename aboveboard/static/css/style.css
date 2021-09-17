@@ -288,6 +288,11 @@ label[for="description"] {
     background-color: lightskyblue;
 }
 
+.fa-window-close {
+    margin-left: 1rem;
+    cursor: pointer;
+}
+
 
 /* Star rating system */
 /* Adapted from:  https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl*/

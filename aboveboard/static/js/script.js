@@ -2,8 +2,9 @@ $(document).ready(function () {
   disableOption();
   initMaterialize();
   toTopBtn();
+  closeFlashes();
   setRatingStars();
-  showRateBtn()
+  showRateBtn();
 });
 
 // Initializes all relevant JS for MaterializeCSS components
@@ -59,3 +60,11 @@ function showRateBtn() {
     console.log('clicked')
   })
 }
+
+// Close Flashed messages by clicking the X icon
+function closeFlashes(){
+  $('#close-flashes').on('click', function() {
+    $('#flashes-row').slideUp();
+  })
+}
+
