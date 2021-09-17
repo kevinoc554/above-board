@@ -32,6 +32,7 @@
                                 <li><span>Weight:</span> {{ game.weight }}</li>
                                 <li><span>Added By:</span> {{ game.added_by }}</li>
                                 <li>
+                                    {% if current_user.is_authenticated %}
                                     <span>Rating: <span id="rating" class="ratings-span">{{ rating }}</span></span>
                                     <form method="POST" action="">
                                         <fieldset id="star-rating" class="star-rating">
@@ -51,6 +52,9 @@
                                         </fieldset>
                                         <button type="submit" class="btn rate-btn">Rate</button>
                                     </form>
+                                    {% else %}
+                                    <span>Rating: {{ rating }}</span>
+                                    {% endif %}
                                 </li>
                             </ul>
                         </div>

@@ -59,15 +59,19 @@ def my_games():
 @games.route("/view-game/<gameid>", methods=["GET", "POST"])
 def view_game(gameid):
     if request.method == 'POST':
-        new_rating = request.form.get('rating')
-        new_rating = [int(new_rating)]
-        game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
-        new_rating = game['rating'] + new_rating
-        mongo.db.games.update_one(
-            {"_id": ObjectId(gameid)},
-            {'$set': {'rating': new_rating}})
-        flash('Game rated!')
-        return redirect(url_for('games.all_games'))
+        if current_user.is_authenticated:
+            new_rating = request.form.get('rating')
+            new_rating = [int(new_rating)]
+            game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
+            new_rating = game['rating'] + new_rating
+            mongo.db.games.update_one(
+                {"_id": ObjectId(gameid)},
+                {'$set': {'rating': new_rating}})
+            flash('Game rated!')
+            return redirect(url_for('games.all_games'))
+        else:
+            flash('You do not have permission to do that.', 'warning')
+            return redirect(url_for('games.all_games'))
     ref = request.referrer
     try:
         game = Game.get_one_game(gameid)
