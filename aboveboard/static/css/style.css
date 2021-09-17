@@ -92,6 +92,20 @@ h1 span {
     margin-bottom: 0;
 }
 
+.action-hr {
+    background-color: unset;
+    border: none;
+    min-height: 1px;
+    background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, 0)), color-stop(rgba(0, 0, 0, .75)), to(rgba(0, 0, 0, 0)));
+    background-image: -o-linear-gradient(left, rgba(0, 0, 0, 0), rgba(0, 0, 0, .75), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, .75), rgba(0, 0, 0, 0));
+}
+
+.utility-links {
+    color: black;
+    font-size: 2rem;
+}
+
 /* All/My Games */
 .box-art {
     max-width: 100%;
