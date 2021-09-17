@@ -69,12 +69,27 @@ h1 span {
 .hero-image {
     background-image: url(../images/hero-image.jpg);
     height: 62vh;
+    max-height: 30rem;
 }
 
 .hero-card-text {
     font-size: 1rem;
     padding-top: .5rem;
     padding-bottom: .5rem;
+}
+
+.hero-btn {
+    background-color: #ffff00;
+    color: black;
+}
+
+.hero-btn:hover {
+    background-color: rgba(255, 255, 0, .75);
+}
+
+.recently-added-panel {
+    margin-top: 0!important;
+    margin-bottom: 0;
 }
 
 /* All/My Games */
@@ -208,15 +223,6 @@ label[for="description"] {
 .outer-panel {
     margin-top: 2rem;
     background-color: #dddddd;
-}
-
-.hero-btn {
-    background-color: #ffff00;
-    color: black;
-}
-
-.hero-btn:hover {
-    background-color: rgba(255, 255, 0, .75);
 }
 
 .submit-btn i,
