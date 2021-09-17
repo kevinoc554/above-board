@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="row">
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel outer-panel">
+            <div class="row">
+                <div class="col s12">
+                    <h1 class="text-center"><span>Above</span> <span>Board</span></h1>
+                    <p class="text-center bold sub-heading">Admin Area</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 m10 offset-m1">
+                    <div class="card-panel">
+                        <form method="POST" action="">
+                            {{ form.hidden_tag() }}
+                            <fieldset>
+                                <legend>Add Categories</legend>
+                                <div class="input-field col s12">
+                                    {{ form.genre.label }}
+                                    {% if form.genre.errors %}
+                                    {{ form.genre(class="invalid") }}
+                                    {% for error in form.genre.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.genre(class="validate") }}
+                                    {% endif %}
+                                </div>
+                                <div class="input-field col s12">
+                                    {{ form.mechanics.label }}
+                                    {% if form.mechanics.errors %}
+                                    {{ form.mechanics(class="invalid") }}
+                                    {% for error in form.mechanics.errors %}
+                                    <span class="helper-text" data-error="{{ error }}"></span>
+                                    {% endfor %}
+                                    {% else %}
+                                    {{ form.mechanics(class="validate") }}
+                                    {% endif %}
+                                </div>
+                            </fieldset>
+                            <div class="input-field text-center submit-btn">
+                                {{ form.submit(class="btn waves-effect waves-light")}}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
