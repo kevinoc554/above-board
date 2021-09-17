@@ -401,6 +401,10 @@ label[for="description"] {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
+
+    .hero-card {
+        margin-top: 3rem;
+    }
 }
 
 @media screen and (max-width: 767px) {
