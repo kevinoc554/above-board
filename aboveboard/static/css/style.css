@@ -8,7 +8,15 @@
 /* Base Styles */
 body {
     font-family: 'Inter', sans-serif;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
 }
+
+main {
+    flex: 1 0 auto;
+}
+
 h1 {
     font-size: 3.8rem;
     font-family: 'Scramble';
@@ -46,8 +54,8 @@ h1 span {
 
 #toTopBtn {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 4rem;
+    right: 2.5rem;
     border: 0;
     border-radius: 50%;
     padding: 0;
@@ -63,6 +71,31 @@ h1 span {
     padding-top: .5rem;
     font-size: 2rem;
     background-color: #ffff00;
+}
+
+footer .row {
+    margin-bottom: .5rem;
+}
+
+.copyright-div,
+.social-links-div {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.social-links {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background-color: #8f8f8f;
+    text-align: center;
+    padding: .5rem 0;
+    color: black;
+}
+
+.hvr-fade:active, .hvr-fade:focus, .hvr-fade:hover {
+    background-color: #ffff00;
+    color: #fafafa;
 }
 
 /* Home page */
@@ -88,7 +121,7 @@ h1 span {
 }
 
 .recently-added-panel {
-    margin-top: 0!important;
+    margin-top: 0 !important;
     margin-bottom: 0;
 }
 
@@ -133,6 +166,7 @@ h1 span {
     font-size: 12px;
     text-align: center;
 }
+
 .pagination-page-info b {
     color: black;
     background: #ffff00;
@@ -162,7 +196,7 @@ h1 span {
 
 .game-data-panel,
 .game-description-panel {
-    min-height: 230px!important;
+    min-height: 230px !important;
 }
 
 .game-data li span,
@@ -197,7 +231,7 @@ h1 span {
 
 .ratings-text {
     font-style: italic;
-    font-weight: lighter!important;
+    font-weight: lighter !important;
 }
 
 .ratings-span {
@@ -296,16 +330,16 @@ label[for="description"] {
 
 /* Star rating system */
 /* Adapted from:  https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl*/
-:root{
+:root {
     --star-rating-size: 2.5rem;
     --unchecked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='%23fff' stroke='%23666' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
     --checked-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='gold' stroke='%23666' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
-     --hovered-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='red' stroke='%23fff' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
+    --hovered-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'%3e%3cpath fill='red' stroke='%23fff' stroke-width='2' d='m25,1 6,17h18l-14,11 5,17-15-10-15,10 5-17-14-11h18z'/%3e%3c/svg%3e");
     --max-stars: 5;
-   
+
 }
 
-.star-rating{
+.star-rating {
     width: min-content;
     padding: 0.3rem;
     border: none;
@@ -315,7 +349,7 @@ label[for="description"] {
     position: relative;
     height: var(--star-rating-size);
     width: calc(var(--star-rating-size) * var(--max-stars));
-    background-image: var(--unchecked-image); 
+    background-image: var(--unchecked-image);
     background-size: var(--star-rating-size) var(--star-rating-size);
 }
 
@@ -365,46 +399,52 @@ label[for="description"] {
     width: calc(100% / var(--max-stars) * 8);
 }
 
- .star-rating label:nth-of-type(9) {
+.star-rating label:nth-of-type(9) {
     z-index: 2;
     width: calc(100% / var(--max-stars) * 9);
 }
 
- .star-rating label:nth-of-type(10) {
+.star-rating label:nth-of-type(10) {
     z-index: 1;
     width: calc(100% / var(--max-stars) * 10);
 }
 
-.star-rating input:checked + label,
-.star-rating input:focus + label{
-    background-image: var(--checked-image); 
+.star-rating input:checked+label,
+.star-rating input:focus+label {
+    background-image: var(--checked-image);
 }
-.star-rating input:checked + label:hover,
-.star-rating label:hover{
-    background-image: var(--hovered-image); 
+
+.star-rating input:checked+label:hover,
+.star-rating label:hover {
+    background-image: var(--hovered-image);
 }
-            
-.star-rating>div:focus-within{
+
+.star-rating>div:focus-within {
     outline: 0.25rem solid lightblue;
 }
 
 .star-rating input,
-.star-rating label>span{
+.star-rating label>span {
     border: 0;
     padding: 0;
     margin: 0;
     position: absolute !important;
-    height: 1px; 
+    height: 1px;
     width: 1px;
     overflow: hidden;
-    clip: rect(1px 1px 1px 1px); /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
-    clip: rect(1px, 1px, 1px, 1px); /*maybe deprecated but we need to support legacy browsers */
-    clip-path: inset(50%); /*modern browsers, clip-path works inwards from each corner*/
-    white-space: nowrap; /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
+    clip: rect(1px 1px 1px 1px);
+    /* IE6, IE7 - a 0 height clip, off to the bottom right of the visible 1px box */
+    clip: rect(1px, 1px, 1px, 1px);
+    /*maybe deprecated but we need to support legacy browsers */
+    clip-path: inset(50%);
+    /*modern browsers, clip-path works inwards from each corner*/
+    white-space: nowrap;
+    /* added line to stop words getting smushed together (as they go onto seperate lines and some screen readers do not understand line feeds as a space */
 }
 
 /* Media Queries */
 @media screen and (min-width: 767px) {
+
     .game-data,
     .game-data-2 {
         margin-top: 1rem;
@@ -413,6 +453,16 @@ label[for="description"] {
 
     .hero-card {
         margin-top: 3rem;
+    }
+
+    .copyright-div {
+        margin-left: .5rem;
+        text-align: left;
+    }
+
+    .social-links-div {
+        margin-left: .5rem;
+        text-align: right;
     }
 }
 

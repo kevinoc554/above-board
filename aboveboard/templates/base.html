@@ -32,58 +32,87 @@
 <body>
     <!-- Return to top button -->
     <button id="toTopBtn" aria-label="Return to top button"><i class="fas fa-chevron-up"></i></button>
-
-    <nav>
-        <div class="nav-wrapper yellow accent-2">
-            <a href="{{ url_for('main.home') }}" class="navbar-logo">
-                <img src="{{ url_for('static', filename='images/brand-logo.png')}}" alt="Brand Logo for Above Board"
-                    height="60" width="56">
-                <h5 class="black-text">Above Board</h5>
-            </a>
-            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
-                    class="fas fa-bars black-text"></i></a></a>
-            <ul class="right hide-on-med-and-down nav-list">
-                <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('games.all_games') }}">All Games</a></li>
-                {% if current_user.is_authenticated %}
+    <header>
+        <nav>
+            <div class="nav-wrapper yellow accent-2">
+                <a href="{{ url_for('main.home') }}" class="navbar-logo">
+                    <img src="{{ url_for('static', filename='images/brand-logo.png')}}" alt="Brand Logo for Above Board"
+                        height="60" width="56">
+                    <h5 class="black-text">Above Board</h5>
+                </a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i
+                        class="fas fa-bars black-text"></i></a></a>
+                <ul class="right hide-on-med-and-down nav-list">
+                    <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                    <li><a href="{{ url_for('games.all_games') }}">All Games</a></li>
+                    {% if current_user.is_authenticated %}
                     <li><a href="{{ url_for('users.profile') }}">My Profile</a></li>
                     <li><a href="{{ url_for('games.my_games') }}">My Games</a></li>
                     <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
-                {% else %}
+                    {% else %}
                     <li><a href="{{ url_for('users.login') }}">Login</a></li>
                     <li><a href="{{ url_for('users.register') }}">Register</a></li>
-                {% endif %}
-                <li><a href="#">Admin</a></li>
-            </ul>
-        </div>
-    </nav>
+                    {% endif %}
+                    <li><a href="#">Admin</a></li>
+                </ul>
+            </div>
+        </nav>
 
-    <ul class="sidenav right" id="mobile-demo">
-        <li><a href="{{ url_for('main.home') }}">Home</a></li>
-                <li><a href="{{ url_for('games.all_games') }}">All Games</a></li>
-                {% if current_user.is_authenticated %}
-                    <li><a href="{{ url_for('users.profile') }}">My Profile</a></li>
-                    <li><a href="{{ url_for('games.my_games') }}">My Games</a></li>
-                    <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
-                {% else %}
-                    <li><a href="{{ url_for('users.login') }}">Login</a></li>
-                    <li><a href="{{ url_for('users.register') }}">Register</a></li>
-                {% endif %}
-                <li><a href="#">Admin</a></li>
-    </ul>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-    <div id="flashes-row" class="row">
-        {% for category, message in messages %}
-        <div class="col s12 m8 offset-m2">
-            <div class="text-center card-panel {{category}}">{{ message }} <i id="close-flashes" class="fas fa-window-close"></i></div>
+
+        <ul class="sidenav right" id="mobile-demo">
+            <li><a href="{{ url_for('main.home') }}">Home</a></li>
+            <li><a href="{{ url_for('games.all_games') }}">All Games</a></li>
+            {% if current_user.is_authenticated %}
+            <li><a href="{{ url_for('users.profile') }}">My Profile</a></li>
+            <li><a href="{{ url_for('games.my_games') }}">My Games</a></li>
+            <li><a href="{{ url_for('users.logout') }}">Logout</a></li>
+            {% else %}
+            <li><a href="{{ url_for('users.login') }}">Login</a></li>
+            <li><a href="{{ url_for('users.register') }}">Register</a></li>
+            {% endif %}
+            <li><a href="#">Admin</a></li>
+        </ul>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        <div id="flashes-row" class="row">
+            {% for category, message in messages %}
+            <div class="col s12 m8 offset-m2">
+                <div class="text-center card-panel {{category}}">{{ message }} <i id="close-flashes"
+                        class="fas fa-window-close"></i></div>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-    {% endwith %}
-    {% block content %}
-    {% endblock %}
+        {% endif %}
+        {% endwith %}
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <footer class="grey darken-1">
+        <div class="row">
+            <div class="col s12 m6 copyright-div">
+               <span class="white-text">© Aboveboard 2021</span>
+            </div>
+            <div class="col s12 m6 social-links-div">
+                <div class="white-text">
+                    <a href="https://twitter.com/" rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-twitter-square social-links hvr-fade" aria-hidden="true"></i>
+                        <span class="sr-only">Twitter</span>
+                    </a>
+                    <a href="https://github.com/kevinoc554/above-board" rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-github social-links hvr-fade" aria-hidden="true"></i>
+                        <span class="sr-only">Github</span>
+                    </a>
+                    <a href="https://www.instagram.com/" rel="noopener noreferrer" target="_blank">
+                        <i class="fab fa-instagram social-links hvr-fade" aria-hidden="true"></i>
+                        <span class="sr-only">Instagram</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
     <!-- jQuery CDN -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
