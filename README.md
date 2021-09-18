@@ -14,7 +14,7 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 - Promote boardgaming as a hobby.
 - Potentially generate income via affiliate links.
 
-![Home page viewed on different screen sizes](screenshots/responsive-index.PNG)
+![Home page viewed on different screen sizes](docs/screenshots/responsive-index.PNG)
 
 *A screenshot of the Home page as viewed on different screen sizes, generated on [ami.responsivedesign.is](http://ami.responsivedesign.is/). An interactive scrollable version is available [here](http://ami.responsivedesign.is/?url=http://above-board.herokuapp.com/home).*
 
@@ -36,19 +36,19 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 
 ### Database Schema
 
-![Database Schema](wireframes/database-schema-1.png)
+![Database Schema](docs/screenshots/database-schema-1.png)
 
 ### Initial Wireframes
 
 Based on the above, the following wireframes were mocked up:
 
-- [Index](wireframes/index.pdf)
-- [Login](wireframes/login.pdf) & [Register](wireframes/register.pdf)
-- [Profile Page](wireframes/profile.pdf)
-- [All Games](wireframes/all-games.pdf) & [My Games](wireframes/my-games.pdf)
-- [Add Game](wireframes/add-game.pdf) & [Edit Game](wireframes/edit-game.pdf)
-- [Game Info](wireframes/game-info.pdf)
-- [Admin Area](wireframes/admin-area.pdf)
+- [Index](docs/index.pdf)
+- [Login](docs/wireframes/login.pdf) & [Register](docs/wireframes/register.pdf)
+- [Profile Page](docs/wireframes/profile.pdf)
+- [All Games](docs/wireframes/all-games.pdf) & [My Games](docs/wireframes/my-games.pdf)
+- [Add Game](docs/wireframes/add-game.pdf) & [Edit Game](docs/wireframes/edit-game.pdf)
+- [Game Info](docs/wireframes/game-info.pdf)
+- [Admin Area](docs/wireframes/admin-area.pdf)
 
 ### Colour Scheme
 
