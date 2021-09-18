@@ -36,14 +36,30 @@ Full details ofthe site can be found in the [README](README.md).
 
 # User Stories
 1. As a new user, I want to be able to register an account, so I can fully utilize the site.
+    - New users can access the Register page via the large call to action button featured prominently on the Home page, or via the Register link in the navigation bar of every page.
 2. As a returning user, I want to be able to log in easily, so I can access the site’s features.
+    - The site's login page is accessible at all times via the navigation bar.
+    - Additionally, shouldthe user attempt to access aroute or page that they do not have permission to access without logging in, they will be redirected to the login page. The login route will then direct them back to the page they were originally trying to access.
 3. As a boardgame fan, I want to be able to view, search and filter a database of games, so I can find one to play.
+    - Users can access the All Games page, which displays the entire database of games, sorted alphabetically and paginated to show 8 results per page.
+    - Users can browse through the games to see details like the genre, player count and an average of all the users ratings.
+    - Users can utilize the text indexed search to filter through the games.
+    - Users can use this information to make an informed decision when picking a game to play or buy. 
 4. As a boardgame fan, I want to add my games to the database, so I can curate my collection.
+    - Users can access the Add Game page via the button on the Home, Profile, All & My Games pages.
+    - Users can add a range of data about the game, including a brief description and a link to the box art.
 5. As a boardgame fan, I want to view my collection of games to the database, so I can see all the games I have added.
+    - Once users have added a game, this can be viewed on the user's My Games page.
+    - This page has the same functionality as the All Games page but only displays games that the current user has added.
 6. As a boardgame fan, I want rate games in the database, so I can provide guidance to other users.
+    - Any logged in user can rate any game in the database by clicking into it's individual page and using the intuitive star rating system.
 7. As a site user, I want to be able to delete my posts, so I can remove any games I have posted.
+    - Users can delete and edit any games they have added to the database via the labelled buttons on that game's page.
 8. As a site administrator, I want to be able to delete any user’s games, so I can remove any potentially inappropriate content.
+    - The Admin account can delete and edit any game added to the database.
 9. As a site administrator, I want to be able to add new genres and mechanics, so I can expand the database content in line with user demands.
+    - The Admin can access an admin page where they can add new Genres or MEchanics to the database.
+    - Once added these will appear in the dropdown menus on the Add and Edit Game pages for all users.
 
 # Manual Testing
 
