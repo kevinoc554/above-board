@@ -42,12 +42,13 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 
 Based on the above, the following wireframes were mocked up:
 
-- [Index](docs/index.pdf)
-- [Login](docs/wireframes/login.pdf) & [Register](docs/wireframes/register.pdf)
+- [Index](docs/wireframes/index.pdf)
+- [Login](docs/wireframes/login.pdf)
+- [Register](docs/wireframes/register.pdf)
 - [Profile Page](docs/wireframes/profile.pdf)
-- [All Games](docs/wireframes/all-games.pdf) & [My Games](docs/wireframes/my-games.pdf)
-- [Add Game](docs/wireframes/add-game.pdf) & [Edit Game](docs/wireframes/edit-game.pdf)
-- [Game Info](docs/wireframes/game-info.pdf)
+- [All Games & My Games](docs/wireframes/all-games.pdf) 
+- [Add Game & Edit Game](docs/wireframes/add-game.pdf) 
+- [View Game](docs/wireframes/game-info.pdf)
 - [Admin Area](docs/wireframes/admin-area.pdf)
 
 ### Colour Scheme
