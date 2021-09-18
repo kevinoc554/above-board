@@ -2,108 +2,108 @@
 {% block content %}
 <!-- Checks for a request.referrer, if found uses it as href of a back button -->
 {% if ref|length != 0 %}
-<a href="{{ ref }}" class="btn back-btn">« Back</a>
+    <a href="{{ ref }}" class="btn back-btn">« Back</a>
 {% endif %}
 
 <h1 class="text-center">Above Board</h1>
 
 {% for game in game %}
-<div class="row">
-    <div class="col s12 m10 offset-m1">
-        <div class="card-panel outer-panel">
-            <h2 class="text-center">{{ game.title }}</h2>
-            <div class="row">
-                <div class="col s12 m5 l4 xl3">
-                    <img src="{{ game.image_link }}" alt="Box Art for {{ game.title }}" class="main-box-image">
-                </div>
-                <div class="card-panel game-data-panel col s12 m7 l8 xl9">
-                    <div class="row">
-                        <div class="col s12 m6">
-                            <ul class="game-data">
-                                <li><span>Designer:</span> {{ game.designer }}</li>
-                                <li><span>Publisher:</span> {{ game.publisher }}</li>
-                                <li><span>Genre:</span> {{ game.genre.title() }}</li>
-                                <li><span>Mechanics:</span> {{ game.mechanics.title() }}</li>
-                                <li><span>Weight:</span> {{ game.weight }}</li>
-                            </ul>
-                        </div>
-                        <div class="col s12 m6">
-                            <ul class="game-data-2">
-                                <li><span>Player Count:</span> {{ game.player_count }}</li>
-                                <li><span>Weight:</span> {{ game.weight }}</li>
-                                <li><span>Added By:</span> {{ game.added_by }}</li>
-                                <li>
-                                    {% if current_user.is_authenticated %}
-                                    <span>Rating: <span id="rating-avg" class="ratings-span">{{ rating }}</span></span>
-                                    <form method="POST">
-                                        <!-- Star rating adapted from: -->
-                                        <!-- https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl -->
-                                        <fieldset id="star-rating" class="star-rating">
-                                            <div>
-                                                <input type="radio" name="rating" value="1" id="rating1" />
-                                                <label for="rating1"><span>1</span></label>
-                                                <input type="radio" name="rating" value="2" id="rating2" />
-                                                <label for="rating2"><span>2</span></label>
-                                                <input type="radio" name="rating" value="3" id="rating3" />
-                                                <label for="rating3"><span>3</span></label>
-                                                <input type="radio" name="rating" value="4" id="rating4" />
-                                                <label for="rating4"><span>4</span></label>
-                                                <input type="radio" name="rating" value="5" id="rating5" />
-                                                <label for="rating5"><span>5</span></label>
-                                            </div>
-                                            <span class="ratings-text">({{ num_ratings }} ratings)</span>
-                                        </fieldset>
-                                        <button type="submit" class="btn rate-btn">Rate</button>
-                                    </form>
-                                    {% else %}
-                                    <span>Rating: {{ rating }}</span>
-                                    {% endif %}
-                                </li>
-                            </ul>
+    <div class="row">
+        <div class="col s12 m10 offset-m1">
+            <div class="card-panel outer-panel">
+                <h2 class="text-center">{{ game.title }}</h2>
+                <div class="row">
+                    <div class="col s12 m5 l4 xl3">
+                        <img src="{{ game.image_link }}" alt="Box Art for {{ game.title }}" class="main-box-image">
+                    </div>
+                    <div class="card-panel game-data-panel col s12 m7 l8 xl9">
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <ul class="game-data">
+                                    <li><span>Designer:</span> {{ game.designer }}</li>
+                                    <li><span>Publisher:</span> {{ game.publisher }}</li>
+                                    <li><span>Genre:</span> {{ game.genre.title() }}</li>
+                                    <li><span>Mechanics:</span> {{ game.mechanics.title() }}</li>
+                                    <li><span>Weight:</span> {{ game.weight }}</li>
+                                </ul>
+                            </div>
+                            <div class="col s12 m6">
+                                <ul class="game-data-2">
+                                    <li><span>Player Count:</span> {{ game.player_count }}</li>
+                                    <li><span>Weight:</span> {{ game.weight }}</li>
+                                    <li><span>Added By:</span> {{ game.added_by }}</li>
+                                    <li>
+                                        {% if current_user.is_authenticated %}
+                                            <span>Rating: <span id="rating-avg" class="ratings-span">{{ rating }}</span></span>
+                                            <form method="POST">
+                                                <!-- Star rating adapted from: -->
+                                                <!-- https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl -->
+                                                <fieldset id="star-rating" class="star-rating">
+                                                    <div>
+                                                        <input type="radio" name="rating" value="1" id="rating1" />
+                                                        <label for="rating1"><span>1</span></label>
+                                                        <input type="radio" name="rating" value="2" id="rating2" />
+                                                        <label for="rating2"><span>2</span></label>
+                                                        <input type="radio" name="rating" value="3" id="rating3" />
+                                                        <label for="rating3"><span>3</span></label>
+                                                        <input type="radio" name="rating" value="4" id="rating4" />
+                                                        <label for="rating4"><span>4</span></label>
+                                                        <input type="radio" name="rating" value="5" id="rating5" />
+                                                        <label for="rating5"><span>5</span></label>
+                                                    </div>
+                                                    <span class="ratings-text">({{ num_ratings }} ratings)</span>
+                                                </fieldset>
+                                                <button type="submit" class="btn rate-btn">Rate</button>
+                                            </form>
+                                        {% else %}
+                                            <span>Rating: {{ rating }}</span>
+                                        {% endif %}
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="card-panel game-description-panel col s12">
-                    <h5>Description:</h5>
-                    <p>{{ game.description }}</p>
+                <div class="row">
+                    <div class="card-panel game-description-panel col s12">
+                        <h5>Description:</h5>
+                        <p>{{ game.description }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col s12 m4 amazon-link">
-                    <a href="http://www.amazon.co.uk/s?url=search-alias%3Daps&field-keywords={{ game.title }}">
-                        Find this game on Amazon
-                    </a>
+                <div class="row">
+                    <div class="col s12 m4 amazon-link">
+                        <a href="http://www.amazon.co.uk/s?url=search-alias%3Daps&field-keywords={{ game.title }}">
+                            Find this game on Amazon
+                        </a>
+                    </div>
+                    {% if current_user.username == game.added_by or current_user.username == 'admin' %}
+                        <div class="col s6 m2 offset-m4">
+                            <a href="{{ url_for('games.edit_game', gameid=game._id) }}" class="btn edit-btn">
+                                <i class="fas fa-edit"></i> Edit
+                            </a>
+                        </div>
+                        <div class="col s6 m2">
+                            <a href="#delete-modal" class="btn delete-btn modal-trigger">
+                                <i class="fas fa-times-circle"></i> Delete
+                            </a>
+                        </div>
+                        <div class="col s4"></div>
+                    {% endif %}
                 </div>
-                {% if current_user.username == game.added_by or current_user.username == 'admin' %}
-                <div class="col s6 m2 offset-m4">
-                    <a href="{{ url_for('games.edit_game', gameid=game._id) }}" class="btn edit-btn">
-                        <i class="fas fa-edit"></i> Edit
-                    </a>
-                </div>
-                <div class="col s6 m2">
-                    <a href="#delete-modal" class="btn delete-btn modal-trigger">
-                        <i class="fas fa-times-circle"></i> Delete
-                    </a>
-                </div>
-                <div class="col s4"></div>
-                {% endif %}
             </div>
         </div>
     </div>
-</div>
 
-<!-- Confirm Delete - Modal adapted from Materialize docs -->
-<div id="delete-modal" class="modal">
-    <div class="modal-content">
-        <h4>Delete Game</h4>
-        <p>Are you sure you want to delete this game? Once it is done, it cannot be reversed.</p>
+    <!-- Confirm Delete - Modal adapted from Materialize docs -->
+    <div id="delete-modal" class="modal">
+        <div class="modal-content">
+            <h4>Delete Game</h4>
+            <p>Are you sure you want to delete this game? Once it is done, it cannot be reversed.</p>
+        </div>
+        <div class="modal-footer">
+            <a href="{{ url_for('games.delete_game', gameid=game._id) }}" class="waves-effect waves-red btn-flat">Delete</a>
+            <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
+        </div>
     </div>
-    <div class="modal-footer">
-        <a href="{{ url_for('games.delete_game', gameid=game._id) }}" class="waves-effect waves-red btn-flat">Delete</a>
-        <a href="#!" class="modal-close waves-effect waves-red btn-flat">Cancel</a>
-    </div>
-</div>
 {% endfor %}
 {% endblock %}

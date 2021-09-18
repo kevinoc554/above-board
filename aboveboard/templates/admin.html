@@ -19,23 +19,23 @@
                                 <div class="input-field col s12">
                                     {{ form.genre.label }}
                                     {% if form.genre.errors %}
-                                    {{ form.genre(class="invalid") }}
-                                    {% for error in form.genre.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
+                                        {{ form.genre(class="invalid") }}
+                                        {% for error in form.genre.errors %}
+                                            <span class="helper-text" data-error="{{ error }}"></span>
+                                        {% endfor %}
                                     {% else %}
-                                    {{ form.genre(class="validate") }}
+                                        {{ form.genre(class="validate") }}
                                     {% endif %}
                                 </div>
                                 <div class="input-field col s12">
                                     {{ form.mechanics.label }}
                                     {% if form.mechanics.errors %}
-                                    {{ form.mechanics(class="invalid") }}
-                                    {% for error in form.mechanics.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
+                                        {{ form.mechanics(class="invalid") }}
+                                        {% for error in form.mechanics.errors %}
+                                            <span class="helper-text" data-error="{{ error }}"></span>
+                                        {% endfor %}
                                     {% else %}
-                                    {{ form.mechanics(class="validate") }}
+                                        {{ form.mechanics(class="validate") }}
                                     {% endif %}
                                 </div>
                             </fieldset>

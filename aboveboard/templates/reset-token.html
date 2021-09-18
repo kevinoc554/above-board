@@ -20,24 +20,24 @@
                                     <i class="prefix fas fa-lock"></i>
                                     {{ form.password.label }}
                                     {% if form.password.errors %}
-                                    {{ form.password(class="invalid") }}
-                                    {% for error in form.password.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
+                                        {{ form.password(class="invalid") }}
+                                        {% for error in form.password.errors %}
+                                            <span class="helper-text" data-error="{{ error }}"></span>
+                                        {% endfor %}
                                     {% else %}
-                                    {{ form.password(class="validate") }}
+                                        {{ form.password(class="validate") }}
                                     {% endif %}
                                 </div>
                                 <div class="input-field col s12">
                                     <i class="prefix fas fa-lock"></i>
                                     {{ form.confirm.label }}
                                     {% if form.confirm.errors %}
-                                    {{ form.confirm(class="invalid") }}
-                                    {% for error in form.confirm.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
+                                        {{ form.confirm(class="invalid") }}
+                                        {% for error in form.confirm.errors %}
+                                            <span class="helper-text" data-error="{{ error }}"></span>
+                                        {% endfor %}
                                     {% else %}
-                                    {{ form.confirm(class="validate") }}
+                                        {{ form.confirm(class="validate") }}
                                     {% endif %}
                                 </div>
                             </fieldset>

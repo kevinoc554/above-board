@@ -19,12 +19,12 @@
                         <i class="prefix fas fa-search"></i>
                         {{ form.query.label }}
                         {% if form.query.errors %}
-                        {{ form.query(class="invalid") }}
-                        {% for error in form.query.errors %}
-                        <span class="helper-text" data-error="{{ error }}"></span>
-                        {% endfor %}
+                            {{ form.query(class="invalid") }}
+                            {% for error in form.query.errors %}
+                                <span class="helper-text" data-error="{{ error }}"></span>
+                            {% endfor %}
                         {% else %}
-                        {{ form.query(class="validate") }}
+                            {{ form.query(class="validate") }}
                         {% endif %}
                     </div>
                     <div class="input-field col s12 l6 text-center submit-btn">
@@ -38,24 +38,24 @@
         <div class="card-panel outer-panel">
             <div class="row">
                 {% for game in games %}
-                <div class="col s12 m6 l3">
-                    <a href="{{ url_for('games.view_game', gameid=game._id) }}" class="game-link">
-                        <div class="card-panel game-panel">
-                            <div class="row">
-                                <div class="col s12">
-                                    <p class="game-title text-center">{{ game.title }}</p>
+                    <div class="col s12 m6 l3">
+                        <a href="{{ url_for('games.view_game', gameid=game._id) }}" class="game-link">
+                            <div class="card-panel game-panel">
+                                <div class="row">
+                                    <div class="col s12">
+                                        <p class="game-title text-center">{{ game.title }}</p>
+                                    </div>
+                                    <div class="col s12">
+                                        <img class="box-art" src="{{ game.image_link }}" alt="{{ game.title }} box art">
+                                    </div>
+                                    <div class="col s6 game-info"><b>Player Count:</b> {{ game.player_count }}</div>
+                                    <div class="col s6 game-info"><b>Mechanics:</b> {{ game.mechanics.title() }}</div>
+                                    <div class="col s6 game-info"><b>Genre:</b> {{ game.genre.title() }}</div>
+                                    <div class="col s6 game-info"><b>Rating:</b> {{ game.rating }}/5</div>
                                 </div>
-                                <div class="col s12">
-                                    <img class="box-art" src="{{ game.image_link }}" alt="{{ game.title }} box art">
-                                </div>
-                                <div class="col s6 game-info"><b>Player Count:</b> {{ game.player_count }}</div>
-                                <div class="col s6 game-info"><b>Mechanics:</b> {{ game.mechanics.title() }}</div>
-                                <div class="col s6 game-info"><b>Genre:</b> {{ game.genre.title() }}</div>
-                                <div class="col s6 game-info"><b>Rating:</b> {{ game.rating }}/5</div>
                             </div>
-                        </div>
-                    </a>
-                </div>
+                        </a>
+                    </div>
                 {% endfor %}
             </div>
         </div>
@@ -70,7 +70,7 @@
         </div>
     </div>
     {% else %}
-    <h4 class="center-align">No Results Found</h4>
+        <h4 class="center-align">No Results Found</h4>
     {% endif %}
 </div>
 {% endblock %}

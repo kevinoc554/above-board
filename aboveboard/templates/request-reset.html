@@ -20,12 +20,12 @@
                                     <i class="prefix fas fa-envelope"></i>
                                     {{ form.email.label }}
                                     {% if form.email.errors %}
-                                    {{ form.email(class="invalid") }}
-                                    {% for error in form.email.errors %}
-                                    <span class="helper-text" data-error="{{ error }}"></span>
-                                    {% endfor %}
+                                        {{ form.email(class="invalid") }}
+                                        {% for error in form.email.errors %}
+                                            <span class="helper-text" data-error="{{ error }}"></span>
+                                        {% endfor %}
                                     {% else %}
-                                    {{ form.email(class="validate") }}
+                                        {{ form.email(class="validate") }}
                                     {% endif %}
                                 </div>
                             </fieldset>
