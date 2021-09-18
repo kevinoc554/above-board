@@ -56,7 +56,19 @@ Based on the above, the following wireframes were mocked up:
 
 ### Fonts
 
-*write up and font choices*
+The fonts chosen for this project were:
+1. [Scramble](https://www.fontspace.com/scramble-font-f2476)
+2. [Inter](https://fonts.google.com/?query=inter)
+
+#### Scramble
+![Scramble Font Sample](docs/screenshots/scramble-font-sample.png)
+
+Scramble was chosen as the font for the main headers of the site. This font was chosen as visual reference to the boardgame 'Scrabble', with which many of the users of the site would already be familiar, in the hopes of eliciting a positive emotional response from them.
+
+#### Inter
+![Inter Font Sample](docs/screenshots/inter-font-sample.PNG)
+
+Inter is a a variable font family specifically designed to be legible on computer screens. This font was chosen to prioritize readability, particularly when database entries could have variable amounts of text.
 
 # Features
 
