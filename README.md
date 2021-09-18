@@ -1,6 +1,18 @@
 # Above Board
 
-## **Project Goals**
+# Table of Contents
+
+> 1.  [Project Goals](#project-goals)
+> 2.  [UX](#ux)
+> 3.  [Features](#features)
+> 4.  [Technologies Used](#technologies-used)
+> 5.  [Testing](#testing)
+> 6.  [Bugs](#bugs)
+> 7.  [Deployment](#deployment)
+> 8.  [Credits](#credits)
+> 9.  [Acknowledgements](#acknowledgements)
+
+# **Project Goals**
 
 Above Board is a place for boardgame fans to browse an extensive database of games, add and rate games, and ultimately find something fun to play. Above Board is aimed at boardgamers new and old, allowing users to log their collections, rate games and explore the database by filtering by genre and game mechanics.
 
@@ -165,4 +177,4 @@ Development and initial testing took place on a HP 250 G6 Laptop (Windows 10) in
 
 ## Content
 
-## Acknowledgements
+# Acknowledgements
