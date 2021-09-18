@@ -99,6 +99,7 @@ Inter is a a variable font family specifically designed to be legible on compute
 # Features
 
 ## Existing Features
+The features of the site can be broadly divide into three groups; User features, Game features and Miscellaneous (Misc) features.
 
 ### Users
 
@@ -128,7 +129,57 @@ Users of the site are able to register accounts, log in and out, edit their acco
 - This email contains a link, the URL of which is created with a secure token unique to that account. Following that link will allow the user to set a new password. The token will expire if not used in time.
 - A user who did not request a reset, or changes their mind, can safely ignore the email. 
 
+### Games
+
+Users of the site can view and search all games in the database, and can add, edit, delete and rate games.
+
+#### Games - View & Search Games
+- Users, regardless of whether they are logged in or not, can see the three most recent additions to the database on the home page.
+- Additonally, all users may view the All Games page.
+- This page displays all the games in the database, alphabetized and paginated to show 8 results per page.
+- Users can navigate between the pages of results using the controls at the bottom of the screen.
+- Using the search bar in the top rightof the page, users can search the database for their inputted term using mongoDB's text index, which will return only the games that match. The search can be reset using the red Reset button by the input.
+- By clicking on any of the games displayed on the All Games page, a user will be brought to that game's page.
+- This page will provide more in depth information about the game, the game's current average rating, and a link to search for the game on Amazon.
+- In the top left, there will be a red 'Back' button. This button uses the `request.referrer` to send the user back to the page they came from, so if browsing through paginated results they will be returned to the correct page.
+- Depending on whether the user is logged in at this point, and if they originally added the game, they may see more options to rate, edit and delete the game. More on this below.
+- A logged in user can also navigate to their My Games page, which is laid out identically tot he All Games page (complete with the search functionality) but will only return the games that have been added by the current user.
+
+#### Games  - Add Games
+- When a user is logged in, they may add games to the database.
+- This can be accessed by clicking the labelled buttons on the Home page, Profile page and All & My Games pages.
+- Users are then brought to a form where they can provide information about the game they would like to add.
+- The form asks the users to provided details about the game (Title, Designer, Publisher, etc) along with a link to the box art and a short description.
+- The form will attempt to use `urllib` to validate that the link provided is a valid URL pointing to a JPEG or JPG file.
+- However, the image link is not a required field, and if left blank will instead be populated with [this](https://via.placeholder.com/250x200?text=No+Box+Art+Provided) placeholder box art.
+- Upon successful completion of the form, the user is redirected to the All Games page where a message is flashed to inform them that the game has been successfully added.
+- The user may then locate the game, either by searching or navigating the pages of results, and can clickon it to view the full details.
+
+#### Games - Rate Games
+- When a logged in user views a game's page, they wil see the games rating expressed as a number of stars, along with a number indicating how many times the game has been rated.
+- The user will be able to interact with this star rating element, and will see it react as they drag their cursor across it.
+- Clicking anywhere on the star rating will select the number of stars indicated and cause the 'Rate' button to appear.
+- Clicking the rate button will submit the form, appending the user's rating to the list of ratings in the database.
+- If the user were to navigate back to the game, they will see the number of ratings has incremented and the average rating may have changed.
+
+#### Games - Edit & Delete
+- When a logged in user views the page of a game they have added, they will see the buttons to Edit and Delete that game.
+- Clicking Edit will bring them to the Edit Game page,which is a version of the Add Game form with the data pre-populated from the database. Users can change any of the information and submit the form to update the game's entry in the database.
+- Clicking the Delete button will trigger a modal to pop up, advising the user that the deletion will be permanent and asking the user to confirm. If the user then clicks 'Delete', the game will be deleted. 
+
+### Misc Features
+These are features or aspects of the site's fucntionality that are not tied to the Users or Games features.
+
+#### Misc - Responsive Navigation Bar
+- The site features a responisve navigation bar adapted from MaterializeCSS
+
+#### Misc - Return to Top Button
+- The site features a custom return to top button.
+- The button fades in on window scroll, and clicking will result ina smooth scroll back to the top of the page.
+- A user that triggers the scroll accidentally can interrupt the animation by clicking/tapping or scrolling thier mousewheel.
+
 ## Features To Be Implemented
+- A social media style functionality, where users can view each others collections.
 
 # Technologies Used
 
