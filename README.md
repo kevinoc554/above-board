@@ -149,48 +149,7 @@ Users of the site are able to register accounts, log in and out, edit their acco
 
 # Testing
 
-## Validation:
-
-### HTML
-
-- The HTML for the site's four pages was passed through the W3C Markup Validation Service, and no errors or warnings were found.
-
-### CSS
-
-- The site's CSS was passed through the W3C CSS Validation Service, and no errors were found.
-- The validation tool highlighted some vendor prefixes which were added by [Autoprefixer](http://autoprefixer.github.io/) to ensure cross-browser support.
-
-### JS
-
-- The site's JavaScript was validated using JSHint.
-
-### Python
-
-## Automated Testing
-
-## Testing of User Stories
-
-## Manual Testing
-
-### Testing Environments
-
-Development and initial testing took place on a HP 250 G6 Laptop (Windows 10) in Chrome. Subsequent testing took place across the following devices, operating systems and browsers:
-
-- Devices:
-
-  - HP 250 G6 Laptop (Windows 10)
-  - MacBook Pro 2013 (MacOS)
-  - OnePlus 6T (Oxygen OS)
-  - Samsung Galaxy S9 (Android)
-  - Apple iPad (iPadOS 14)
-- Browsers:
-
-  - Chrome
-  - Firefox
-  - Edge
-  - Safari
-
-*All testing steps below were taken on all devices and browsers, unless otherwise stated.*
+*Full details of testing can be found [here](docs/TESTING.md).*
 
 # Bugs
 
