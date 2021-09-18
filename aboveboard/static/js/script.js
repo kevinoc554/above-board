@@ -19,10 +19,10 @@ function initMaterialize() {
 // Applies the 'disabled' property to the first option 
 // in each of the dynamically created select elements
 function disableOption() {
-  $('#genre').children().first().prop('disabled', true);
-  $('#mechanics').children().first().prop('disabled', true);
-  $('#rating').children().first().prop('disabled', true);
-  $('#weight').children().first().prop('disabled', true);
+  $('#genre').children().first().prop('disabled', true).attr('value', '');
+  $('#mechanics').children().first().prop('disabled', true).attr('value', '');
+  $('#rating').children().first().prop('disabled', true).attr('value', '');
+  $('#weight').children().first().prop('disabled', true).attr('value', '');
 }
 
 // Return to Top Button
