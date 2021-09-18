@@ -16,6 +16,8 @@
                     <a href="{{ url_for('games.my_games') }}" class="btn hero-btn">Go to My Games!</a>
                     {% else %}
                     <a href="{{ url_for('users.register') }}" class="btn hero-btn">Sign Up Now!</a>
+                    <small class="small-text login-link italics">Already Have An Account? <a
+                            href="{{ url_for('users.login') }}">Login!</a></small>
                     {% endif %}
                 </div>
             </div>

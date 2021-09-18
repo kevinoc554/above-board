@@ -141,6 +141,11 @@ footer .row {
     background-color: rgba(255, 255, 0, .75);
 }
 
+.login-link {
+    display: block;
+    margin-top: .5rem;
+}
+
 .recently-added-panel {
     background-color: #dddddd!important;
     margin-top: 0 !important;
