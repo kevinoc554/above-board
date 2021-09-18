@@ -67,7 +67,7 @@ def view_game(gameid):
             mongo.db.games.update_one(
                 {"_id": ObjectId(gameid)},
                 {'$set': {'rating': new_rating}})
-            flash('Game rated!')
+            flash('Game rated!', 'success')
             return redirect(url_for('games.all_games'))
         else:
             flash('You do not have permission to do that.', 'warning')
