@@ -196,6 +196,25 @@ Set Environment Variables:
 
 
 ## To run and edit the code for this site locally, follow these steps:
+* Log in to GitHub and navigate to the site's **[repository](https://github.com/kevinoc554/above-board)**.
+* Click on the **Code** button.
+* Copy the URL under **Clone with HTTPS** by clicking on the **Copy** button.
+* Open the terminal in your IDE, and navigate to the desired directory.
+* Type `git clone` into the terminal, and paste in the copied URL, e.g.,  
+``git clone https://github.com/kevinoc554/above-board.git``
+* Press enter to clone the repository.
+* Create an `env.py` file to hold the Environment Variables, steps outlined below.
+* Install the required packages using `pip install -r requirements.txt`.
+* Enter `python run.py` to run the app locally.
+
+Environment Variables:
+- In order for the code to run locally, the Environment Variables must be set. These variables can be found by following the steps outlined above.
+- Create a file named `env.py` at the root directory.
+- Set the file up as follows:
+
+![Sample env.py without variables](docs/screenshots/sample-env.PNG)
+- As these variables can contain passwords and secret keys, they should never be pushed to GitHub.
+
 
 # Credits
 
