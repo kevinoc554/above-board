@@ -381,8 +381,8 @@ class TestUserRoutes(flask_testing.TestCase):
         with client:
             client.post('/login', data=dummy_login_data)
             response = client.get('/my-games')
-            # html = response.get_data().decode()
-            # self.assertIn('pagination-page-info', html)
+            html = response.get_data().decode()
+            self.assertIn('pagination-page-info', html)
             self.assertEqual(response.status_code, 200)
 
     def test_login_logged_in(self):
