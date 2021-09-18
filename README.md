@@ -14,7 +14,9 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 - Promote boardgaming as a hobby.
 - Potentially generate income via affiliate links.
 
-*Screen shot of index.html and caption*
+![Home page viewed on different screen sizes](screenshots/responsive-index.PNG)
+
+*A screenshot of the Home page as viewed on different screen sizes, generated on [ami.responsivedesign.is](http://ami.responsivedesign.is/). An interactive scrollable version is available [here](http://ami.responsivedesign.is/?url=http://above-board.herokuapp.com/home).*
 
 # **UX**
 
