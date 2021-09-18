@@ -98,6 +98,36 @@ Inter is a a variable font family specifically designed to be legible on compute
 
 # Features
 
+## Existing Features
+
+### Users
+
+Users of the site are able to register accounts, log in and out, edit their account info and reset their password via email.
+
+#### Users - Register
+- Users can register for an account using the form on the Register page, which can be accessed via the navigation bar at any time, or via the prominent call to action button on the homepage.
+- Users must provide their first and last names, their desired usernames, their emails and a secure password.
+- This form, created with `flask-wtforms`, has extensive validation checks that ensure the password provided is sufficiently secure, and the username and email do not already exist in the database. If there are any issues, this is fed back to the user on the front-end and the form is not submitted.
+- Upon successfully submitting and validating the form, the user's account is registered to the database and they are invited to log in.
+
+#### Users - Login/Logout
+- Once a user has an account, they can log in. This is accessed via the navigation bar, or if a user attempts to reach a page they can only access while logged in.
+- To login, a user must provide an email address and a password. This is compared against the email in the database and the secure hash of the password. Passwords are never stored as plaintext.
+- If the information does not match, the user is given feedback and encouraged to try again.
+- If the information matches, `flask-login` is used to log the user in.
+- A logged in user can log out at any time by clicking the relevant link in the navigation bar.
+
+#### Users - Edit Account Info
+- While logged in a user can navigate to their Profile page, where they can see and edit their account information.
+- Users can update their first and last names, and their email address.
+- Users cannot change their usernames as these are essential to the site's functionality.
+
+#### Users - Password Reset
+- When logging in, a user who has forgotten their password can requesta password reset.
+- The user is asked to provide the email address associated with the account, and provided it exists in the database an email is sent to this address.
+- This email contains a link, the URL of which is created with a secure token unique to that account. Following that link will allow the user to set a new password. The token will expire if not used in time.
+- A user who did not request a reset, or changes their mind, can safely ignore the email. 
+
 ## Features To Be Implemented
 
 # Technologies Used
