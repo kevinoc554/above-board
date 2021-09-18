@@ -111,6 +111,17 @@ class TestGetRoutes(flask_testing.TestCase):
         response = client.get('/reset_password')
         self.assertEqual(response.status_code, 200)
 
+    def test_admin(self):
+        """
+        Test GET requests to Admin route by logged out user.
+
+        Expected Results:
+        Response - 302
+        """
+        client = current_app.test_client(self)
+        response = client.get('/admin')
+        self.assertEqual(response.status_code, 302)
+
 
 class TestUserRoutes(flask_testing.TestCase):
     """
