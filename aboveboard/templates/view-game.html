@@ -75,7 +75,7 @@
                         Find this game on Amazon
                     </a>
                 </div>
-                {% if current_user.username == game.added_by %}
+                {% if current_user.username == game.added_by or current_user.username == 'admin' %}
                 <div class="col s6 m2 offset-m4">
                     <a href="{{ url_for('games.edit_game', gameid=game._id) }}" class="btn edit-btn">
                         <i class="fas fa-edit"></i> Edit
@@ -87,8 +87,8 @@
                     </a>
                 </div>
                 <div class="col s4"></div>
+                {% endif %}
             </div>
-            {% endif %}
         </div>
     </div>
 </div>
