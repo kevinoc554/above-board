@@ -84,7 +84,82 @@ Development and initial testing took place on a HP 250 G6 Laptop (Windows 10) in
 *All testing steps were taken on all devices and browsers, unless otherwise stated.*
 
 # Automated Testing
+Unit tests for some of the site's features and routes were implemented in `test.py`.
 
+These tests were built using the `unittest` and `flask-testing` packages. These packages are included on requirements.txt.
+
+At the time of submission, all tests are passing:
+
+![Screenshot of test results](screenshots/tests.PNG)
+
+Test GET Routes:
+
+A Test Case was built to test GET requests to various routes by a user that has not logged in. A selection of tests will be displayed below, and the full test suite can be found in `test.py`.
+
+1. test_home & test_home_variant
+    - Expected:
+        - Status 200
+    - Result: 
+        - Pass
+
+2. test_all_games
+    - Expected: 
+        - Status 200
+        - 'pagination-page-info'- if present, pagination has applied
+    - Result:
+        - Pass
+
+3. test_profile
+    - Expected: 
+        - Status 302 - redirect as login is required
+    - Result:
+        - Pass
+
+4. test_my_games
+    - Expected: 
+        - Status 302 - redirect as login is required
+    - Result:
+        - Pass
+
+
+Test POST Routes:
+
+A Test Case was built to test POST requests to various routes, and GET requests with a logged in user. These tests use dummy data to register a user, log that user in and out, update their account details and add a game to the database. The TestCase's class method then automatically deletes the user and game from the database at the end of testing. The tests are named with letter characters near the start of the test name to ensure they fire in the correct order. A selection of tests will be displayed below, and the full test suite can be found in `test.py`.
+
+1. test_a_register_user
+    - Expected: 
+        - Status 302 - redirects to Home on success
+        - New user found in database
+    - Result:
+        - Pass
+
+2. test_b_login_user
+    - Expected: 
+        - Status 302 - redirects to Home on success
+        - Once logged in current_user.username should be 'unittest'
+    - Result:
+        - Pass
+
+3. test_c_add_game
+    - Expected: 
+        - Status 302 - redirects to All Games on success
+        - New game found in database
+    - Result:
+        - Pass
+
+4. test_my_games_logged_in
+    - Expected: 
+        - Status 200
+        - 'pagination-page-info'- if present, pagination has applied
+    - Result:
+        - Pass
+
+5. test_zlogout_user
+    - Expected: 
+        - Status 302
+        - As user is logged out, current_user.is_authenticated is False
+    - Result:
+        - Pass
 
 # Bugs
 
