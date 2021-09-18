@@ -83,6 +83,41 @@ Development and initial testing took place on a HP 250 G6 Laptop (Windows 10) in
 
 *All testing steps were taken on all devices and browsers, unless otherwise stated.*
 
+## Responsive Testing
+- All pages of the site were manually tested on a variety of browsers and devices to ensure the design is legible and useable at all screen sizes.
+
+## CRUD Functionality
+The CRUD (Create, Read, Update and Delete) functionality of the site was manually tested.
+
+### **Create**
+|Functionality|Expected|Outcome|
+---|---|---
+|Register a user account|User found in database|Pass|
+|Add a game|Game found in database, and visible on the site|Pass|
+|Add a genre or mechanic via Admin page|Genre/Mechanics found in database, and visible on the site|Pass|
+
+
+### **Read**
+|Functionality|Expected|Outcome|
+---|---|---
+|View a user's account details from database|Account info visible on Profile page|Pass|
+|View games from database|Game visible on the Home, All & My Games pages|Pass|
+|View genre and mechanics from database|Genre/Mechanics visible in forms on the Add and Edit Game pages|Pass|
+
+
+### **Update**
+|Functionality|Expected|Outcome|
+---|---|---
+|Update a user's account details|New account info visible in database and on Profile page|Pass|
+|Update game data|New game data visible in database and on the site|Pass|
+
+
+### **Delete**
+|Functionality|Expected|Outcome|
+---|---|---
+|Delete a game|Game no longer visible in database or on the site|Pass|
+
+
 # Automated Testing
 Unit tests for some of the site's features and routes were implemented in `test.py`.
 
