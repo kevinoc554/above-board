@@ -72,8 +72,7 @@ class User(UserMixin):
         s = Serializer(current_app.config['SECRET_KEY'])
         try:
             username = s.loads(token)['user_id']
-        except Exception as e:
-            print(e)
+        except Exception:
             return None
         return mongo.db.users.find_one({'username': username})
 
