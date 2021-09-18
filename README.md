@@ -219,7 +219,12 @@ Environment Variables:
 # Credits
 
 ## Code
+- The [Python Flask Tutorial](https://coreyms.com/development/python/python-flask-tutorials-full-series) by [Corey M Schaffer](https://coreyms.com/) was referenced throught development, in particular for implementing the Reset Password Email functionality and refactoring the project into blueprints/app factory format.
+- The front-end for the Star Rating system was adapted from [this](https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl) article on [dev.to](https://dev.to/) by [InHuOfficial](https://dev.to/inhuofficial).
+- The site's pagination feature was based on [this](https://gist.github.com/mozillazg/69fb40067ae6d80386e10e105e6803c9) piece on GitHub, the previously mention Flask Tutorial and on previous discussion on the topic on Code Institute's Backend-dev Slack Channel. 
 
 ## Content
+- The [Scramble](https://www.fontspace.com/scramble-font-f2476) font was used from [FontSpace](https://www.fontspace.com/) under their Shareware licence.
 
 # Acknowledgements
+I would like to thank Jack Wachira, and the Student Care team at Code Institute for their support during this project.
