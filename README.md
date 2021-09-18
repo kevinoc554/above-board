@@ -52,7 +52,14 @@ Based on the above, the following wireframes were mocked up:
 
 ### Colour Scheme
 
-*write up and color pallette*
+The color palette chosen for this project is below.
+
+![Color Palette](docs/screenshots/color-palette.PNG)
+
+- The yellow was chosen for the navigation bar and some UI elements, as it is warm and bright and can quickly grab the users attention. Care was given to not overuse it, as it could lead to visual fatigue.
+- The greys and lilac were chosen as background colors as they are muted and would not divert the users attention away from the content of the site.
+- Black font is used throughout the site, to ensure readability. The contrast of the black text against the various background colors was checked with this [contrast checker](https://coolors.co/contrast-checker/000000-ffff00).
+
 
 ### Fonts
 
