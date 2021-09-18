@@ -119,7 +119,8 @@ def delete_game(gameid):
     try:
         find_game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
         game = Game(**find_game)
-        if current_user.username == game.added_by:
+        users = [game.added_by, 'admin']
+        if current_user.username in users:
             Game.delete_one_game(gameid)
             flash('Game has been deleted!', 'success')
             return redirect(url_for('games.all_games'))
@@ -135,7 +136,8 @@ def delete_game(gameid):
 @login_required
 def edit_game(gameid):
     game = mongo.db.games.find_one({"_id": ObjectId(gameid)})
-    if current_user.username != game['added_by']:
+    users = [game['added_by'], 'admin']
+    if current_user.username not in users:
         flash('You do not have permission to do that.', 'warning')
         return redirect(url_for('games.all_games'))
     form = EditGameForm()
