@@ -143,26 +143,59 @@ Users of the site are able to register accounts, log in and out, edit their acco
 - [jQuery](https://jquery.com/) - jQuery was used to simplify and condense JavaScript, particularly for interacting with, and writing to, the DOM.
 - [Font Awesome](https://fontawesome.com/) - Font Awesome icons were used for the social media links in the footer.
 - [Google Fonts](https://fonts.google.com/) - Google Fonts were used throughout the project.
-- [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) - Contrast Checker was used to ensure there was sufficient contrast between foreground and background colours.
+- [Coolor Contrast Checker](https://coolors.co/contrast-checker/000000-ffff00) - Contrast Checker was used to ensure there was sufficient contrast between foreground and background colours.
 - [Free Logo Design](https://www.freelogodesign.org/) - The site's brand logo was created using Free Logo Design.
 - [Favicon Generator](https://www.favicongenerator.com/) - Favicon Generator was used to create and size the favicon for the site, using the logo created above.
+- [Random Keygen](https://randomkeygen.com/) - Used to generate the site's SECRET_KEY
+
+## Packages
+Some of the key packages used in this project include:
+- [Flask-Login](https://flask-login.readthedocs.io/en/latest/) - Used to manage user logins, and for keeping track of the current user
+- [Flask-WTForms](https://flask-wtf.readthedocs.io/en/0.15.x/) - Used to create and validate all forms in the project.
+- [Flask-Mail](https://flask-mail.readthedocs.io/en/latest/) - Used to send the password reset email
+
+*A full list of the packages can be found in the requirements.txt*
 
 # Testing
 
 *Full details of testing can be found [here](docs/TESTING.md).*
-
-# Bugs
-
-### Fixed
 
 # Deployment
 
 - This site was developed in [Gitpod](https://www.gitpod.io/), committed and pushed to [Github](https://github.com/), and deployed on [Heroku](https://www.heroku.com/).
 - At the time of submission, there are no differences between the development version and deployed version of the site.
 
-### The following steps were taken to deploy this site:
+## The following steps were taken to deploy this site:
+Initial steps:
+1. Navigate to [Heroku](https://www.heroku.com/), and log in/sign up.
+2. Once logged in, click on '**New**', and then '**Create New App**'.
+3. Enter a suitable App Name, and choose the region from the dropdown menu.
+4. Click on **Create App**.
+5. Click on the '**Deploy**' tab.
+6. Next to '**Deployment Method**', click on '**GitHub**'.
+7. If prompted, enter GitHub login details.
+8. Next to '**Connect to Github**', find the repository by typing the name in the search box.
+9. Click '**Connect**'.
 
-### To run and edit the code for this site locally, follow these steps:
+Enable Autmotaic deploys:
+1. Within the Heroku app, navigate to the '**Deploy**' tab as above.
+2. Navigate to '**Autmomatic deploys**', and select the branch fromwhich to deploy,in this case `main`.
+3. Click '**Enable Automatic Deploys**'
+
+Set Environment Variables:
+1. Within the Heroku app, navigate to the '**Settings**' tab.
+2. Click on '**Reveal Config Vars**'.
+3. Add the following Config Variables:
+    - **IP** : 0.0.0.0
+    - **PORT** : 5000
+    - **MONGO_URI** : The unique address of the mongoDB collection, which will include the database name and password. Can be found by logging in to [MongoDB](https://www.mongodb.com/), navigating to the Cluster in question and clicking on '**Connect**'.
+    - **MONGO_DBNAME** : The name of the database on mongoDB
+    - **SECRET_KEY** : A string of random characters, used by Flask to maintain security. Can be created using a key generator like the one above, [Random Keygen](https://randomkeygen.com/).
+    - **MAIL_USERNAME** : The email address to be used to send email via Flask-Mail
+    - **MAIL_PASSWORD**' : The app password for the email in the **MAIL_USERNAME**.
+
+
+## To run and edit the code for this site locally, follow these steps:
 
 # Credits
 
