@@ -178,6 +178,10 @@ These are features or aspects of the site's fucntionality that are not tied to t
 - The button fades in on window scroll, and clicking will result ina smooth scroll back to the top of the page.
 - A user that triggers the scroll accidentally can interrupt the animation by clicking/tapping or scrolling thier mousewheel.
 
+#### Misc - Error Handling
+- The site has custom 404 and 500 error pages that will display to users should somehtign go wrong.
+- These pages include the full navigation bar, which will allow users to navigate back to safety.
+
 ## Features To Be Implemented
 - A social media style functionality, where users can view each others collections.
 
