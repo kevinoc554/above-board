@@ -37,7 +37,7 @@ h1 {
 }
 
 h1 span {
-    background-color: #fff;
+    background-color: #fafafa;
 }
 
 .text-center {
@@ -53,7 +53,7 @@ h1 span {
 }
 
 .nav-list li a {
-    color: black;
+    color: #000000;
 }
 
 .navbar-logo img,
@@ -104,7 +104,7 @@ footer .row {
     background-color: #8f8f8f;
     text-align: center;
     padding: .5rem 0;
-    color: black;
+    color: #000000;
 }
 
 .hvr-fade:active,
@@ -134,7 +134,7 @@ footer .row {
 
 .hero-btn {
     background-color: #ffff00;
-    color: black;
+    color: #000000;
 }
 
 .hero-btn:hover {
@@ -142,6 +142,7 @@ footer .row {
 }
 
 .recently-added-panel {
+    background-color: #dddddd!important;
     margin-top: 0 !important;
     margin-bottom: 0;
 }
@@ -156,7 +157,7 @@ footer .row {
 }
 
 .utility-links {
-    color: black;
+    color: #000000;
     font-size: 2rem;
 }
 
@@ -172,11 +173,11 @@ footer .row {
 }
 
 .add-game {
-    color: green
+    color: #000000
 }
 
 .game-link {
-    color: black
+    color: #000000
 }
 
 .pagination-page-info {
@@ -189,7 +190,7 @@ footer .row {
 }
 
 .pagination-page-info b {
-    color: black;
+    color: #000000;
     background: #ffff00;
     padding-left: 2px;
     padding: .1em .25em;
@@ -205,7 +206,7 @@ footer .row {
 }
 
 .pagination li.active a {
-    color: black;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -262,7 +263,7 @@ footer .row {
 .rate-btn {
     display: none;
     background-color: rgba(255, 255, 0);
-    color: black;
+    color: #000000;
 }
 
 .rate-btn:hover,
@@ -285,7 +286,7 @@ label[for="description"] {
 
 /* Profile page */
 .profile-links {
-    color: blue;
+    color: #000000;
 }
 
 /* Forms & Card Panels */
@@ -295,7 +296,7 @@ label[for="description"] {
 
 .outer-panel {
     margin-top: 2rem;
-    background-color: #dddddd;
+    background-color: #b796ac;
 }
 
 .submit-btn i,
