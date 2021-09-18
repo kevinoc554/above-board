@@ -33,7 +33,7 @@
                                 <li><span>Added By:</span> {{ game.added_by }}</li>
                                 <li>
                                     {% if current_user.is_authenticated %}
-                                    <span>Rating: <span id="rating" class="ratings-span">{{ rating }}</span></span>
+                                    <span>Rating: <span id="rating-avg" class="ratings-span">{{ rating }}</span></span>
                                     <form method="POST">
                                         <!-- Star rating adapted from: -->
                                         <!-- https://dev.to/inhuofficial/5-star-rating-system-actually-accessible-no-js-no-wai-aria-3idl -->

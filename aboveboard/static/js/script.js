@@ -51,8 +51,8 @@ function toTopBtn() {
 // Set the checked property on the correct star radio button
 // based on average of ratings passed through route
 function setRatingStars() {
-  if ($('#rating').length) {
-    let avgRating = $('#rating').text();
+  if ($('#rating-avg').length) {
+    let avgRating = $('#rating-avg').text();
     $("input[value~=" + avgRating + "]").prop("checked", true);
   }
 }
