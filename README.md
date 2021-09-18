@@ -1,5 +1,9 @@
 # Above Board
 
+Above Board is a user-centered boardgame database that aims to provide boardgamers a place to catalogue, rate and research games.
+
+View the live site [here](http://above-board.herokuapp.com/home).
+
 # Table of Contents
 
 > 1.  [Project Goals](#project-goals)
