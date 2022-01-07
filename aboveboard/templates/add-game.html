@@ -121,7 +121,7 @@
                                         {{ form.description(class="invalid") }}
                                         {% for error in form.description.errors %}
                                             <span class="helper-text" data-error="{{ error }}"></span>
-                                    {   % endfor %}
+                                    {% endfor %}
                                     {% else %}
                                         {{ form.description(class="validate") }}
                                     {% endif %}
