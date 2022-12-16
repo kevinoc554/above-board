@@ -2,7 +2,7 @@
 
 Above Board is a boardgame database that aims to provide boardgamers a place to catalogue, rate and research games.
 
-View the live site [here](http://above-board.herokuapp.com/home).
+View the live site [here](https://above-board-llz0.onrender.com/).
 
 # Table of Contents
 
@@ -32,7 +32,7 @@ Above Board is a place for boardgame fans to browse an extensive database of gam
 
 ![Home page viewed on different screen sizes](docs/screenshots/responsive-index.PNG)
 
-*A screenshot of the Home page as viewed on different screen sizes, generated on [ami.responsivedesign.is](http://ami.responsivedesign.is/). An interactive scrollable version is available [here](http://ami.responsivedesign.is/?url=http://above-board.herokuapp.com/home).*
+*A screenshot of the Home page as viewed on different screen sizes, generated on [ami.responsivedesign.is](http://ami.responsivedesign.is/). An interactive scrollable version is available [here](http://ami.responsivedesign.is/?url=https://above-board-llz0.onrender.com/).*
 
 # **UX**
 
@@ -217,38 +217,7 @@ Some of the key packages used in this project include:
 
 # Deployment
 
-- This site was developed in [Gitpod](https://www.gitpod.io/), committed and pushed to [Github](https://github.com/), and deployed on [Heroku](https://www.heroku.com/).
-- At the time of submission, there are no differences between the development version and deployed version of the site.
-
-## The following steps were taken to deploy this site:
-Initial steps:
-1. Navigate to [Heroku](https://www.heroku.com/), and log in/sign up.
-2. Once logged in, click on '**New**', and then '**Create New App**'.
-3. Enter a suitable App Name, and choose the region from the dropdown menu.
-4. Click on **Create App**.
-5. Click on the '**Deploy**' tab.
-6. Next to '**Deployment Method**', click on '**GitHub**'.
-7. If prompted, enter GitHub login details.
-8. Next to '**Connect to Github**', find the repository by typing the name in the search box.
-9. Click '**Connect**'.
-
-Enable Autmotaic deploys:
-1. Within the Heroku app, navigate to the '**Deploy**' tab as above.
-2. Navigate to '**Autmomatic deploys**', and select the branch fromwhich to deploy,in this case `main`.
-3. Click '**Enable Automatic Deploys**'
-
-Set Environment Variables:
-1. Within the Heroku app, navigate to the '**Settings**' tab.
-2. Click on '**Reveal Config Vars**'.
-3. Add the following Config Variables:
-    - **IP** : 0.0.0.0
-    - **PORT** : 5000
-    - **MONGO_URI** : The unique address of the mongoDB collection, which will include the database name and password. Can be found by logging in to [MongoDB](https://www.mongodb.com/), navigating to the Cluster in question and clicking on '**Connect**'.
-    - **MONGO_DBNAME** : The name of the database on mongoDB
-    - **SECRET_KEY** : A string of random characters, used by Flask to maintain security. Can be created using a key generator like the one above, [Random Keygen](https://randomkeygen.com/).
-    - **MAIL_USERNAME** : The email address to be used to send email via Flask-Mail
-    - **MAIL_PASSWORD**' : The app password for the email in the **MAIL_USERNAME**.
-
+- This site was developed in [Gitpod](https://www.gitpod.io/), committed and pushed to [Github](https://github.com/), and deployed on [Render](https://render.com/) using a [MongoDB](https://www.mongodb.com/home) database.
 
 ## To run and edit the code for this site locally, follow these steps:
 * Log in to GitHub and navigate to the site's **[repository](https://github.com/kevinoc554/above-board)**.
@@ -263,12 +232,22 @@ Set Environment Variables:
 * Enter `python run.py` to run the app locally.
 
 Environment Variables:
-- In order for the code to run locally, the Environment Variables must be set. These variables can be found by following the steps outlined above.
+- In order for the code to run locally, the Environment Variables must be set.
 - Create a file named `env.py` at the root directory.
 - Set the file up as follows:
 
 ![Sample env.py without variables](docs/screenshots/sample-env.PNG)
-- As these variables can contain passwords and secret keys, they should never be pushed to GitHub.
+
+Glossary of variables:
+- **IP** : 0.0.0.0
+- **PORT** : 5000
+- **MONGO_URI** : The unique address of the mongoDB collection, which will include the database name and password. Can be found by logging in to [MongoDB](https://www.mongodb.com/), navigating to the Cluster in question and clicking on '**Connect**'.
+- **MONGO_DBNAME** : The name of the database on mongoDB
+- **SECRET_KEY** : A string of random characters, used by Flask to maintain security. Can be created using a key generator like the one above, [Random Keygen](https://randomkeygen.com/).
+- **MAIL_USERNAME** : The email address to be used to send email via Flask-Mail
+- **MAIL_PASSWORD**' : The app password for the email in the **MAIL_USERNAME**. 
+
+As these variables can contain passwords and secret keys, they should never be pushed to GitHub.
 
 
 # Credits
